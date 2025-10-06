@@ -17,9 +17,12 @@ public class AllayMovement : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position); // hace que no se choque con el jugador
 
-        // Calcula la posición suavizada
-        Vector3 targetPosition = player.position;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followDelay, followSpeed);
-        transform.LookAt(player);// mira al jugador
+        if (distance > minDistance)
+        {
+            // Calcula la posición suavizada
+            Vector3 targetPosition = player.position;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followDelay, followSpeed);
+            transform.LookAt(player);// mira al jugador
+        }
     }
 }
