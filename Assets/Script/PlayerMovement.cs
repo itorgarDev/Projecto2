@@ -26,12 +26,25 @@ public class PlayerMovement : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
-
-        controls.Player.Dash.performed += ctx => dashPressed = true;
+        controls.Player.Move.performed += OnMovePerformed;
+        controls.Player.Move.canceled += OnMoveCanceled;
+        controls.Player.Dash.performed += OnDashPerformed;
     }
 
+    private void OnMovePerformed(InputAction.CallbackContext ctx)
+    {
+        moveInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnMoveCanceled(InputAction.CallbackContext ctx)
+    {
+        moveInput = Vector2.zero;
+    }
+
+    private void OnDashPerformed(InputAction.CallbackContext ctx)
+    {
+        dashPressed = true;
+    }
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
@@ -44,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = horizontalInput * right + verticalInput * forward;
 
-        if (direction.magnitude > 0.1f) // Evita movimientos muy pequeños
+        if (direction.magnitude > 0.01f) // Evita movimientos muy pequeños
         {
             Vector3 normalizedDirection = direction.normalized; // Normaliza la dirección para mantener una velocidad constante
             transform.position += normalizedDirection * speed * Time.deltaTime;
