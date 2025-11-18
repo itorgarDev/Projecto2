@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerControls controls;
     private Vector2 moveInput;
-    private bool dashPressed;
+    private TakeDrop currentItem;
+
 
     void Awake()
     {
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Move.performed += OnMovePerformed;
         controls.Player.Move.canceled += OnMoveCanceled;
         controls.Player.Dash.performed += OnDashPerformed;
+        controls.Player.Take.performed += OnTakePerformed;
+
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
@@ -41,12 +44,27 @@ public class PlayerMovement : MonoBehaviour
         moveInput = Vector2.zero;
     }
 
-    private void OnDashPerformed(InputAction.CallbackContext ctx)
+    private void OnDashPerformed(InputAction.CallbackContext ctx) 
     {
-        dashPressed = true;
+        Vector3 direction = moveInput.x * right + moveInput.y * forward; 
+        if (direction.magnitude > 0.1f && Time.time - lastDashTime >= dashCooldown && !isDashing) 
+        {
+            StartCoroutine(DashCoroutine(direction.normalized)); 
+        }
     }
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
+    private void OnTakePerformed(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && currentItem != null)
+        {
+            currentItem.PickUp();
+            currentItem = null;
+        }
+    }
+
+
+
 
     void Update()
     {
@@ -66,11 +84,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Suaviza la rotación hacia la dirección del movimiento
         }
       
-        if (dashPressed && direction.magnitude > 0.1f && Time.time - lastDashTime >= dashCooldown && !isDashing) // Inicia el dash si se presiona espacio, hay dirección y el cooldown ha pasado
-        {
-            dashPressed = false;
-            StartCoroutine(DashCoroutine(direction.normalized));
-        }
+       
     }
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
@@ -94,5 +108,20 @@ public class PlayerMovement : MonoBehaviour
         transform.position = end;
         isDashing = false; // Vuelve a permitir movimiento
         IsImmortal = false; // El jugador ya no es inmortal
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
+        {
+            currentItem = item;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<TakeDrop>(out TakeDrop item) && item == currentItem)
+        {
+            currentItem = null;
+        }
     }
 }
