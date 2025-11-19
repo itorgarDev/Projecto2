@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerControls controls;
     private Vector2 moveInput;
     private TakeDrop currentItem;
+    private bool isPaused = false;
+    [SerializeField] private GameObject pauseMenuCanvas;
 
 
     void Awake()
@@ -31,7 +34,24 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Move.canceled += OnMoveCanceled;
         controls.Player.Dash.performed += OnDashPerformed;
         controls.Player.Take.performed += OnTakePerformed;
+        controls.Player.Pause.performed += OnPausePerformed;
 
+    }
+
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        if (!isPaused)  // esto funciona como interruptor dependiendo del valor de isPaused
+        {
+            isPaused = true; // al poner ! isPaused indica el valor contrario
+            Time.timeScale = 0; // entonces si entra en false se vuelve true y viceversa creando asi alternancia para activar y desactivar la pausa
+            pauseMenuCanvas.SetActive(true);
+        }                       
+        else
+        {
+            isPaused = false;      
+            Time.timeScale = 1;
+            pauseMenuCanvas.SetActive(false);
+        }
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
@@ -52,8 +72,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashCoroutine(direction.normalized)); 
         }
     }
-    void OnEnable() => controls.Enable();
-    void OnDisable() => controls.Disable();
     private void OnTakePerformed(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && currentItem != null)
@@ -62,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
             currentItem = null;
         }
     }
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
 
 
 
@@ -109,11 +129,11 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false; // Vuelve a permitir movimiento
         IsImmortal = false; // El jugador ya no es inmortal
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other) 
     {
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
         {
-            currentItem = item;
+            currentItem = item; // actualiza el valor de currentitem si esta dentro del triger
         }
     }
 
@@ -121,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item) && item == currentItem)
         {
-            currentItem = null;
+            currentItem = null; // actualiza el valor de currentitem si YA NO  esta dentro del triger
         }
     }
 }
