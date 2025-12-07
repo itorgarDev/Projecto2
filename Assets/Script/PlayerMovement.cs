@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private TakeDrop currentItem;
     private bool isPaused = false;
+    private PlayerAttack playerAttack;
     [SerializeField] private GameObject pauseMenuCanvas;
 
 
@@ -35,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Dash.performed += OnDashPerformed;
         controls.Player.Take.performed += OnTakePerformed;
         controls.Player.Pause.performed += OnPausePerformed;
+
+        playerAttack = GetComponentInChildren<PlayerAttack>();
+        controls.Player.Attack.performed += OnAttackPerformed;
 
     }
 
@@ -83,6 +87,13 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
+    private void OnAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && playerAttack != null)
+        {
+            playerAttack.PerformAttack();
+        }
+    }
 
 
 
