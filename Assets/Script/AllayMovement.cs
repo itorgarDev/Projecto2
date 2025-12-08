@@ -11,6 +11,8 @@ public class AllayMovement : MonoBehaviour
     [SerializeField] private float minDistance = 1.5f; // Distancia mínima para seguir
     [SerializeField] private float maxDistance = 6f;   // Distancia máxima antes de acelerar
 
+    private float rotationOffsetZ = 90f; // CORRECCIÓN EN Z
+
     private float currentSpeed = 0f;
 
     void Update()
@@ -21,12 +23,15 @@ public class AllayMovement : MonoBehaviour
 
         if (distance > minDistance)
         {
-            float targetSpeed = (distance > maxDistance) ? sprintSpeed : followSpeed; // dependiendo de si es tru o no usa fllow o sprint speed
-            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime); //lo suaviza multiplicando por la acelerancion
+            float targetSpeed = (distance > maxDistance) ? sprintSpeed : followSpeed;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
 
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * currentSpeed * Time.deltaTime;
+
+            // Mantener LookAt pero corrigiendo en Z
             transform.LookAt(player);
+            transform.rotation *= Quaternion.Euler(0f, 0f, rotationOffsetZ);
         }
         else
         {

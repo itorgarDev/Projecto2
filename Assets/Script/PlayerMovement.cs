@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isPaused = false;
     private PlayerAttack playerAttack;
     [SerializeField] private GameObject pauseMenuCanvas;
+    public Vector2 MoveInput => moveInput;
+    public bool IsDashing => isDashing;
+
 
 
     void Awake()

@@ -1,28 +1,23 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
-    private MeshCollider weaponCollider;
+    [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquí
+    [SerializeField] private float hitboxDuration = 0.3f;
     [SerializeField] private int damage = 50;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
-        weaponCollider = GetComponent<MeshCollider>(); // si usas MeshCollider
-        weaponCollider.convex = true; // obligatorio para triggers
-        weaponCollider.isTrigger = true;
         weaponCollider.enabled = false;
     }
 
-    // Este método lo llamará PlayerMovement cuando detecte el input "Attack"
     public void PerformAttack()
     {
         anim.SetTrigger("Attack");
-        weaponCollider.enabled = true; // activa el collider al empezar la animación
-        Invoke(nameof(DisableCollider), anim.GetCurrentAnimatorStateInfo(0).length);
-        // desactiva el collider automáticamente cuando termine el estado actual
+        weaponCollider.enabled = true;
+        Invoke(nameof(DisableCollider), hitboxDuration);
     }
 
     private void DisableCollider()
@@ -39,10 +34,5 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log("Enemy detectado, aplicando daño: " + damage);
             enemy.TakeDamage(damage);
         }
-        else
-        {
-            Debug.Log("El objeto no tiene componente Enemy");
-        }
     }
 }
-
