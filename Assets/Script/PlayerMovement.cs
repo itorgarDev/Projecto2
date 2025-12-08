@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -39,10 +40,16 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Dash.performed += OnDashPerformed;
         controls.Player.Take.performed += OnTakePerformed;
         controls.Player.Pause.performed += OnPausePerformed;
+        controls.Player.Respawn.performed += OnRespawnPerformed;
 
         playerAttack = GetComponentInChildren<PlayerAttack>();
         controls.Player.Attack.performed += OnAttackPerformed;
 
+    }
+
+    private void OnRespawnPerformed(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnPausePerformed(InputAction.CallbackContext context)
