@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvas;
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
+    [SerializeField] private int maxHealth = 1;
+    private int currentHealth;
 
 
 
@@ -105,7 +107,37 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int amount)
+    {
+        if (IsImmortal) return; // no recibe daño si está en dash
 
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // reaparece en el último checkpoint
+        transform.position = RespawnSystem.LastCheckpointPos;
+
+        // reinicia la vida
+        currentHealth = maxHealth;
+
+        // resetea estados
+        isDashing = false;
+        IsImmortal = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
+        }
+    }
 
     void Update()
     {

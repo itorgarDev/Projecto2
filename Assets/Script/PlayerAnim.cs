@@ -15,6 +15,8 @@ public class PlayerAnim : MonoBehaviour
 
     void Update()
     {
+        //linea para que se pueda hacer el test
+        if (animator == null) return;
         // Control de caminar
         bool isWalking = movement.MoveInput.magnitude > 0.01f && !movement.IsDashing;
         animator.SetBool("isWalking", isWalking);
