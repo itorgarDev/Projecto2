@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerControls controls;
     private Vector2 moveInput;
     private TakeDrop currentItem;
+    private DialogueSystem currentNpc;
     private bool isPaused = false;
     private PlayerAttack playerAttack;
     [SerializeField] private GameObject pauseMenuCanvas;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Take.performed += OnTakePerformed;
         controls.Player.Pause.performed += OnPausePerformed;
         controls.Player.Respawn.performed += OnRespawnPerformed;
+        controls.Player.Interact.performed += OnInteractPerformed;
 
         playerAttack = GetComponentInChildren<PlayerAttack>();
         controls.Player.Attack.performed += OnAttackPerformed;
@@ -96,6 +98,25 @@ public class PlayerMovement : MonoBehaviour
             currentItem = null;
         }
     }
+    private void OnInteractPerformed(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+
+        // si dialogo esta activo continua
+        if (currentNpc != null && currentNpc.IsDialogueActive)
+        {
+            currentNpc.ContinueDialogue();
+            return;
+        }
+
+        // si no esta activo pero tenemos un npc al alcance lo empieza
+        if (currentNpc != null)
+        {
+            currentNpc.StartDialogue();
+            return;
+        }
+    }
+
     void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
@@ -184,9 +205,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerStay(Collider other) 
     {
+        //detecta items
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
         {
             currentItem = item; // actualiza el valor de currentitem si esta dentro del triger
+        }
+
+        //detecta npcs
+        if (other.TryGetComponent<DialogueSystem>(out DialogueSystem npcDialogue)) 
+        { 
+            currentNpc = npcDialogue; 
         }
     }
 
@@ -195,6 +223,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item) && item == currentItem)
         {
             currentItem = null; // actualiza el valor de currentitem si YA NO  esta dentro del triger
+        }
+
+        if (other.TryGetComponent<DialogueSystem>(out DialogueSystem npcDialogue) && npcDialogue == currentNpc) 
+        { 
+            currentNpc = null; // lo mismo con npcs
+
+            // esto hace que los mensajes desaparezcan y se reseteen si se aleja del npc
+            if (npcDialogue.IsDialogueActive) npcDialogue.EndDialogue();
         }
     }
 }
