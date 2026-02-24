@@ -402,7 +402,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e80d1439-492f-4025-867c-a37e0d6df4db"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -457,7 +457,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a4bfbe72-faee-43c3-8150-63cf8f248e95"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -490,7 +490,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2be7e3c1-347d-4b40-b2fd-3e30ca53abbc"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

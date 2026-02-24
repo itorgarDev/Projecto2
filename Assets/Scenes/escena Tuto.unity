@@ -523,7 +523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -61.00006, y: -407.87897}
+  m_AnchoredPosition: {x: -61, y: -407.87897}
   m_SizeDelta: {x: -692.943, y: -894.886}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &284802951
@@ -3353,12 +3353,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  speed: 10
-  visionRange: 100
+  speed: 20
+  visionRange: 50
   visionAngle: 180
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  model: {fileID: 0}
 --- !u!114 &2056541773
 MonoBehaviour:
   m_ObjectHideFlags: 0
