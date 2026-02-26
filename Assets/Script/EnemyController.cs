@@ -106,6 +106,7 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
+
         // Solo mirar al jugador
         Vector3 direction = (player.position - transform.position).normalized;
         Vector3 flatDir = new Vector3(direction.x, 0, direction.z);
@@ -113,6 +114,7 @@ public class EnemyController : MonoBehaviour
         if (flatDir.sqrMagnitude > 0.001f)
             transform.rotation = Quaternion.LookRotation(flatDir);
 
+        Debug.Log("EnemyController: ESTOY EN ATTACK");
         enemyAttack.TryAttack();
 
     }

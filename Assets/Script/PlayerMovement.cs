@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvas;
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
-    [SerializeField] private int maxHealth = 1;
+    [SerializeField] private int maxHealth = 3;
     private int currentHealth;
 
 

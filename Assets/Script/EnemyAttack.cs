@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    private Animator animatorWeapon;
     [Header("Ataque")]
     [SerializeField] private Collider weaponCollider;
     [SerializeField] private float hitboxDuration = 0.3f;
@@ -12,12 +13,13 @@ public class EnemyAttack : MonoBehaviour
 
     private void Awake()
     {
-        if (weaponCollider != null)
-            weaponCollider.enabled = false;
+        animatorWeapon = GetComponentInChildren<Animator>();
+        weaponCollider.enabled = false;
     }
 
     public void TryAttack()
     {
+        Debug.Log("EnemyAttack: TryAttack() llamado");
         if (Time.time - lastAttackTime < attackCooldown)
             return;
 
@@ -27,10 +29,12 @@ public class EnemyAttack : MonoBehaviour
 
     private void PerformAttack()
     {
-        // Aquí puedes poner animación más adelante
+        animatorWeapon.SetTrigger("Attack");
+
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
+
 
     private void DisableCollider()
     {
@@ -39,10 +43,12 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hitbox tocó: " + other.name);
         PlayerMovement player = other.GetComponent<PlayerMovement>();
         if (player != null)
         {
             player.TakeDamage(damage);
         }
+       
     }
 }
