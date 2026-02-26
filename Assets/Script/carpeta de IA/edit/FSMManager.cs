@@ -8,6 +8,6 @@ public class FSMManager : StateMachineFlow
 
     private void Awake()
     {
-        idleState = new();
+        idleState = new Idle(this); 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Idle : TemplateStateMachine
 {
     public FSMManager fsm;
-    public Idle(string name, FSMManager _stateMMachineFlow) : base ("Idle", (StateMachineFlow) _stateMMachineFlow)
+    public Idle(FSMManager _stateMMachineFlow) : base ("Idle", (StateMachineFlow) _stateMMachineFlow)
     {
 
     }
