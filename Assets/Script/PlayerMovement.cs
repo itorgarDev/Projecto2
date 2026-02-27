@@ -51,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
     private void OnRespawnPerformed(InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
