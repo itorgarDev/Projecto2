@@ -8,10 +8,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 4;
     [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] private float maxForce = 20f;
 
     [SerializeField] private float dashDistance = 8f;
     [SerializeField] private float dashCooldown = 3f;
     private float dashDuration = 0.2f;
+    private bool dashRequested = false;
+    private Vector3 dashDir;
+    [SerializeField] private LayerMask obstacleMask;
+
+
     public bool IsImmortal { get; private set; }
     private bool isDashing = false;
     private float lastDashTime = -Mathf.Infinity; // hacemos que el dash esté disponible al inicio dando un valor negativo grande
@@ -20,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly Vector3 forward = new Vector3(1, 0, 1).normalized;
     private readonly Vector3 right = new Vector3(1, 0, -1).normalized;
 
+    private Rigidbody rb;
     private PlayerControls controls;
     private Vector2 moveInput;
     private TakeDrop currentItem;
@@ -31,12 +38,13 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDashing => isDashing;
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
-
+    
 
 
     void Awake()
     {
         controls = new PlayerControls();
+        rb = GetComponent<Rigidbody>();
 
         controls.Player.Move.performed += OnMovePerformed;
         controls.Player.Move.canceled += OnMoveCanceled;
@@ -87,14 +95,17 @@ public class PlayerMovement : MonoBehaviour
         moveInput = Vector2.zero;
     }
 
-    private void OnDashPerformed(InputAction.CallbackContext ctx) 
+    private void OnDashPerformed(InputAction.CallbackContext ctx)
     {
-        Vector3 direction = moveInput.x * right + moveInput.y * forward; 
-        if (direction.magnitude > 0.1f && Time.time - lastDashTime >= dashCooldown && !isDashing) 
+        Vector3 direction = moveInput.x * right + moveInput.y * forward;
+
+        if (direction.magnitude > 0.1f && Time.time - lastDashTime >= dashCooldown && !isDashing)
         {
-            StartCoroutine(DashCoroutine(direction.normalized)); 
+            dashDir = direction.normalized;   // guardamos la dirección del dash
+            dashRequested = true;             // marcamos que se ha pedido un dash
         }
     }
+
     private void OnTakePerformed(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && currentItem != null)
@@ -165,25 +176,40 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (isDashing) return; // Bloquea todo mientras dura el dash
-
-        float horizontalInput = moveInput.x;
-        float verticalInput = moveInput.y;
-
-        Vector3 direction = horizontalInput * right + verticalInput * forward;
-
-        if (direction.magnitude > 0.01f) // Evita movimientos muy pequeños
+        if (dashRequested)
         {
-            Vector3 normalizedDirection = direction.normalized; // Normaliza la dirección para mantener una velocidad constante
-            transform.position += normalizedDirection * speed * Time.deltaTime;
-
-            Quaternion targetRotation = Quaternion.LookRotation(normalizedDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Suaviza la rotación hacia la dirección del movimiento
+            dashRequested = false;
+            StartCoroutine(DashCoroutine(dashDir));
+            return;
         }
-      
-       
+
+        if (isDashing) return;
+
+        // Dirección isométrica fija
+        Vector3 direction = moveInput.x * right + moveInput.y * forward;
+
+        // Velocidad objetivo
+        Vector3 targetVelocity = direction * speed;
+
+        // Física
+        Vector3 currentVelocity = rb.velocity;
+        Vector3 velocityChange = targetVelocity - currentVelocity;
+
+        // Limitar fuerza máxima
+        velocityChange = Vector3.ClampMagnitude(velocityChange, maxForce);
+
+        // Aplicar movimiento físico
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        // Rotación del personaje hacia la dirección de movimiento
+        if (direction.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(direction);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
+        }
+
     }
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
@@ -193,21 +219,31 @@ public class PlayerMovement : MonoBehaviour
         lastDashTime = Time.time; // Actualiza el tiempo del último dash
 
         float elapsed = 0f;
-        Vector3 start = transform.position;
-        Vector3 end = start + dashDirection * dashDistance;
+        float dashSpeed = dashDistance / dashDuration; // velocidad necesaria para recorrer la distancia exacta
 
-        while (elapsed < dashDuration) // si dashduration es mas chico que el tiempo de frame puede que no llegue exactamente al final y cause efectos raros (no tocar)
+        while (elapsed < dashDuration)
         {
-            float t = elapsed / dashDuration; // divide el tiempo transcurrido por la duración total para obtener un valor entre 0 y 1
-            transform.position = Vector3.Lerp(start, end, t);
-            elapsed += Time.deltaTime;
-            yield return null;
+            float step = dashSpeed * Time.fixedDeltaTime;
+            Vector3 nextPos = rb.position + dashDirection * step;
+
+            // comprobamos si entre la posición actual y la siguiente hay algo sólido
+            if (Physics.Raycast(rb.position, dashDirection, out RaycastHit hit, step + 0.1f, obstacleMask))
+            {
+                break; // solo se detiene si lo que hay delante es una pared
+            }
+
+
+            rb.MovePosition(nextPos);
+
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
 
-        transform.position = end;
+
         isDashing = false; // Vuelve a permitir movimiento
         IsImmortal = false; // El jugador ya no es inmortal
     }
+
     private void OnTriggerStay(Collider other) 
     {
         //detecta items
