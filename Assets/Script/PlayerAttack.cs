@@ -6,7 +6,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquí
     [SerializeField] private float hitboxDuration = 0.3f;
     [SerializeField] private int damage = 50;
-    public bool isAttacking = false;
 
     void Awake()
     {
@@ -18,14 +17,12 @@ public class PlayerAttack : MonoBehaviour
     {
         anim.SetTrigger("Attack");
         weaponCollider.enabled = true;
-        isAttacking = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
 
     private void DisableCollider()
     {
         weaponCollider.enabled = false;
-        isAttacking = false;
     }
 
     private void OnTriggerEnter(Collider other)

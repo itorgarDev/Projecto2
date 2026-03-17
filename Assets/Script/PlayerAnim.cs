@@ -6,13 +6,11 @@ public class PlayerAnim : MonoBehaviour
 {
     private Animator animator;
     private PlayerMovement movement;
-    private PlayerAttack attack;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<PlayerMovement>();
-        attack = GetComponent<PlayerAttack>();
     }
 
     void Update()
@@ -24,16 +22,9 @@ public class PlayerAnim : MonoBehaviour
         animator.SetBool("isWalking", isWalking);
 
         // Control de dash
-        animator.SetBool("isDashing", movement.IsDashing);
+       // animator.SetBool("isDashing", movement.IsDashing);
 
-        if (attack.isAttacking)
-        {
-            animator.SetTrigger("Attack");
-        }
     }
-
-
 }
-
 
 
