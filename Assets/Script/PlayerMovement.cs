@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float dashDistance = 8f;
     [SerializeField] private float dashCooldown = 3f;
-    private float dashDuration = 0.2f;
+    [SerializeField] float dashDuration = 0.2f;
+    [SerializeField] private ParticleSystem dashWind;
+
     private bool dashRequested = false;
     private Vector3 dashDir;
     [SerializeField] private LayerMask obstacleMask;
@@ -104,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
             dashDir = direction.normalized;   // guardamos la dirección del dash
             dashRequested = true;             // marcamos que se ha pedido un dash
         }
+        Debug.Log("DASH INPUT");
+
     }
 
     private void OnTakePerformed(InputAction.CallbackContext ctx)
@@ -209,11 +213,17 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRot = Quaternion.LookRotation(direction);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
+        if (dashRequested)
+            Debug.Log("DASH REQUESTED");
+
 
     }
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
     {
+        Debug.Log("DASH START");
+        dashWind.Play();
+
         isDashing = true;
         IsImmortal = true; // El jugador es inmortal durante el dash
         lastDashTime = Time.time; // Actualiza el tiempo del último dash
@@ -226,11 +236,11 @@ public class PlayerMovement : MonoBehaviour
             float step = dashSpeed * Time.fixedDeltaTime;
             Vector3 nextPos = rb.position + dashDirection * step;
 
-            // comprobamos si entre la posición actual y la siguiente hay algo sólido
+            /*// comprobamos si entre la posición actual y la siguiente hay algo sólido
             if (Physics.Raycast(rb.position, dashDirection, out RaycastHit hit, step + 0.1f, obstacleMask))
             {
                 break; // solo se detiene si lo que hay delante es una pared
-            }
+            }*/
 
 
             rb.MovePosition(nextPos);
@@ -242,6 +252,9 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = false; // Vuelve a permitir movimiento
         IsImmortal = false; // El jugador ya no es inmortal
+        dashWind.Stop();
+
+
     }
 
     private void OnTriggerStay(Collider other) 
