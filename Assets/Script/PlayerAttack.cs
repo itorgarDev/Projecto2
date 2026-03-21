@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Animator anim;
+    
     [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquí
     [SerializeField] private float hitboxDuration = 0.3f;
     [SerializeField] private int damage = 50;
+    private bool isAttacking;
+    public bool IsAttacking => isAttacking;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        
         weaponCollider.enabled = false;
     }
 
     public void PerformAttack()
     {
-        anim.SetTrigger("Attack");
+        isAttacking = true;
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
@@ -23,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
     private void DisableCollider()
     {
         weaponCollider.enabled = false;
+        isAttacking = false;
     }
 
     private void OnTriggerEnter(Collider other)
