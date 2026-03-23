@@ -606,6 +606,24 @@ MonoBehaviour:
   weaponCollider: {fileID: 1488414666}
   hitboxDuration: 0.3
   damage: 50
+--- !u!114 &128199555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128199547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69292f64781063488a1fe8654284509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 128199548}
+  followSpeed: 3
+  sprintSpeed: 6
+  acceleration: 10
+  minDistance: 1.5
+  maxDistance: 6
 --- !u!1 &128918700
 GameObject:
   m_ObjectHideFlags: 0
@@ -11608,6 +11626,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d788c86bf1974a04cbec9ab5ab4a8817,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 128199555}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d788c86bf1974a04cbec9ab5ab4a8817,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 128199549}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d788c86bf1974a04cbec9ab5ab4a8817,
         type: 3}
@@ -12827,7 +12849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc79520f9ecef54a96b406b4704b737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1831438781}
+  target: {fileID: 128199548}
   smoothTime: 0.2
   offset: {x: 0, y: 5, z: -5}
   lookAheadDistance: 0.05
