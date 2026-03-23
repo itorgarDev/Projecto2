@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy muerto");
         Destroy(gameObject); // elimina el enemigo de la escena
+        // MATAR ENEMIGOS CON ESTO Pool
     }
 }
 
