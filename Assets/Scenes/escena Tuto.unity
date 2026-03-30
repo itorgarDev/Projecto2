@@ -541,6 +541,11 @@ MonoBehaviour:
     m_Bits: 8
   pauseMenuCanvas: {fileID: 1754153260}
   maxHealth: 3
+  gravity: 40
+  snapDistance: 1.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &128199552
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -588,9 +593,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.6926041
-  m_Height: 7.217064
+  m_Height: 7.255234
   m_Direction: 1
-  m_Center: {x: -0.03578186, y: 2.3275871, z: 0.4174118}
+  m_Center: {x: -0.03578186, y: 3.066475, z: 0.4174118}
 --- !u!114 &128199554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10602,7 +10607,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a8f2daa103533f74cab1ddf00f9e43c6,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1578447588796475158, guid: a8f2daa103533f74cab1ddf00f9e43c6,
         type: 3}
@@ -10678,7 +10683,7 @@ PrefabInstance:
     - target: {fileID: 3345077528798092320, guid: a8f2daa103533f74cab1ddf00f9e43c6,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -10920,7 +10925,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d788c86bf1974a04cbec9ab5ab4a8817,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 110.943756
+      value: 114.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d788c86bf1974a04cbec9ab5ab4a8817,
         type: 3}

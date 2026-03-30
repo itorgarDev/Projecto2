@@ -40,7 +40,12 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDashing => isDashing;
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
-    
+
+    [SerializeField] private float gravity = 40f;      // gravedad rápida
+    [SerializeField] private float snapDistance = 1.2f;
+    [SerializeField] private LayerMask groundMask;
+
+    private float verticalVelocity = 0f;
 
 
     void Awake()
@@ -180,6 +185,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void HandleVerticalMovement()
+    {
+        // 1. Aplicar gravedad arcade
+        verticalVelocity -= gravity * Time.fixedDeltaTime;
+
+        // 2. Raycast largo para detectar suelo
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, groundMask))
+        {
+            // 3. Snapping suave si estás cerca del suelo
+            if (hit.distance <= snapDistance)
+            {
+                verticalVelocity = -2f; // pegado estable sin aplastar
+            }
+        }
+
+        // 4. Aplicar velocidad vertical al rigidbody
+        rb.velocity = new Vector3(rb.velocity.x, verticalVelocity, rb.velocity.z);
+    }
+
+
+
     void FixedUpdate()
     {
         if (dashRequested)
@@ -189,7 +215,13 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (isDashing) return;
+        if (isDashing)
+        {
+            // Durante el dash: gravedad arcade sin snapping
+            verticalVelocity -= gravity * Time.fixedDeltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, verticalVelocity, rb.velocity.z);
+            return;
+        }
 
         // Dirección isométrica fija
         Vector3 direction = moveInput.x * right + moveInput.y * forward;
@@ -199,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Física
         Vector3 currentVelocity = rb.velocity;
-        Vector3 velocityChange = targetVelocity - currentVelocity;
+        Vector3 velocityChange = targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z);
 
         // Limitar fuerza máxima
         velocityChange = Vector3.ClampMagnitude(velocityChange, maxForce);
@@ -213,11 +245,12 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRot = Quaternion.LookRotation(direction);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
-        if (dashRequested)
-            Debug.Log("DASH REQUESTED");
 
-
+        // gravedad + snapping arcade
+        HandleVerticalMovement();
     }
+
+
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
     {
@@ -256,6 +289,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+
 
     private void OnTriggerStay(Collider other) 
     {
