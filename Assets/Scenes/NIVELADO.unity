@@ -1392,6 +1392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1783500121872499113, guid: 478e1dfbc6efac3488cbb7bf5c7806b9,
         type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783500121872499113, guid: 478e1dfbc6efac3488cbb7bf5c7806b9,
+        type: 3}
       propertyPath: obstacleMask.m_Bits
       value: 8
       objectReference: {fileID: 0}
