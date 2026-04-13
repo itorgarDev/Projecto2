@@ -177,14 +177,14 @@ public class PlayerMovement : MonoBehaviour
         IsImmortal = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(1);
         }
     }
-
+*/
     private void HandleVerticalMovement()
     {
         // 1. Aplicar gravedad arcade

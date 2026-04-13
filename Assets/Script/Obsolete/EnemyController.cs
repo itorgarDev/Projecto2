@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Obsolete("EnemyController está obsoleto. No usar.", true)]
 public class EnemyController : MonoBehaviour
 {
     public enum AgentStates { idle, chase, attack }

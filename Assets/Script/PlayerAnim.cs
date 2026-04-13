@@ -30,7 +30,7 @@ public class PlayerAnim : MonoBehaviour
 
         // Control de dash
         animator.SetBool("isDashing", movement.IsDashing);
-        Debug.Log("isDashing: " + movement.IsDashing);
+       
 
     }
 }
