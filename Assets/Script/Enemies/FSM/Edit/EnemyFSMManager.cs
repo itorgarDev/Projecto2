@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyFSMManager : StateMachineFlow
 {
+    //Estados
     public Idle idleState;
     public Chase chaseState;
     public Attack attackState;
@@ -18,9 +19,9 @@ public class EnemyFSMManager : StateMachineFlow
 
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Transform player;
-    [HideInInspector] public EnemyAttack enemyAttack;
+     public EnemyAttack enemyAttack;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
