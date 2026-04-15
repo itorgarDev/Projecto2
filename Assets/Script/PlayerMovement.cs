@@ -116,14 +116,33 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Menu cerrado");
         }
     }
+    public void Transport()
+    {
+        Time.timeScale = 1f;
+        transform.position = RespawnSystem.LastCheckpointPos + new Vector3(-2, 0, -2);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        pauseMenuCanvas.SetActive(false);
+        pauseMenuCanvasOptions.SetActive(true);
+        pauseMenuCanvasScroll.SetActive(false);
+        Debug.Log("Menu cerrado");
+    }
+
+    private IEnumerator ResetTime()
+    {
+        yield return null; // esperar 1 frame
+        Time.timeScale = 1f;
+    }
 
     public void ClosePauseMenu()
     {
         isPaused = false;
-        Time.timeScale = 1f;
         pauseMenuCanvas.SetActive(false);
         pauseMenuCanvasOptions.SetActive(true);
         pauseMenuCanvasScroll.SetActive(false);
+
+        StartCoroutine(ResetTime());
         Debug.Log("Menu cerrado");
     }
 
