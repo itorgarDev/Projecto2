@@ -35,8 +35,16 @@ public class PlayerMovement : MonoBehaviour
     private DialogueSystem currentNpc;
     private bool isPaused = false;
     private PlayerAttack playerAttack;
+
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private GameObject pauseMenuCanvasScroll;
+    [SerializeField] private GameObject pauseMenuCanvasOptions;
+    [SerializeField] private GameObject pauseMenuCanvasAudio;
+    [SerializeField] private GameObject pauseMenuCanvasVideo;
+    [SerializeField] private GameObject pauseMenuCanvasControls;
+
+    [SerializeField] private Animator scrollAnimator;
+
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
     [SerializeField] private int maxHealth = 3;
@@ -77,6 +85,13 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    private void HidePanels ()
+    {
+        pauseMenuCanvasAudio.SetActive(false);
+        pauseMenuCanvasVideo.SetActive(false);
+        pauseMenuCanvasControls.SetActive(false);
+    }
+
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
         if (!isPaused)  // esto funciona como interruptor dependiendo del valor de isPaused
@@ -85,15 +100,20 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0; // entonces si entra en false se vuelve true y viceversa creando asi alternancia para activar y desactivar la pausa
             pauseMenuCanvas.SetActive(true);
             pauseMenuCanvasScroll.SetActive(true);
+
+            scrollAnimator.SetTrigger("Scroll_Animation");
+
             Debug.Log("Menu abierto");
         }                       
         else
         {
             isPaused = false;      
             Time.timeScale = 1;
+            HidePanels();
             pauseMenuCanvas.SetActive(false);
+            pauseMenuCanvasOptions.SetActive(true);
             pauseMenuCanvasScroll.SetActive(false);
-            Debug.Log("Menu abierto");
+            Debug.Log("Menu cerrado");
         }
     }
 
@@ -102,6 +122,8 @@ public class PlayerMovement : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseMenuCanvas.SetActive(false);
+        pauseMenuCanvasOptions.SetActive(true);
+        pauseMenuCanvasScroll.SetActive(false);
         Debug.Log("Menu cerrado");
     }
 

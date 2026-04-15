@@ -314,6 +314,11 @@ MonoBehaviour:
     m_Bits: 8
   pauseMenuCanvas: {fileID: 72135437}
   pauseMenuCanvasScroll: {fileID: 52835454}
+  pauseMenuCanvasOptions: {fileID: 1754153260}
+  pauseMenuCanvasAudio: {fileID: 226052879}
+  pauseMenuCanvasVideo: {fileID: 1101241431}
+  pauseMenuCanvasControls: {fileID: 1616184244}
+  scrollAnimator: {fileID: 1907453254}
   maxHealth: 5
   gravity: 40
   snapDistance: 1.2
@@ -537,6 +542,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128918700}
   m_CullTransparentMesh: 1
+--- !u!1 &226052879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1705543235138920102, guid: 4d40795836cc1b74f93f6a0bab858d44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374328940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284802949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2024,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5343600079338238275, guid: db6828e52ecdccc4db2f84ba46e55a4f,
     type: 3}
   m_PrefabInstance: {fileID: 1079152017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1101241431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5176296109069856760, guid: 4d40795836cc1b74f93f6a0bab858d44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374328940}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1140211123
 PrefabInstance:
@@ -7385,6 +7402,11 @@ PrefabInstance:
       propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 573445830717711344, guid: 4d40795836cc1b74f93f6a0bab858d44,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 596612993506503170, guid: 4d40795836cc1b74f93f6a0bab858d44,
         type: 3}
       propertyPath: m_IsActive
@@ -7438,7 +7460,12 @@ PrefabInstance:
     - target: {fileID: 2083843943830674005, guid: 4d40795836cc1b74f93f6a0bab858d44,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486327609100969888, guid: 4d40795836cc1b74f93f6a0bab858d44,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4014110113191944269, guid: 4d40795836cc1b74f93f6a0bab858d44,
         type: 3}
@@ -7458,7 +7485,7 @@ PrefabInstance:
     - target: {fileID: 5132258018915367456, guid: 4d40795836cc1b74f93f6a0bab858d44,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5176296109069856760, guid: 4d40795836cc1b74f93f6a0bab858d44,
         type: 3}
@@ -8088,6 +8115,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577112478}
   m_CullTransparentMesh: 1
+--- !u!1 &1616184244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 596612993506503170, guid: 4d40795836cc1b74f93f6a0bab858d44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374328940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1648543819
 GameObject:
   m_ObjectHideFlags: 0
@@ -10017,6 +10050,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878518200}
   m_CullTransparentMesh: 1
+--- !u!95 &1907453254 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3486327609100969888, guid: 4d40795836cc1b74f93f6a0bab858d44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374328940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1945472350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0adce2bc94f5829458fb84220c44b03d,
