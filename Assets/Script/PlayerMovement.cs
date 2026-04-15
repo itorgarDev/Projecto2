@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isPaused = false;
     private PlayerAttack playerAttack;
     [SerializeField] private GameObject pauseMenuCanvas;
+    [SerializeField] private GameObject pauseMenuCanvasScroll;
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
     [SerializeField] private int maxHealth = 3;
@@ -83,14 +84,27 @@ public class PlayerMovement : MonoBehaviour
             isPaused = true; // al poner ! isPaused indica el valor contrario
             Time.timeScale = 0; // entonces si entra en false se vuelve true y viceversa creando asi alternancia para activar y desactivar la pausa
             pauseMenuCanvas.SetActive(true);
+            pauseMenuCanvasScroll.SetActive(true);
+            Debug.Log("Menu abierto");
         }                       
         else
         {
             isPaused = false;      
             Time.timeScale = 1;
             pauseMenuCanvas.SetActive(false);
+            pauseMenuCanvasScroll.SetActive(false);
+            Debug.Log("Menu abierto");
         }
     }
+
+    public void ClosePauseMenu()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenuCanvas.SetActive(false);
+        Debug.Log("Menu cerrado");
+    }
+
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {
