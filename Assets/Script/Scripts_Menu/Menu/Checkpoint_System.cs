@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint_System : MonoBehaviour
 {
   
-        [SerializeField] private PlayerMovement player;
+    private PlayerMovement player;
 
+    private PlayerMovement GetPlayer()
+    {
+        if (player == null)
+            player = FindObjectOfType<PlayerMovement>();
 
+        return player;
+    }
 
     public void Return()
         {
-            player.ClosePauseMenu();
+            GetPlayer().ClosePauseMenu();
         }
 
     public void CheckpointPoint()
     {
-
-        player.transform.position = RespawnSystem.LastCheckpointPos + new Vector3(2, 0, 0);
+        var playerGet = GetPlayer();
+        playerGet.transform.position = RespawnSystem.LastCheckpointPos + new Vector3(2, 0, 0);
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -25,6 +32,11 @@ public class Checkpoint_System : MonoBehaviour
 
         player.ClosePauseMenu();
 
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
