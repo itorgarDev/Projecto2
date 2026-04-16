@@ -77,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        isPaused = false;
+        Time.timeScale = 1;
         currentHealth = maxHealth;
     }
 
@@ -100,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0; // entonces si entra en false se vuelve true y viceversa creando asi alternancia para activar y desactivar la pausa
             pauseMenuCanvas.SetActive(true);
             pauseMenuCanvasScroll.SetActive(true);
+            pauseMenuCanvasOptions.SetActive(true);
 
             scrollAnimator.SetTrigger("Scroll_Animation");
 
@@ -107,11 +110,11 @@ public class PlayerMovement : MonoBehaviour
         }                       
         else
         {
-            isPaused = false;      
+            isPaused = false;
             Time.timeScale = 1;
             HidePanels();
             pauseMenuCanvas.SetActive(false);
-            pauseMenuCanvasOptions.SetActive(true);
+            pauseMenuCanvasOptions.SetActive(false);
             pauseMenuCanvasScroll.SetActive(false);
             Debug.Log("Menu cerrado");
         }
