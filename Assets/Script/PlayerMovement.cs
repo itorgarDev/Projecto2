@@ -56,9 +56,30 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalVelocity = 0f;
 
+    private static PlayerMovement instance;
 
     void Awake()
     {
+        // 1. Si ya existe un Player y NO soy yo → destruirme
+       if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // 2. Si estamos en la escena 0 → destruir Player
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // 3. Registrar este Player como el único
+        instance = this;
+
+        // 4. Hacerlo persistente SOLO si no estamos en escena 0
+        DontDestroyOnLoad(gameObject);
+
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
 
@@ -75,50 +96,120 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void FindPauseMenu()
+    {
+        if (pauseMenuCanvas != null)
+            return;
+
+        PauseMenuBreaker marker = FindObjectOfType<PauseMenuBreaker>();
+        if (marker == null)
+        {
+            Debug.LogWarning("No se encontró el menú de pausa instanciado (PauseMenuBreaker).");
+            return;
+        }
+
+        pauseMenuCanvas = marker.gameObject;
+
+        // Canvas hijo correcto
+        Transform canvas = pauseMenuCanvas.transform.Find("Canvas");
+        if (canvas == null)
+        {
+            Debug.LogError("No se encontró un hijo llamado 'Canvas' dentro de MENU_FINAL.");
+            return;
+        }
+
+        pauseMenuCanvasScroll = canvas.Find("Panel_Scroll")?.gameObject;
+        pauseMenuCanvasVideo = canvas.Find("Panel_Video")?.gameObject;
+        pauseMenuCanvasOptions = canvas.gameObject;
+
+        pauseMenuCanvasAudio = null;
+        pauseMenuCanvasControls = null;
+
+        Transform panelScroll = canvas.Find("PanelScroll");
+        if (panelScroll != null)
+        {
+            scrollAnimator = panelScroll.GetComponentInChildren<Animator>(true); // ← TRUE = busca en hijos desactivados
+        }
+
+        Debug.Log($"Menú de pausa asignado. Scroll: {pauseMenuCanvasScroll != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
+    }
+
+
+
     private void Start()
     {
         isPaused = false;
         Time.timeScale = 1;
         currentHealth = maxHealth;
+        FindPauseMenu();
     }
 
     private void OnRespawnPerformed(InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    private void HidePanels ()
+    private void HidePanels()
     {
-        pauseMenuCanvasAudio.SetActive(false);
-        pauseMenuCanvasVideo.SetActive(false);
-        pauseMenuCanvasControls.SetActive(false);
+        if (pauseMenuCanvasAudio != null)
+            pauseMenuCanvasAudio.SetActive(false);
+
+        if (pauseMenuCanvasVideo != null)
+            pauseMenuCanvasVideo.SetActive(false);
+
+        if (pauseMenuCanvasControls != null)
+            pauseMenuCanvasControls.SetActive(false);
     }
+
+
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
-        if (!isPaused)  // esto funciona como interruptor dependiendo del valor de isPaused
+        // Si por lo que sea no se ha encontrado el menú, no sigas
+        if (pauseMenuCanvas == null)
         {
-            isPaused = true; // al poner ! isPaused indica el valor contrario
-            Time.timeScale = 0; // entonces si entra en false se vuelve true y viceversa creando asi alternancia para activar y desactivar la pausa
-            pauseMenuCanvas.SetActive(true);
-            pauseMenuCanvasScroll.SetActive(true);
-            pauseMenuCanvasOptions.SetActive(true);
+            Debug.LogError("OnPausePerformed llamado pero pauseMenuCanvas es NULL. Revisa PauseMenuBreaker y la jerarquía de MENU_FINAL.");
+            FindPauseMenu();
+            if (pauseMenuCanvas == null) return;
+        }
 
-            scrollAnimator.SetTrigger("Scroll_Animation");
+        if (!isPaused)
+        {
+            isPaused = true;
+            Time.timeScale = 0;
+
+            if (pauseMenuCanvasScroll != null)
+                pauseMenuCanvasScroll.SetActive(true);
+
+            if (pauseMenuCanvasOptions != null)
+                pauseMenuCanvasOptions.SetActive(true);
+
+            pauseMenuCanvas.SetActive(true);
+
+            if (scrollAnimator != null)
+                scrollAnimator.SetTrigger("Scroll_Animation");
+            else
+                Debug.LogWarning("scrollAnimator es NULL, no se puede lanzar la animación.");
 
             Debug.Log("Menu abierto");
-        }                       
+        }
         else
         {
             isPaused = false;
             Time.timeScale = 1;
             HidePanels();
+
+            if (pauseMenuCanvasOptions != null)
+                pauseMenuCanvasOptions.SetActive(false);
+
+            if (pauseMenuCanvasScroll != null)
+                pauseMenuCanvasScroll.SetActive(false);
+
             pauseMenuCanvas.SetActive(false);
-            pauseMenuCanvasOptions.SetActive(false);
-            pauseMenuCanvasScroll.SetActive(false);
+
             Debug.Log("Menu cerrado");
         }
     }
+
     public void Transport()
     {
         Time.timeScale = 1f;
@@ -200,7 +291,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnEnable() => controls.Enable();
+    void OnEnable()
+    {
+        controls.Enable();
+        FindPauseMenu();   
+    }
+//    void OnEnable() => controls.Enable();
     void OnDisable() => controls.Disable();
 
     private void OnAttackPerformed(InputAction.CallbackContext ctx)
