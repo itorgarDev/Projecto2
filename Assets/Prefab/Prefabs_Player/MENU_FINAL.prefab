@@ -1407,6 +1407,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69490b52b7cf9024b8af0aef4f0789e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelScroll: {fileID: 9063670043809383699}
+  panelOptions: {fileID: 1429283023216334340}
+  panelVideo: {fileID: 3179074729665408301}
+  panelAudio: {fileID: 7135633355423533583}
+  panelBrillo: {fileID: 8146354632069247539}
+  scrollAnimator: {fileID: 4817005420298076738}
 --- !u!1 &1429283023216334340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5447438642047178294
 Transform:
   m_ObjectHideFlags: 0
@@ -1432,8 +1438,8 @@ Transform:
   m_GameObject: {fileID: 1429283023216334340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -480.41333, y: -254.5536, z: -0.6889638}
-  m_LocalScale: {x: 2.0295987, y: 2.0295987, z: 2.0295987}
+  m_LocalPosition: {x: 76.828156, y: 36.951817, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5036799257785594961}
@@ -1443,7 +1449,7 @@ Transform:
   - {fileID: 6411094179963978721}
   - {fileID: 4183031991776916599}
   - {fileID: 6049023977256460376}
-  m_Father: {fileID: 1130243194052258973}
+  m_Father: {fileID: 7671822721782801635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460851285585138867
 GameObject:
@@ -1835,6 +1841,7 @@ RectTransform:
   m_Children:
   - {fileID: 3545749784159599061}
   - {fileID: 1130243194052258973}
+  - {fileID: 5447438642047178294}
   - {fileID: 5566223588863299863}
   m_Father: {fileID: 7768606396465208590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1966,7 +1973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6071,7 +6078,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6823411436963418755}
-  - {fileID: 5447438642047178294}
   - {fileID: 2212859636441866778}
   - {fileID: 7024121981974622801}
   - {fileID: 5902837194531796615}
@@ -8814,7 +8820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6823411436963418755
 RectTransform:
   m_ObjectHideFlags: 0

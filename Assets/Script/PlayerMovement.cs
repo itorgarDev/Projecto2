@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasAudio;
     [SerializeField] private GameObject pauseMenuCanvasVideo;
     [SerializeField] private GameObject pauseMenuCanvasControls;
+    [SerializeField] private GameObject pauseMenuCanvasBrillo;
+
 
     [SerializeField] private Animator scrollAnimator;
 
@@ -94,9 +96,24 @@ public class PlayerMovement : MonoBehaviour
         playerAttack = GetComponentInChildren<PlayerAttack>();
         controls.Player.Attack.performed += OnAttackPerformed;
 
+        // Reasignar menú al cambiar de escena
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void FindPauseMenu()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Esperar un frame para que MENU_FINAL(Clone) aparezca en la jerarquía
+        StartCoroutine(DelayedFindMenu());
+    }
+
+    private IEnumerator DelayedFindMenu()
+    {
+        yield return null; // esperar 1 frame
+        FindPauseMenu();
+    }
+
+
+   /* private void FindPauseMenu()
     {
         if (pauseMenuCanvas != null)
             return;
@@ -110,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
         pauseMenuCanvas = marker.gameObject;
 
-        // Canvas hijo correcto
+        // Canvas
         Transform canvas = pauseMenuCanvas.transform.Find("Canvas");
         if (canvas == null)
         {
@@ -118,23 +135,51 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        pauseMenuCanvasScroll = canvas.Find("Panel_Scroll")?.gameObject;
-        pauseMenuCanvasVideo = canvas.Find("Panel_Video")?.gameObject;
-        pauseMenuCanvasOptions = canvas.gameObject;
+        // PANEL SCROLL (tu nombre real)
+        pauseMenuCanvasScroll = pauseMenuCanvas.transform.Find("PanelScroll")?.gameObject;
 
-        pauseMenuCanvasAudio = null;
-        pauseMenuCanvasControls = null;
+        // PANEL OPTIONS (dentro de PanelScroll)
+        pauseMenuCanvasOptions = pauseMenuCanvas.transform.Find("PanelScroll/PanelOptions")?.gameObject;
 
-        Transform panelScroll = canvas.Find("PanelScroll");
-        if (panelScroll != null)
-        {
-            scrollAnimator = panelScroll.GetComponentInChildren<Animator>(true); // ← TRUE = busca en hijos desactivados
-        }
+        // PANEL VIDEO (tu nombre real)
+        pauseMenuCanvasVideo = pauseMenuCanvas.transform.Find("PanelVideo")?.gameObject;
 
-        Debug.Log($"Menú de pausa asignado. Scroll: {pauseMenuCanvasScroll != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
+        // PANEL BRILLO (tu nombre real)
+        pauseMenuCanvasAudio = pauseMenuCanvas.transform.Find("PanelBrillo")?.gameObject;
+
+        // Animator dentro de Scroll
+        Transform scrollObj = pauseMenuCanvas.transform.Find("PanelScroll/Scroll");
+        if (scrollObj != null)
+            scrollAnimator = scrollObj.GetComponent<Animator>();
+
+        Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
     }
 
 
+    */
+
+    private void FindPauseMenu()
+{
+    if (pauseMenuCanvas != null)
+        return;
+
+    PauseMenuBreaker marker = FindObjectOfType<PauseMenuBreaker>();
+    if (marker == null)
+    {
+        Debug.LogWarning("No se encontró el menú de pausa instanciado (PauseMenuBreaker).");
+        return;
+    }
+
+    pauseMenuCanvas       = marker.gameObject;
+    pauseMenuCanvasScroll = marker.panelScroll;
+    pauseMenuCanvasOptions= marker.panelOptions;
+    pauseMenuCanvasVideo  = marker.panelVideo;
+    pauseMenuCanvasAudio  = marker.panelAudio;
+    pauseMenuCanvasBrillo = marker.panelBrillo;
+    scrollAnimator        = marker.scrollAnimator;
+
+    Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
+}
 
     private void Start()
     {
