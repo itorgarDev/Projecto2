@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     private static PlayerMovement instance;
 
     void Awake()
-    {
+    { /*
         // 1. Si ya existe un Player y NO soy yo → destruirme
        if (instance != null && instance != this)
         {
@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         // 4. Hacerlo persistente SOLO si no estamos en escena 0
         DontDestroyOnLoad(gameObject);
+        */
 
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
