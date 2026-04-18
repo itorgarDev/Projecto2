@@ -17,7 +17,7 @@ public class SimpleCameraFollow : MonoBehaviour
 
 
     private void Awake()
-    {
+    { /*
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -36,6 +36,7 @@ public class SimpleCameraFollow : MonoBehaviour
 
         // 4. Hacerlo persistente SOLO si no estamos en escena 0
         DontDestroyOnLoad(gameObject);
+        */
     }
 
     private void Start()
