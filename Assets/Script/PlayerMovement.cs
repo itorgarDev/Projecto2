@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float verticalVelocity = 0f;
 
-    private static PlayerMovement instance;
+    
 
     void Awake()
     { /*
