@@ -39,6 +39,7 @@ public class Attack : TemplateStateMachine
     public override void Updatephysics()
     {
         base.Updatephysics();
+        Debug.Log("ESTOY EN ATTACK");
 
         // Mirar al jugador
         Vector3 dir = (_fsm.player.position - _fsm.transform.position).normalized;

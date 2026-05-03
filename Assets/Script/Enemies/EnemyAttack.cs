@@ -9,17 +9,17 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float attackCooldown = 1.2f;
     [SerializeField] private int damage = 1;
 
+
     private float lastAttackTime = -Mathf.Infinity;
 
     private void Awake()
     {
-        animatorWeapon = GetComponentInChildren<Animator>();
         weaponCollider.enabled = false;
     }
 
     public void TryAttack()
     {
-        Debug.Log("EnemyAttack: TryAttack() llamado");
+        //Debug.Log("EnemyAttack: TryAttack() llamado");
         if (Time.time - lastAttackTime < attackCooldown)
             return;
 
@@ -29,7 +29,8 @@ public class EnemyAttack : MonoBehaviour
 
     private void PerformAttack()
     {
-        animatorWeapon.SetTrigger("Attack");
+        Debug.Log("PERFORM");
+        //animatorWeapon.SetTrigger("Attack");
 
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
