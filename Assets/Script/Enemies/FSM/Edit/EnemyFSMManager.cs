@@ -19,7 +19,9 @@ public class EnemyFSMManager : StateMachineFlow
 
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Transform player;
-     public EnemyAttack enemyAttack;
+    public EnemyAttack enemyAttack;
+    public Animator animator;
+    public Animator animatorExclamation;
 
     protected virtual void Awake()
     {

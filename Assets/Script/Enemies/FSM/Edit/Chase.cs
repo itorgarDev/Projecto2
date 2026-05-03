@@ -12,12 +12,16 @@ public class Chase : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
-        
+        _fsm.animator.SetBool("isIdle", false);
+        _fsm.animatorExclamation.SetTrigger("ChaseStart");
+        _fsm.animator.SetBool("isChasing", true);
+
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
+        Debug.Log("FSM: entrando en CHASE");
 
         float dist = _fsm.DistanceToPlayer();
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private Animator animatorWeapon;
+    private EnemyFSMManager fsm;
     [Header("Ataque")]
     [SerializeField] private Collider weaponCollider;
     [SerializeField] private float hitboxDuration = 0.3f;
@@ -15,6 +15,7 @@ public class EnemyAttack : MonoBehaviour
     private void Awake()
     {
         weaponCollider.enabled = false;
+        fsm = GetComponent<EnemyFSMManager>();
     }
 
     public void TryAttack()
@@ -30,7 +31,7 @@ public class EnemyAttack : MonoBehaviour
     private void PerformAttack()
     {
         Debug.Log("PERFORM");
-        //animatorWeapon.SetTrigger("Attack");
+        fsm.animator.SetTrigger("Attack");
 
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
