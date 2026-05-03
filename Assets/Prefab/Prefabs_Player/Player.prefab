@@ -4954,26 +4954,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
-        type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ec27264a3871d54c8003d45fe7f99d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5659,6 +5639,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.695082
       objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: d788c86bf1974a04cbec9ab5ab4a8817,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: d788c86bf1974a04cbec9ab5ab4a8817, type: 3}
@@ -5690,10 +5690,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4793796372259390576}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ec27264a3871d54c8003d45fe7f99d1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6372186104731210717}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ec27264a3871d54c8003d45fe7f99d1,
         type: 3}
       insertIndex: -1
@@ -5776,24 +5772,6 @@ MonoBehaviour:
   weaponCollider: {fileID: 1223194160842554923}
   hitboxDuration: 0.3
   damage: 50
---- !u!114 &6372186104731210717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6920601151697778089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69292f64781063488a1fe8654284509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7728522997587947283}
-  followSpeed: 3
-  sprintSpeed: 6
-  acceleration: 10
-  minDistance: 1.5
-  maxDistance: 6
 --- !u!95 &5350203317949022433
 Animator:
   serializedVersion: 5
