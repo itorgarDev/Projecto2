@@ -3,10 +3,10 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerAttack : MonoBehaviour
 {
-    
+    private PlayerStats stats;
+
     [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquí
     [SerializeField] private float hitboxDuration = 0.3f;
-    [SerializeField] private int damage = 50;
     private bool hasDealtDamage = false;
 
     private bool isAttacking;
@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
     {
         
         weaponCollider.enabled = false;
+        stats = GetComponentInParent<PlayerStats>();
+
     }
 
     public void PerformAttack()
@@ -50,8 +52,8 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
 
-            Debug.Log("Enemy detectado, aplicando daño: " + damage);
-            enemy.TakeDamage(damage);
+
+            enemy.TakeDamage(stats.attack);
             hasDealtDamage = true;
         }
     }
