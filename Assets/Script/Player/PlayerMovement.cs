@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     private DialogueSystem currentNpc;
     private bool isPaused = false;
     private PlayerAttack playerAttack;
+    private PlayerStats stats;
+
 
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private GameObject pauseMenuCanvasScroll;
@@ -49,9 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
-    [SerializeField] private int maxHealth = 3;
-    private int currentHealth;
-
+    
     [SerializeField] private float gravity = 40f;      // gravedad rápida
     [SerializeField] private float snapDistance = 1.2f;
     [SerializeField] private LayerMask groundMask;
@@ -97,8 +98,19 @@ public class PlayerMovement : MonoBehaviour
         playerAttack = GetComponentInChildren<PlayerAttack>();
         controls.Player.Attack.performed += OnAttackPerformed;
 
+        stats = GetComponent<PlayerStats>();
+
         // Reasignar menú al cambiar de escena
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+        FindPauseMenu();
+        stats.currentHealth = stats.maxHealth;
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -182,13 +194,7 @@ public class PlayerMovement : MonoBehaviour
     Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
 }
 
-    private void Start()
-    {
-        isPaused = false;
-        Time.timeScale = 1;
-        currentHealth = maxHealth;
-        FindPauseMenu();
-    }
+   
 
     private void OnRespawnPerformed(InputAction.CallbackContext context)
     {
@@ -355,27 +361,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (IsImmortal) return; // no recibe daño si está en dash
+        if (IsImmortal) return;
 
-        currentHealth -= amount;
-        if (currentHealth <= 0)
+        stats.TakeDamage(amount);
+
+        if (stats.currentHealth <= 0)
         {
             Die();
         }
     }
 
+
     private void Die()
     {
-        // reaparece en el último checkpoint
         transform.position = RespawnSystem.LastCheckpointPos;
 
-        // reinicia la vida
-        currentHealth = maxHealth;
+        stats.currentHealth = stats.maxHealth;
 
-        // resetea estados
         isDashing = false;
         IsImmortal = false;
     }
+
 
     /*private void OnTriggerEnter(Collider other)
     {

@@ -17,21 +17,24 @@ public class TakeDrop : MonoBehaviour
 
     private void Start()
     {
-        itemName = transform.root.name;
+        if (string.IsNullOrEmpty(itemName))
+            itemName = gameObject.name;
     }
 
     public void PickUp()
+    {
+        StartCoroutine(PickupRoutine());
+    }
+
+    private IEnumerator PickupRoutine()
     {
         Debug.Log("Has recogido: " + itemName);
 
         if (itemText != null)
         {
             itemText.text = "Has recogido: " + itemName;
-            itemPanel.gameObject.SetActive(true);
+            if (itemPanel != null) itemPanel.SetActive(true);
             itemText.gameObject.SetActive(true);
-
-            CancelInvoke(nameof(HideText));
-            Invoke(nameof(HideText), 2f);
         }
 
         ApplyEffect();
@@ -39,39 +42,54 @@ public class TakeDrop : MonoBehaviour
         if (pickupEffect != null)
             Instantiate(pickupEffect, transform.position, Quaternion.identity);
 
+        // Espera 2 segundos antes de ocultar el texto y destruir el ítem
+        yield return new WaitForSeconds(1.5f);
+
+        HideText();
+
         Destroy(transform.root.gameObject);
     }
 
     private void HideText()
     {
+        if (itemPanel != null)
+            itemPanel.SetActive(false);
+
         if (itemText != null)
-            itemPanel.gameObject.SetActive(false);
             itemText.gameObject.SetActive(false);
     }
 
-    // --- NUEVO: lógica del efecto ---
     private void ApplyEffect()
     {
+        PlayerStats stats = FindObjectOfType<PlayerStats>();
+
+        if (stats == null)
+        {
+            Debug.LogWarning("No se encontró PlayerStats en la escena.");
+            return;
+        }
+
         switch (effectType)
         {
             case ItemEffect.Heal:
-                Debug.Log("Vida aumentada +" + amount);
+                stats.Heal(amount);
                 break;
 
             case ItemEffect.Attack:
-                Debug.Log("Ataque aumentado +" + amount);
+                stats.AddAttack(amount);
                 break;
-
-            case ItemEffect.None:
-            default:
+            case ItemEffect.MaxHealthUp:
+                stats.IncreaseMaxHealth(amount);
                 break;
         }
     }
+
 }
 
 public enum ItemEffect
 {
     None,
     Heal,
-    Attack
+    Attack,
+    MaxHealthUp
 }
