@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public HUDController hud;
+
     [Header("Vida")]
     public int maxHealth = 3;
     public int currentHealth = 3;
@@ -12,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        hud.UpdateHealthBar();
     }
 
     public void AddAttack(int amount)
@@ -23,6 +26,8 @@ public class PlayerStats : MonoBehaviour
     {
         maxHealth += amount;
         currentHealth = maxHealth; // se cura al nuevo máximo
+        hud.UpdateHealthBar();
+
     }
 
     public void TakeDamage(int amount)
@@ -30,5 +35,7 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth < 0)
             currentHealth = 0;
+
+        hud.UpdateHealthBar();
     }
 }

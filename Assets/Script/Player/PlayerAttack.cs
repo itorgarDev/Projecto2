@@ -12,17 +12,22 @@ public class PlayerAttack : MonoBehaviour
     private bool isAttacking;
     public bool IsAttacking => isAttacking;
 
+    private Animator animator;
     void Awake()
     {
-        
+        animator = GetComponent<Animator>();
         weaponCollider.enabled = false;
         stats = GetComponentInParent<PlayerStats>();
-
     }
+
 
     public void PerformAttack()
     {
+        if (isAttacking) return;
+
         isAttacking = true;
+        animator.SetTrigger("Attack");
+
         weaponCollider.enabled = true;
         hasDealtDamage = false;
         Invoke(nameof(DisableCollider), hitboxDuration);
@@ -30,9 +35,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void DisableCollider()
     {
-        weaponCollider.enabled = false;
+        weaponCollider.enabled = false;    
+    }
+    public void EndAttackAnimation()
+    {
         isAttacking = false;
-        
     }
 
     private void OnTriggerEnter(Collider other)
