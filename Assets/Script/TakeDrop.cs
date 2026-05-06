@@ -11,10 +11,7 @@ public class TakeDrop : MonoBehaviour
 
     public ItemEffect effectType; // enum
     public int amount = 1;       // Cuánto sube vida o ataque
-
-    public GameObject itemPanel;
-    public TMP_Text itemText; 
-
+    
     private void Start()
     {
         if (string.IsNullOrEmpty(itemName))
@@ -23,42 +20,16 @@ public class TakeDrop : MonoBehaviour
 
     public void PickUp()
     {
-        StartCoroutine(PickupRoutine());
-    }
-
-    private IEnumerator PickupRoutine()
-    {
-        Debug.Log("Has recogido: " + itemName);
-
-        if (itemText != null)
-        {
-            itemText.text = "Has recogido: " + itemName;
-            if (itemPanel != null) itemPanel.SetActive(true);
-            itemText.gameObject.SetActive(true);
-        }
+        HUDController.Instance.ShowPickupMessage(itemName);
 
         ApplyEffect();
 
         if (pickupEffect != null)
             Instantiate(pickupEffect, transform.position, Quaternion.identity);
 
-        // Espera 2 segundos antes de ocultar el texto y destruir el ítem
-        yield return new WaitForSeconds(1.5f);
-
-        HideText();
-
         Destroy(transform.root.gameObject);
     }
-
-    private void HideText()
-    {
-        if (itemPanel != null)
-            itemPanel.SetActive(false);
-
-        if (itemText != null)
-            itemText.gameObject.SetActive(false);
-    }
-
+        
     private void ApplyEffect()
     {
         PlayerStats stats = FindObjectOfType<PlayerStats>();

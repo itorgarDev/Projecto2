@@ -377,6 +377,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = RespawnSystem.LastCheckpointPos;
 
         stats.currentHealth = stats.maxHealth;
+        FindObjectOfType<HUDController>().UpdateHealthBar();
+
 
         isDashing = false;
         IsImmortal = false;
