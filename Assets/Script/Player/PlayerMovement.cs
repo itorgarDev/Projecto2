@@ -62,28 +62,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     void Awake()
-    { /*
-        // 1. Si ya existe un Player y NO soy yo → destruirme
-       if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 2. Si estamos en la escena 0 → destruir Player
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 3. Registrar este Player como el único
-        instance = this;
-
-        // 4. Hacerlo persistente SOLO si no estamos en escena 0
-        DontDestroyOnLoad(gameObject);
-        */
-
+    { 
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
 
@@ -124,9 +103,8 @@ public class PlayerMovement : MonoBehaviour
         yield return null; // esperar 1 frame
         FindPauseMenu();
     }
-
-
-   /* private void FindPauseMenu()
+           
+    private void FindPauseMenu()
     {
         if (pauseMenuCanvas != null)
             return;
@@ -138,61 +116,16 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        pauseMenuCanvas = marker.gameObject;
-
-        // Canvas
-        Transform canvas = pauseMenuCanvas.transform.Find("Canvas");
-        if (canvas == null)
-        {
-            Debug.LogError("No se encontró un hijo llamado 'Canvas' dentro de MENU_FINAL.");
-            return;
-        }
-
-        // PANEL SCROLL (tu nombre real)
-        pauseMenuCanvasScroll = pauseMenuCanvas.transform.Find("PanelScroll")?.gameObject;
-
-        // PANEL OPTIONS (dentro de PanelScroll)
-        pauseMenuCanvasOptions = pauseMenuCanvas.transform.Find("PanelScroll/PanelOptions")?.gameObject;
-
-        // PANEL VIDEO (tu nombre real)
-        pauseMenuCanvasVideo = pauseMenuCanvas.transform.Find("PanelVideo")?.gameObject;
-
-        // PANEL BRILLO (tu nombre real)
-        pauseMenuCanvasAudio = pauseMenuCanvas.transform.Find("PanelBrillo")?.gameObject;
-
-        // Animator dentro de Scroll
-        Transform scrollObj = pauseMenuCanvas.transform.Find("PanelScroll/Scroll");
-        if (scrollObj != null)
-            scrollAnimator = scrollObj.GetComponent<Animator>();
+        pauseMenuCanvas       = marker.gameObject;
+        pauseMenuCanvasScroll = marker.panelScroll;
+        pauseMenuCanvasOptions= marker.panelOptions;
+        pauseMenuCanvasVideo  = marker.panelVideo;
+        pauseMenuCanvasAudio  = marker.panelAudio;
+        pauseMenuCanvasBrillo = marker.panelBrillo;
+        scrollAnimator        = marker.scrollAnimator;
 
         Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
     }
-
-
-    */
-
-    private void FindPauseMenu()
-{
-    if (pauseMenuCanvas != null)
-        return;
-
-    PauseMenuBreaker marker = FindObjectOfType<PauseMenuBreaker>();
-    if (marker == null)
-    {
-        Debug.LogWarning("No se encontró el menú de pausa instanciado (PauseMenuBreaker).");
-        return;
-    }
-
-    pauseMenuCanvas       = marker.gameObject;
-    pauseMenuCanvasScroll = marker.panelScroll;
-    pauseMenuCanvasOptions= marker.panelOptions;
-    pauseMenuCanvasVideo  = marker.panelVideo;
-    pauseMenuCanvasAudio  = marker.panelAudio;
-    pauseMenuCanvasBrillo = marker.panelBrillo;
-    scrollAnimator        = marker.scrollAnimator;
-
-    Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
-}
 
    
 
@@ -385,30 +318,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            TakeDamage(1);
-        }
-    }
-*/
+    
     private void HandleVerticalMovement()
     {
-        // 1. Aplicar gravedad arcade
+        // Aplicar gravedad arcade
         verticalVelocity -= gravity * Time.fixedDeltaTime;
 
-        // 2. Raycast largo para detectar suelo
+        // Raycast largo para detectar suelo
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, groundMask))
         {
-            // 3. Snapping suave si estás cerca del suelo
+            // Snapping suave si estás cerca del suelo
             if (hit.distance <= snapDistance)
             {
                 verticalVelocity = -2f; // pegado estable sin aplastar
             }
         }
 
-        // 4. Aplicar velocidad vertical al rigidbody
+        // Aplicar velocidad vertical al rigidbody
         rb.velocity = new Vector3(rb.velocity.x, verticalVelocity, rb.velocity.z);
     }
 
