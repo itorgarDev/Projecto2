@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // Importante para usar 'Image'
 
 public class HUDController : MonoBehaviour
 {
@@ -10,24 +10,25 @@ public class HUDController : MonoBehaviour
     [Header("Player Stats")]
     public PlayerStats stats;
 
-    [Header("Health Bar")]
-    public RectTransform healthMask;
-    public RectTransform healthFill;
+    [Header("Componentes de la Barra")]
+    // Cambiamos RectTransform por Image para usar el sistema Filled
+    public Image backgroundBar; // lowHP.png
+    public Image healthFill;    // FullHp.png
 
-    [Header("Health Bar Settings")]
-    public float pixelsPerHealth = 30f; // Cuánto crece la barra por cada punto de vida
-    public float baseWidth = 300f;
+    [Header("Ajustes de Crecimiento")]
+    public float baseHealth = 5f;       // La vida inicial del jugador (para no crecer la barra si no pasas de este nivel)
+    public float baseWidth = 400f;       // El tamaño inicial de tus imágenes
+    public float pixelsPerExtraHealth = 10f; // Cuántos píxeles crece por CADA punto extra de vida por encima de la base
 
-    // ===========================
-    //      MENSAJES DE PICKUP
-    // ===========================
+    
     [Header("Pickup Message")]
-    public GameObject pickupPanel;   // Panel donde aparece el mensaje
-    public TMP_Text pickupText;      // Texto del mensaje
+    public GameObject pickupPanel;
+    public TMP_Text pickupText;
+    private Coroutine pickupCoroutine;
 
     private void Awake()
     {
-        Instance = this; // Para poder llamar HUDController.Instance desde otros scripts
+        Instance = this;
     }
 
     void Start()
@@ -37,31 +38,22 @@ public class HUDController : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        // decide el ancho de la barra total
-        float totalWidth = baseWidth + (stats.maxHealth * pixelsPerHealth);
+        if (stats.maxHealth <= 0) return; // Seguridad
 
-        // agrandamos la barra al subir vida max
-        healthMask.sizeDelta = new Vector2(totalWidth, healthMask.sizeDelta.y);
+        // 1. Calculamos cuánta vida EXTRA tiene el jugador respecto a la base
+        // Mathf.Max evita números negativos si la vida máxima baja por alguna maldición o algo
+        float extraHealth = Mathf.Max(0, stats.maxHealth - baseHealth);
 
-        // calculamos el porcentaje de vida
-        float percent = (float)stats.currentHealth / stats.maxHealth;
-        percent = Mathf.Clamp01(percent);
+        // 2. Calculamos el ancho total: El base (400) + los píxeles extra
+        float currentWidth = baseWidth + (extraHealth * pixelsPerExtraHealth);
 
-        // ajustamos el color rojo en funcion del porcentaje
-        healthFill.sizeDelta = new Vector2(totalWidth * percent, healthFill.sizeDelta.y);
-    }
+        // 3. Estiramos el contenedor (Fondo) y el relleno para que midan lo mismo
+        backgroundBar.rectTransform.sizeDelta = new Vector2(currentWidth, backgroundBar.rectTransform.sizeDelta.y);
+        healthFill.rectTransform.sizeDelta = new Vector2(currentWidth, healthFill.rectTransform.sizeDelta.y);
 
-    // ===========================
-    //      FUTURAS BARRAS
-    // ===========================
-    public void UpdateStaminaBar(float percent)
-    {
-        // Placeholder
-    }
-
-    public void UpdateManaBar(float percent)
-    {
-        // Placeholder
+        // 4. LA CLAVE: Actualizamos el color usando FillAmount de 0 a 1. 
+        // ¡Adiós a los huecos negros y a las matemáticas de desplazamiento!
+        healthFill.fillAmount = (float)stats.currentHealth / stats.maxHealth;
     }
 
     // ===========================
@@ -72,8 +64,9 @@ public class HUDController : MonoBehaviour
         pickupText.text = "Has recogido: " + itemName;
         pickupPanel.SetActive(true);
 
-        StopAllCoroutines(); // Evita que se solapen mensajes
-        StartCoroutine(HidePickupRoutine());
+        // Usamos la variable para no detener otras posibles corrutinas del HUD
+        if (pickupCoroutine != null) StopCoroutine(pickupCoroutine);
+        pickupCoroutine = StartCoroutine(HidePickupRoutine());
     }
 
     private IEnumerator HidePickupRoutine()
