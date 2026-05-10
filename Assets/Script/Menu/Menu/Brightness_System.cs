@@ -39,3 +39,4 @@ public class Brightness_System : MonoBehaviour
         panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, slider.value/3);
     }
 }
+

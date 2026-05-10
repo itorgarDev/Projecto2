@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasVideo;
     [SerializeField] private GameObject pauseMenuCanvasControls;
     [SerializeField] private GameObject pauseMenuCanvasBrillo;
+    [SerializeField] private GameObject pauseMenuCanvasOscuro;
 
 
     [SerializeField] private Animator scrollAnimator;
@@ -106,26 +107,7 @@ public class PlayerMovement : MonoBehaviour
            
     private void FindPauseMenu()
     {
-        if (pauseMenuCanvas != null)
-            return;
-
-        PauseMenuBreaker marker = FindObjectOfType<PauseMenuBreaker>();
-        if (marker == null)
-        {
-            Debug.LogWarning("No se encontró el menú de pausa instanciado (PauseMenuBreaker).");
-            return;
-        }
-
-        pauseMenuCanvas       = marker.gameObject;
-        pauseMenuCanvasScroll = marker.panelScroll;
-        pauseMenuCanvasOptions= marker.panelOptions;
-        pauseMenuCanvasVideo  = marker.panelVideo;
-        pauseMenuCanvasAudio  = marker.panelAudio;
-        pauseMenuCanvasBrillo = marker.panelBrillo;
-        scrollAnimator        = marker.scrollAnimator;
-
-        Debug.Log($"Menú asignado. Scroll: {pauseMenuCanvasScroll != null}, Options: {pauseMenuCanvasOptions != null}, Video: {pauseMenuCanvasVideo != null}, Animator: {scrollAnimator != null}");
-    }
+          }
 
    
 
@@ -160,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused)
         {
             isPaused = true;
+            pauseMenuCanvasOscuro.SetActive(true);
             Time.timeScale = 0;
 
             if (pauseMenuCanvasScroll != null)
@@ -169,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
                 pauseMenuCanvasOptions.SetActive(true);
 
             pauseMenuCanvas.SetActive(true);
+            
 
             if (scrollAnimator != null)
                 scrollAnimator.SetTrigger("Scroll_Animation");
@@ -179,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            pauseMenuCanvasOscuro.SetActive(false);
             isPaused = false;
             Time.timeScale = 1;
             HidePanels();
