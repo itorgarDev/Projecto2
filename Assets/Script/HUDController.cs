@@ -10,17 +10,20 @@ public class HUDController : MonoBehaviour
     [Header("Player Stats")]
     public PlayerStats stats;
 
-    [Header("Componentes de la Barra")]
+    [Header("Componentes de la Barra de Vida")]
     // Cambiamos RectTransform por Image para usar el sistema Filled
     public Image backgroundBar; // lowHP.png
     public Image healthFill;    // FullHp.png
 
-    [Header("Ajustes de Crecimiento")]
+    [Header("Ajustes de Crecimiento de Vida")]
     public float baseHealth = 5f;       // La vida inicial del jugador (para no crecer la barra si no pasas de este nivel)
     public float baseWidth = 400f;       // El tamaño inicial de tus imágenes
     public float pixelsPerExtraHealth = 10f; // Cuántos píxeles crece por CADA punto extra de vida por encima de la base
 
-    
+    [Header("Componentes del Dash")]
+    public Image dashFillImage; // La imagen 'dash.png' (el relleno brillante)
+    public GameObject dashGlow; // El objeto con el marco dorado/brillo
+
     [Header("Pickup Message")]
     public GameObject pickupPanel;
     public TMP_Text pickupText;
@@ -56,9 +59,26 @@ public class HUDController : MonoBehaviour
         healthFill.fillAmount = (float)stats.currentHealth / stats.maxHealth;
     }
 
-    // ===========================
-    //   SISTEMA DE PICKUP
-    // ===========================
+    public void UpdateDashCooldown(float timeElapsed, float totalCooldown)
+    {
+        if (totalCooldown <= 0) return;
+
+        // Calculamos el progreso (0 a 1)
+        float progress = Mathf.Clamp01(timeElapsed / totalCooldown);
+
+        // La ola se llena verticalmente
+        dashFillImage.fillAmount = progress;
+
+        // Si el progreso es 1 (listo), activamos el brillo. Si no, lo apagamos.
+        if (progress >= 1f)
+        {
+            if (!dashGlow.activeSelf) dashGlow.SetActive(true);
+        }
+        else
+        {
+            if (dashGlow.activeSelf) dashGlow.SetActive(false);
+        }
+    }
     public void ShowPickupMessage(string itemName)
     {
         pickupText.text = "Has recogido: " + itemName;

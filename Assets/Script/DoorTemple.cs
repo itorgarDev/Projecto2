@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Puerta_Templo : MonoBehaviour
+public class DoorTemple : MonoBehaviour
 {
    
 
@@ -12,6 +12,8 @@ public class Puerta_Templo : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<PlayerStats>().SaveStats();
+
             int currentScene = SceneManager.GetActiveScene().buildIndex;
             if (currentScene == 1)
             { SceneManager.LoadScene(2); }
