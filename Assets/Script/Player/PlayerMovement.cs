@@ -59,11 +59,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     private float verticalVelocity = 0f;
-
-    
-
+   
     void Awake()
-    { 
+    {
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody>();
 
@@ -107,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
            
     private void FindPauseMenu()
     {
-          }
+    }
 
    
 
@@ -369,7 +367,17 @@ public class PlayerMovement : MonoBehaviour
         HandleVerticalMovement();
     }
 
+    void Update()
+    {
+        // Calculamos cuánto tiempo ha pasado desde el último dash
+        float timeTranscurred = Time.time - lastDashTime;
 
+        // Le decimos al HUD: "Oye, actualiza la ola con este tiempo"
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.UpdateDashCooldown(timeTranscurred, dashCooldown);
+        }
+    }
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
     {
