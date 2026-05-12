@@ -2,52 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Audio_System : MonoBehaviour
 {
-    public Slider slider;
-    public float sliderValue;
-
+    public AudioMixer mixer;
+    public Slider sliderMaster;
     public Slider sliderMusic;
-    public float sliderValueMusic;
-
     public Slider sliderSFX;
-    public float sliderValueSFX;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("VolumenAudio",0.5f);
-        AudioListener.volume=slider.value;
+        sliderMaster.value = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
 
-        sliderMusic.value = PlayerPrefs.GetFloat("VolumenMusic", 0.5f);
-        AudioListener.volume = sliderMusic.value;
 
-        sliderSFX.value = PlayerPrefs.GetFloat("VolumenSFX", 0.5f);
-        AudioListener.volume = sliderSFX.value;
+        sliderMusic.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+
+
+        sliderSFX.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+
+    }
+    void Update()
+    { 
+        ChangeSlider(sliderMaster.value);
+        ChangeSliderMusic(sliderMusic.value);
+        ChangeSliderSFX(sliderSFX.value);
 
     }
 
     public void ChangeSlider(float valor)
     {
-        slider.value = valor;
-        PlayerPrefs.SetFloat("volumenAudio", 0.5f);
-        AudioListener.volume= slider.value;
+        mixer.SetFloat("MasterVolume", Mathf.Log10(valor) * 20);
+        PlayerPrefs.SetFloat("MasterVolume", valor);
 
     }
 
     public void ChangeSliderMusic(float valor)
     {
-        sliderMusic.value = valor;
-        PlayerPrefs.SetFloat("VolumenMusic", 0.5f);
-        AudioListener.volume = sliderMusic.value;
-        
+        mixer.SetFloat("MusicVolume", Mathf.Log10(valor) * 20);
+        PlayerPrefs.SetFloat("MusicVolume", valor);
+
     }
 
     public void ChangeSliderSFX(float valor)
     {
-        sliderSFX.value = valor;
-        PlayerPrefs.SetFloat("VolumenSFX", 0.5f);
-        AudioListener.volume = sliderSFX.value;
+        mixer.SetFloat("SFXVolume", Mathf.Log10(valor) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", valor);
 
     }
 }
