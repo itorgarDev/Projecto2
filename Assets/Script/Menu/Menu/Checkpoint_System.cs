@@ -7,6 +7,7 @@ public class Checkpoint_System : MonoBehaviour
 {
   
     private PlayerMovement player;
+  //  public int keptScene;
 
     private PlayerMovement GetPlayer()
     {
@@ -34,9 +35,19 @@ public class Checkpoint_System : MonoBehaviour
 
     }
 
-    public void MainMenu()
+ /*   public void MainMenu()
     {
+        keptScene=SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("LastScene", keptScene);
         SceneManager.LoadScene(0);
     }
+
+    public void ReturnToScene(int currentScene)
+    {
+        int lastScene = PlayerPrefs.GetInt("LastScene", 0);
+
+        SceneManager.LoadScene(currentScene);
+    }
+ */
 
 }
