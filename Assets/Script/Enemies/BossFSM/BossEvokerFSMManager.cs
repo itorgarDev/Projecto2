@@ -16,8 +16,10 @@ public class BossEvokerFSMManager : EnemyFSMManager
     public int aliveMinions = 0;
     public bool isShielded = false;
 
+    public Animator animatorBoss;
 
-    protected override void Awake()
+
+    protected void Awake()
     {
         base.Awake();
         enemy = GetComponent<Enemy>();

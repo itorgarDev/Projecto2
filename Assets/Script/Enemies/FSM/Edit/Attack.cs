@@ -3,6 +3,7 @@
 public class Attack : TemplateStateMachine
 {
     private EnemyFSMManager _fsm;
+    private BossEvokerFSMManager _fsmBoss;
 
     public Attack(EnemyFSMManager stateMachineFlow) : base("Attacking", stateMachineFlow)
     {
@@ -39,7 +40,7 @@ public class Attack : TemplateStateMachine
     public override void Updatephysics()
     {
         base.Updatephysics();
-        Debug.Log("ESTOY EN ATTACK");
+        //Debug.Log("ESTOY EN ATTACK");
 
         // Mirar al jugador
         Vector3 dir = (_fsm.player.position - _fsm.transform.position).normalized;
@@ -49,6 +50,7 @@ public class Attack : TemplateStateMachine
             _fsm.transform.rotation = Quaternion.LookRotation(flat);
 
         // Ejecutar ataque
-        _fsm.enemyAttack.TryAttack();
+        _fsm.TryAttack();
+        //_fsmBoss.enemyAttack.TryAttack();
     }
 }

@@ -40,7 +40,6 @@ public class BossIdle : Idle
             return;
         }
 
-        // Resto de la lógica Idle (detección, movimiento, etc.) queda intacta
-        // Puedes añadir aquí más Debug.Log si necesitas trazar comportamiento.
+        
     }
 }
