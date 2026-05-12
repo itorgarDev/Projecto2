@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -45,13 +46,14 @@ public class PlayerAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (hasDealtDamage) return;
-        Debug.Log("OnTriggerEnter con objeto: " + other.name);
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
+        
+        
+        if (other.gameObject.tag == "Enemy")
         {
-            if (enemy.IsBoss)
+            Debug.Log("OnTriggerEnter con objeto: " + other.name);
+            if (other.gameObject.GetComponent<EnemyFSMManager>().IsBoss)
             {
-                var boss = enemy.GetComponent<BossEvokerFSMManager>();
+                var boss = other.gameObject.GetComponent<BossEvokerFSMManager>();
                 if (boss != null && boss.isShielded)
                 {
                     Debug.Log("[PlayerAttack] Boss tiene escudo, NO hago daño");
@@ -60,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
 
-            enemy.TakeDamage(stats.attack);
+            other.gameObject.GetComponent<EnemyFSMManager>().TakeDamage(stats.attack);
             hasDealtDamage = true;
         }
     }

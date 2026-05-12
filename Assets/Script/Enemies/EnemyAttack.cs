@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     private EnemyFSMManager fsm;
+    private BossEvokerFSMManager _fsmBoss;
     [Header("Ataque")]
     [SerializeField] private Collider weaponCollider;
     [SerializeField] private float hitboxDuration = 0.3f;
@@ -32,6 +33,7 @@ public class EnemyAttack : MonoBehaviour
     {
         Debug.Log("PERFORM");
         fsm.animator.SetTrigger("Attack");
+        _fsmBoss.animator.SetTrigger("Attack");
 
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);

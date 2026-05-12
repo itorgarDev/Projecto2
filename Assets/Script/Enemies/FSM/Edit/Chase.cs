@@ -3,6 +3,7 @@ using UnityEngine;
 public class Chase : TemplateStateMachine
 {
     private EnemyFSMManager _fsm;
+    private BossEvokerFSMManager _fsmBoss;
 
     public Chase(EnemyFSMManager stateMachineFlow) : base("Chasing", stateMachineFlow)
     {
@@ -12,16 +13,19 @@ public class Chase : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("FSM: entrando en CHASE");
         _fsm.animator.SetBool("isIdle", false);
         _fsm.animatorExclamation.SetTrigger("ChaseStart");
         _fsm.animator.SetBool("isChasing", true);
+        _fsmBoss.animatorBoss.SetBool("isIdle", false);
+        _fsmBoss.animatorBoss.SetBool("isChasing", true);
 
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        Debug.Log("FSM: entrando en CHASE");
+      
 
         float dist = _fsm.DistanceToPlayer();
 
