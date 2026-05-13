@@ -8,24 +8,22 @@ public class Chase : TemplateStateMachine
     public Chase(EnemyFSMManager stateMachineFlow) : base("Chasing", stateMachineFlow)
     {
         _fsm = stateMachineFlow;
+        
     }
 
     public override void Enter()
     {
         base.Enter();
         Debug.Log("FSM: entrando en CHASE");
+
         _fsm.animator.SetBool("isIdle", false);
         _fsm.animatorExclamation.SetTrigger("ChaseStart");
         _fsm.animator.SetBool("isChasing", true);
-        _fsmBoss.animatorBoss.SetBool("isIdle", false);
-        _fsmBoss.animatorBoss.SetBool("isChasing", true);
-
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-      
 
         float dist = _fsm.DistanceToPlayer();
 

@@ -42,6 +42,6 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy muerto");
         OnDeath?.Invoke();
-        EnemyPool.Instance.ReturnToPool(this);
+        //EnemyPool.Instance.ReturnToPool(this);
     }
 }

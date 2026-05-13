@@ -15,8 +15,7 @@ public class Idle : TemplateStateMachine
         base.Enter();
         _fsm.animator.SetBool("isIdle", true);
         _fsm.animator.SetBool("isChasing", false);
-        _fsmBoss.animatorBoss.SetBool("isIdle", true);
-        _fsmBoss.animatorBoss.SetBool("isChasing", false);
+       
     }
 
     public override void UpdateLogic()

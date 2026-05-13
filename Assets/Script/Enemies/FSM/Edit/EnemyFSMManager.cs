@@ -2,32 +2,20 @@ using UnityEngine;
 
 public class EnemyFSMManager : StateMachineFlow
 {
-    // ============================
-    //        ESTADOS
-    // ============================
     public Idle idleState;
     public Chase chaseState;
     public Attack attackState;
 
-    // ============================
-    //        MOVIMIENTO
-    // ============================
     [Header("Movimiento")]
     public float chaseSpeed = 4f;
     public float stopDistance = 6f;
     public float attackDistance = 2f;
 
-    // ============================
-    //        VISIÓN
-    // ============================
     [Header("Visión")]
     public float visionRange = 8f;
     public float visionAngle = 45f;
     public LayerMask obstacleMask;
 
-    // ============================
-    //        COMPONENTES
-    // ============================
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Transform player;
     private PlayerStats playerStats;
@@ -36,18 +24,14 @@ public class EnemyFSMManager : StateMachineFlow
     public Animator animator;
     public Animator animatorExclamation;
 
-    // ============================
-    //        VIDA
-    // ============================
     [Header("Vida")]
-    [SerializeField] private int maxHealth = 2;
-    private int currentHealth;
-    [SerializeField] private bool isBoss = false;
+    [SerializeField] protected int maxHealth;
+    [SerializeField] protected int currentHealth;
+    [SerializeField] protected bool isBoss;
     public bool IsBoss => isBoss;
+    public int CurrentHealth => currentHealth;
+    public event System.Action OnDeath;
 
-    // ============================
-    //        ATAQUE
-    // ============================
     [Header("Ataque")]
     [SerializeField] private Collider weaponCollider;
     [SerializeField] private float hitboxDuration = 0.3f;
@@ -55,30 +39,33 @@ public class EnemyFSMManager : StateMachineFlow
     [SerializeField] private int damage = 1;
 
     private float lastAttackTime = -Mathf.Infinity;
-
-    // ============================
-    //        AWAKE
-    // ============================
     protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        playerStats = player.GetComponent<PlayerStats>();
 
         idleState = new Idle(this);
         chaseState = new Chase(this);
         attackState = new Attack(this);
 
         weaponCollider.enabled = false;
-        currentHealth = maxHealth;
+        InitializeStats();
     }
-
-    // ============================
-    //        FSM
-    // ============================
+   
     protected override void GetInitialState(out TemplateStateMachine _stateMachine)
     {
         _stateMachine = idleState;
     }
+
+    protected virtual void InitializeStats()
+    {
+        maxHealth = 2;
+        currentHealth = maxHealth;
+        isBoss = false;
+    }
+
 
     public float DistanceToPlayer()
     {
@@ -100,9 +87,6 @@ public class EnemyFSMManager : StateMachineFlow
         return false;
     }
 
-    // ============================
-    //        ATAQUE
-    // ============================
     public void TryAttack()
     {
         if (Time.time - lastAttackTime < attackCooldown)
@@ -133,13 +117,9 @@ public class EnemyFSMManager : StateMachineFlow
             player.TakeDamage(damage);
         }
     }
-
-    // ============================
-    //        VIDA
-    // ============================
     public void TakeDamage(int attack)
     {
-        currentHealth -= playerStats.attack;
+        currentHealth -= attack;
 
         if (isBoss)
         {
@@ -152,8 +132,11 @@ public class EnemyFSMManager : StateMachineFlow
             Die();
     }
 
+
     private void Die()
     {
-        EnemyPool.Instance.ReturnToPool(GetComponent<Enemy>());
+        OnDeath?.Invoke();                      
+        EnemyPool.Instance.ReturnToPool(this);  
     }
+
 }
