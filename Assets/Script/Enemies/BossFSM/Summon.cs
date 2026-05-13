@@ -7,12 +7,12 @@ using UnityEngine;
 public class Summon : TemplateStateMachine
 {
     private BossEvokerFSMManager _fsm;
-    private Enemy _life;
+    private EnemyFSMManager _life;
 
     public Summon(BossEvokerFSMManager stateMachineFlow) : base("Summon", stateMachineFlow)
     {
         _fsm = stateMachineFlow;
-        _life = _fsm.GetComponent<Enemy>();
+        _life = _fsm.GetComponent<EnemyFSMManager>();
     }
 
     public override void Enter()
@@ -39,7 +39,7 @@ public class Summon : TemplateStateMachine
             spawnPos.y = _fsm.transform.position.y; // opcional: mantener la misma altura
 
             // Sacamos del pool al minion
-            Enemy minion = EnemyPool.Instance.GetFromPool(spawnPos);
+            EnemyFSMManager minion = EnemyPool.Instance.GetFromPool(spawnPos);
 
             if (minion == null)
             {

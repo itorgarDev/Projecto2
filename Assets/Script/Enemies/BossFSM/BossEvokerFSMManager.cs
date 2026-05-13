@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossEvokerFSMManager : EnemyFSMManager
 {
-    private Enemy enemy;
+    private EnemyFSMManager enemy;
 
     //estados
     public BossIdle bossIdleState;
@@ -22,7 +22,9 @@ public class BossEvokerFSMManager : EnemyFSMManager
     protected void Awake()
     {
         base.Awake();
-        enemy = GetComponent<Enemy>();
+        InitializeStats();
+        animator = animatorBoss;
+        enemy = GetComponent<EnemyFSMManager>();
 
         // Creamos la instancia específica del boss y la asignamos también al campo base `idleState`
         bossIdleState = new BossIdle(this);
@@ -37,7 +39,14 @@ public class BossEvokerFSMManager : EnemyFSMManager
         _stateMachine = idleState;
     }
 
-    public void RegisterMinion(Enemy e)
+    protected override void InitializeStats()
+    {
+        maxHealth = 10;       // VIDA DEL BOSS
+        currentHealth = maxHealth;
+        isBoss = true;
+    }
+
+    public void RegisterMinion(EnemyFSMManager e)
     {
         aliveMinions++;
         e.OnDeath += () => aliveMinions--;
@@ -45,7 +54,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
     public void EvaluateWaves()
     {
         if (enemy == null)
-            enemy = GetComponent<Enemy>();
+            enemy = GetComponent<EnemyFSMManager>();
 
         // Primera transición: de wave 0 a 1
         if (currentWave == 0 && enemy.CurrentHealth <= 4)

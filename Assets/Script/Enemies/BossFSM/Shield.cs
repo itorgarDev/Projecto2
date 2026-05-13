@@ -5,13 +5,13 @@ using UnityEngine;
 public class Shield : TemplateStateMachine
 {
     private BossEvokerFSMManager _fsm;
-    private Enemy _life;
+    private EnemyFSMManager _life;
 
     private GameObject _shieldSphere;
     public Shield(BossEvokerFSMManager stateMachineFlow) : base("Shield", stateMachineFlow)
     {
         _fsm = stateMachineFlow;
-        _life = _fsm.GetComponent<Enemy>();
+        _life = _fsm.GetComponent<EnemyFSMManager>();
         _shieldSphere = _fsm.transform.Find("ShieldSphere").gameObject;
     }
     public override void Enter()
