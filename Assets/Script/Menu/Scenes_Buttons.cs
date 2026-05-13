@@ -14,6 +14,7 @@ public class Scenes_Buttons : MonoBehaviour
         current = SceneManager.GetActiveScene().buildIndex;
         Mantener_Scene.Instance.keptScene = current;
         PlayerPrefs.SetInt("LastScene", current);
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
