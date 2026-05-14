@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorTemple : MonoBehaviour
 {
-   
+    public int sceneDestination;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,11 +14,7 @@ public class DoorTemple : MonoBehaviour
         {
             FindObjectOfType<PlayerStats>().SaveStats();
 
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            if (currentScene == 1)
-            { SceneManager.LoadScene(2); }
-            if (currentScene==2)
-            { SceneManager.LoadScene(1); }
+            SceneManager.LoadScene(sceneDestination);
         }
     }
 }
