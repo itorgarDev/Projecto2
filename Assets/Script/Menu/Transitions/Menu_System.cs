@@ -11,7 +11,9 @@ public class Menu_System : MonoBehaviour
    // public Animator transitionFadein;
 
     public GameObject imageOut;
-  //  public GameObject imageIn;
+    //  public GameObject imageIn;
+
+    int current;
 
     public void Start()
     {
@@ -39,7 +41,30 @@ public class Menu_System : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        current = SceneManager.GetActiveScene().buildIndex;
+        Mantener_Scene.Instance.keptScene = current;
+        PlayerPrefs.SetInt("LastScene", current);
+       // sceneDestination = 0;
+        Time.timeScale = 1f;
+        GoToDestination();
+        Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
+
+    }
+
+    public void ReturnToScene()
+    {
+        int lastScene = PlayerPrefs.GetInt("LastScene", 0);
+        sceneDestination=lastScene;
+        GoToDestination();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            GoToDestination();
+        }
     }
 
 }

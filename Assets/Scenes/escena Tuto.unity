@@ -1845,6 +1845,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62640ff6054c6e84db361505816a7a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &290873945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290873939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586457be80ad5a347a169963916073c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneDestination: 0
+  transitionTime: 1
+  transitionFadeout: {fileID: 1502194200}
+  imageOut: {fileID: 1502194199}
 --- !u!1001 &297383750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2638,7 +2654,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 437556184}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &412317791
+--- !u!114 &412317787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2647,10 +2663,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 412317786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a645d092c5999734eb5f5c14689655fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 586457be80ad5a347a169963916073c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneDestination: 2
+  transitionTime: 1
+  transitionFadeout: {fileID: 1502194200}
+  imageOut: {fileID: 1502194199}
 --- !u!1 &427704697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2890108159800127696, guid: 6e49d7bc7bbafac409c52f989a439233,
@@ -2761,7 +2780,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1553640126424333317, guid: b72faef721966744bbd2c1ae598eff87,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 412317791}
+      addedObject: {fileID: 412317787}
   m_SourcePrefab: {fileID: 100100000, guid: b72faef721966744bbd2c1ae598eff87, type: 3}
 --- !u!4 &463096283 stripped
 Transform:
@@ -10763,6 +10782,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e09abc59ddb06d4a90dd4d578f2ef36, type: 3}
+--- !u!1 &1502194199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8032793887680247202, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502194198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1502194200 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8168577475121259311, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502194198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1504712994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2078101416967487427, guid: 761ffc386fc5813409f3557a87d43be4,
@@ -12342,8 +12373,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 290873944}
-        m_TargetAssemblyTypeName: Scenes_Buttons, Assembly-CSharp
+      - m_Target: {fileID: 290873945}
+        m_TargetAssemblyTypeName: Menu_System, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -15036,6 +15067,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 290873944}
+    - targetCorrespondingSourceObject: {fileID: 5125691540571888574, guid: 4d40795836cc1b74f93f6a0bab858d44,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 290873945}
   m_SourcePrefab: {fileID: 100100000, guid: 4d40795836cc1b74f93f6a0bab858d44, type: 3}
 --- !u!54 &472560155196211196
 Rigidbody:
