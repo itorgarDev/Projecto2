@@ -129,10 +129,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
-        // Si por lo que sea no se ha encontrado el menú, no sigas
         if (pauseMenuCanvas == null)
         {
-            Debug.LogError("OnPausePerformed llamado pero pauseMenuCanvas es NULL. Revisa PauseMenuBreaker y la jerarquía de MENU_FINAL.");
             FindPauseMenu();
             if (pauseMenuCanvas == null) return;
         }
@@ -140,41 +138,34 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused)
         {
             isPaused = true;
-            pauseMenuCanvasOscuro.SetActive(true);
             Time.timeScale = 0;
 
-            if (pauseMenuCanvasScroll != null)
-                pauseMenuCanvasScroll.SetActive(true);
-
-            if (pauseMenuCanvasOptions != null)
-                pauseMenuCanvasOptions.SetActive(true);
-
             pauseMenuCanvas.SetActive(true);
-            
+            pauseMenuCanvasOscuro?.SetActive(true);
+            pauseMenuCanvasScroll?.SetActive(true);
+            pauseMenuCanvasOptions?.SetActive(true);
 
-            if (scrollAnimator != null)
-                scrollAnimator.SetTrigger("Scroll_Animation");
-            else
-                Debug.LogWarning("scrollAnimator es NULL, no se puede lanzar la animación.");
+            // 🔹 Mantén el brillo activo
+            pauseMenuCanvasBrillo?.SetActive(true);
 
-            Debug.Log("Menu abierto");
+            scrollAnimator?.SetTrigger("Scroll_Animation");
+            Debug.Log("Menú abierto");
         }
         else
         {
-            pauseMenuCanvasOscuro.SetActive(false);
             isPaused = false;
-            Time.timeScale = 1;
             HidePanels();
+            Time.timeScale = 1;
 
-            if (pauseMenuCanvasOptions != null)
-                pauseMenuCanvasOptions.SetActive(false);
+            pauseMenuCanvasOscuro?.SetActive(false);
+            pauseMenuCanvasScroll?.SetActive(false);
+            pauseMenuCanvasOptions?.SetActive(false);
 
-            if (pauseMenuCanvasScroll != null)
-                pauseMenuCanvasScroll.SetActive(false);
+            // 🔹 NO desactives el brillo
+            // pauseMenuCanvasBrillo?.SetActive(false);
 
-            pauseMenuCanvas.SetActive(false);
-
-            Debug.Log("Menu cerrado");
+            pauseMenuCanvas?.SetActive(false);
+            Debug.Log("Menú cerrado");
         }
     }
 
@@ -203,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         pauseMenuCanvasOptions.SetActive(true);
         pauseMenuCanvasScroll.SetActive(false);
-
+        pauseMenuCanvasBrillo.SetActive(true);
         StartCoroutine(ResetTime());
         Debug.Log("Menu cerrado");
     }
