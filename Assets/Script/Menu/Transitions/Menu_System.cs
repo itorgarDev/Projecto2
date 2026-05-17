@@ -6,19 +6,36 @@ public class Menu_System : MonoBehaviour
 {
     public int sceneDestination;
     public float transitionTime = 1f;
-
     public Animator transitionFadeout;
    // public Animator transitionFadein;
 
     public GameObject imageOut;
     //  public GameObject imageIn;
 
+    bool firstGame=false;
+    
     int current;
+
+    public void ResetPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        Debug.Log("PlayerPrefs borrados");
+    }
 
     public void Start()
     {
+        firstGame = PlayerPrefs.GetInt("FirstGame", 0) == 1;
+        Debug.Log("Start() firstGame = " + firstGame);
         imageOut.SetActive(false);
-       // imageIn.SetActive(false);
+        // imageIn.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("StartGame pulsado");
+        firstGame = true;
+        PlayerPrefs.SetInt("FirstGame", 1);
+        GoToDestination();
     }
 
     public void GoToDestination()
@@ -53,6 +70,8 @@ public class Menu_System : MonoBehaviour
 
     public void ReturnToScene()
     {
+        Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
+        if (!firstGame) return;
         int lastScene = PlayerPrefs.GetInt("LastScene", 0);
         sceneDestination=lastScene;
         GoToDestination();
