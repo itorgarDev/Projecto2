@@ -19,10 +19,13 @@ public class BossEvokerFSMManager : EnemyFSMManager
     public Animator animatorBoss;
 
 
-    protected void Awake()
+    protected override void Awake() // Usamos override para que vaya fino
     {
         base.Awake();
+
+        // Volvemos a forzar sus stats de Boss para que no herede los de un enemigo comun
         InitializeStats();
+
         animator = animatorBoss;
         enemy = GetComponent<EnemyFSMManager>();
 
@@ -41,7 +44,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
     protected override void InitializeStats()
     {
-        maxHealth = 10;       // VIDA DEL BOSS
+        maxHealth = 10f;       // VIDA DEL BOSS en float
         currentHealth = maxHealth;
         isBoss = true;
     }
@@ -51,13 +54,14 @@ public class BossEvokerFSMManager : EnemyFSMManager
         aliveMinions++;
         e.OnDeath += () => aliveMinions--;
     }
+
     public void EvaluateWaves()
     {
         if (enemy == null)
             enemy = GetComponent<EnemyFSMManager>();
 
-        // Primera transición: de wave 0 a 1
-        if (currentWave == 0 && enemy.CurrentHealth <= 4)
+        // Primera transición: de wave 0 a 1 (evaluando con floats)
+        if (currentWave == 0 && enemy.CurrentHealth <= 4f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 1");
             currentWave = 1;
@@ -65,8 +69,8 @@ public class BossEvokerFSMManager : EnemyFSMManager
             return;
         }
 
-        // Segunda transición: de wave 1 a 2
-        if (currentWave == 1 && enemy.CurrentHealth <= 2)
+        // Segunda transición: de wave 1 a 2 (evaluando con floats)
+        if (currentWave == 1 && enemy.CurrentHealth <= 2f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 2");
             currentWave = 2;
@@ -74,5 +78,4 @@ public class BossEvokerFSMManager : EnemyFSMManager
             return;
         }
     }
-
 }

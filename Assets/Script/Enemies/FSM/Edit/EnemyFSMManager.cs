@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class EnemyFSMManager : StateMachineFlow
+// Añadimos el contrato IDamageable aquí para que todos los enemigos comunes y jefes que hereden lo tengan
+public class EnemyFSMManager : StateMachineFlow, IDamageable
 {
     public Idle idleState;
     public Chase chaseState;
@@ -25,11 +26,12 @@ public class EnemyFSMManager : StateMachineFlow
     public Animator animatorExclamation;
 
     [Header("Vida")]
-    [SerializeField] protected int maxHealth;
-    [SerializeField] protected int currentHealth;
+    // Cambiamos a float para que coincida perfectamente con el sistema del Fénix y el player
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float currentHealth;
     [SerializeField] protected bool isBoss;
     public bool IsBoss => isBoss;
-    public int CurrentHealth => currentHealth;
+    public float CurrentHealth => currentHealth; // Ahora devuelve float
     public event System.Action OnDeath;
 
     [Header("Ataque")]
@@ -39,7 +41,8 @@ public class EnemyFSMManager : StateMachineFlow
     [SerializeField] private int damage = 1;
 
     private float lastAttackTime = -Mathf.Infinity;
-    protected void Awake()
+
+    protected virtual void Awake() // Lo hacemos virtual por si el boss necesita sobreescribirlo limpiamente
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -53,7 +56,7 @@ public class EnemyFSMManager : StateMachineFlow
         weaponCollider.enabled = false;
         InitializeStats();
     }
-   
+
     protected override void GetInitialState(out TemplateStateMachine _stateMachine)
     {
         _stateMachine = idleState;
@@ -61,7 +64,7 @@ public class EnemyFSMManager : StateMachineFlow
 
     protected virtual void InitializeStats()
     {
-        maxHealth = 2;
+        maxHealth = 2f;
         currentHealth = maxHealth;
         isBoss = false;
     }
@@ -117,9 +120,12 @@ public class EnemyFSMManager : StateMachineFlow
             player.TakeDamage(damage);
         }
     }
-    public void TakeDamage(int attack)
+
+    // ¡REPARADO! Cambiado para cumplir el contrato IDamageable usando float
+    public void SystemTakeDamage(float amount)
     {
-        currentHealth -= attack;
+        currentHealth -= amount;
+        Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
 
         if (isBoss)
         {
@@ -135,8 +141,7 @@ public class EnemyFSMManager : StateMachineFlow
 
     private void Die()
     {
-        OnDeath?.Invoke();                      
-        EnemyPool.Instance.ReturnToPool(this);  
+        OnDeath?.Invoke();
+        EnemyPool.Instance.ReturnToPool(this);
     }
-
 }

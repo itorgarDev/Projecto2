@@ -7,7 +7,6 @@ public class TransitionAirState : TemplateStateMachine
     float duration = 1.2f;
 
     public bool goingUp;
-
     float verticalSpeed = 5f;
 
     public TransitionAirState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
@@ -36,12 +35,32 @@ public class TransitionAirState : TemplateStateMachine
 
         phoenix.transform.position = pos;
 
-        if (timer >= duration)
+        // si va para arriba, si que usamos el tiempo de subida normal
+        if (goingUp)
         {
-            if (goingUp)
+            if (timer >= duration)
+            {
                 phoenix.ChangeState(phoenix.flyState);
-            else
+            }
+        }
+        // si va para abajo, usamos el raycast para tocar el suelo real
+        else
+        {
+            RaycastHit hit;
+            // tiramos el rayo hacia abajo un par de metros
+            if (Physics.Raycast(phoenix.transform.position, Vector3.down, out hit, 2f))
+            {
+                // si la distancia al suelo real es muy xikitita, es q ya a aterrizado
+                if (hit.distance <= 0.3f)
+                {
+                    phoenix.ChangeState(phoenix.groundedState);
+                }
+            }
+            // por si acaso el mapa se rompe, dejamos el temporizador de emergencia
+            else if (timer >= duration * 2f)
+            {
                 phoenix.ChangeState(phoenix.groundedState);
+            }
         }
     }
 }

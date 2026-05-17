@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+Ôªøusing Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerStats stats;
 
-    [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquÌ
+    [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aqu√≠
     [SerializeField] private float hitboxDuration = 0.3f;
     private bool hasDealtDamage = false;
 
@@ -46,24 +46,29 @@ public class PlayerAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (hasDealtDamage) return;
-        
-        
-        if (other.gameObject.tag == "Enemy")
+
+        // Comprobamos si el objeto tiene la etiqueta de enemigo
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("OnTriggerEnter con objeto: " + other.name);
-            if (other.gameObject.GetComponent<EnemyFSMManager>().IsBoss)
+
+            // busca CUALQUIER script en el enemigo que use el sistema de da√±o
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+
+            if (damageable != null)
             {
-                var boss = other.gameObject.GetComponent<BossEvokerFSMManager>();
-                if (boss != null && boss.isShielded)
-                {
-                    Debug.Log("[PlayerAttack] Boss tiene escudo, NO hago daÒo");
-                    return; // NO HACEMOS DA—O, NO ACUMULAMOS NADA
-                }
+                // Si encontramo el sistema, le mandamos el da√±o de nuestros stats
+                float damageToDeal = stats != null ? stats.attack : 1f;
+
+                damageable.SystemTakeDamage(damageToDeal);
+                hasDealtDamage = true;
             }
-
-
-            other.gameObject.GetComponent<EnemyFSMManager>().TakeDamage(stats.attack);
-            hasDealtDamage = true;
+            else
+            {
+                // Por si acaso no encuentra la interfaz del da√±o
+                Debug.LogWarning($"El objeto {other.name} es 'Enemy' pero no tiene configurada la interfaz IDamageable.");
+            }
         }
     }
 }
+
