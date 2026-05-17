@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PhoenixFSM : StateMachineFlow
+public class PhoenixFSM : StateMachineFlow, IDamageable
 {
     public FlyState flyState;
     public ShootState shootState;
@@ -16,11 +16,15 @@ public class PhoenixFSM : StateMachineFlow
     public float PlayerDistance = 0f;
     public float GroundDamageRecieve = 0f;
     public int CurrentPhase = 1;
+    public bool isGrounded = false; // nos dice si esta en el suelo de verdad o no
 
     [Header("Referencias")]
     public Transform jugador;
 
+    [Header("Sistema de Vida")]
     public float Health = 15f;
+    public float maxHealth = 15f;
+    [HideInInspector] public bool isDead = false;
 
     protected override void GetInitialState(out TemplateStateMachine _stateMachine)
     {
@@ -33,14 +37,54 @@ public class PhoenixFSM : StateMachineFlow
         _stateMachine = flyState;
     }
 
+    // este metodo es el contrato q llama el player cuando pega
+    public void SystemTakeDamage(float amount)
+    {
+        if (isDead) return;
+
+        // no esta en el suelo, rechaza el daño
+        if (!isGrounded)
+        {
+            Debug.Log("[Fenix] El boss esta volando o en el aire, no le haces daño.");
+            return;
+        }
+
+        Health -= amount;
+        Debug.Log("[Fenix] Daño recibido: " + amount + ". Vida actual: " + Health);
+
+        GroundDamageRecieve += amount;
+
+        // por si le metes el ultimo viaje en el suelo en fase 1
+        if (Health <= 0f && CurrentPhase == 1)
+        {
+            ChangeState(phaseTransitionState);
+            return;
+        }
+
+        if (Health <= 0f && CurrentPhase == 2)
+        {
+            Die();
+        }
+    }
+
+    // aqui paramos todo cuando el bicho la palme de verdad
+    private void Die()
+    {
+        isDead = true;
+        Debug.Log("[Fenix] El jefe a sido derrotado");
+        Destroy(gameObject);
+    }
+
     public void ResetAire()
     {
         AirTime = 0f;
+        isGrounded = false; // Al resetear el aire, significa que ya NO está en el suelo
     }
 
     public void ResetTierra()
     {
         GroundTime = 0f;
         GroundDamageRecieve = 0f;
+        isGrounded = true; // Al resetear el tierra, significa que está en el suelo
     }
 }

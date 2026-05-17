@@ -12,7 +12,6 @@ public class GroundedState : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
-
         Debug.Log("ENTER  Grounded");
         phoenix.ResetTierra();
     }
@@ -23,10 +22,12 @@ public class GroundedState : TemplateStateMachine
 
         phoenix.GroundTime += Time.deltaTime;
 
+        // recarga la estamina poco a poco
         phoenix.stamina += Time.deltaTime * 0.25f;
         if (phoenix.stamina > 1f)
             phoenix.stamina = 1f;
 
+        // si se recupera, vuelve a subir
         if (phoenix.stamina >= 1f)
         {
             phoenix.transitionAirState.goingUp = true;

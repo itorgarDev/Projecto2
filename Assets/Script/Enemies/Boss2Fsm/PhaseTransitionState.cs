@@ -15,12 +15,19 @@ public class PhaseTransitionState : TemplateStateMachine
     {
         base.Enter();
 
-        Debug.Log("ENTER  PhaseTransition");
+        Debug.Log("[Fenix] ENTER Fase2");
         timer = 0f;
 
         phoenix.CurrentPhase = 2;
+
+        // Dejamos la estamina a 1f para que cuando llegue al cielo este a tope,
+        // pero reseteamos tierra porque el bicho revive en el suelo.
         phoenix.stamina = 1f;
-        phoenix.ResetAire();
+
+        // esto cura al fenix a tope pa la fase dos asi no se rompe la fsm
+        phoenix.Health = phoenix.maxHealth;
+
+        // Como esta en el suelo durante la animacion de resurgir, usamos ResetTierra
         phoenix.ResetTierra();
     }
 
@@ -31,6 +38,13 @@ public class PhaseTransitionState : TemplateStateMachine
         timer += Time.deltaTime;
 
         if (timer >= duration)
-            phoenix.ChangeState(phoenix.flyState);
+        {
+            // ¡REPARADO! En vez de mandarlo a volar directo en el suelo,
+            // le decimos al estado de transicion que tiene que SUBIR.
+            phoenix.transitionAirState.goingUp = true;
+
+            // Lo mandamos al estado que se encarga de moverlo hacia el cielo fisicamente
+            phoenix.ChangeState(phoenix.transitionAirState);
+        }
     }
 }
