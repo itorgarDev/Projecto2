@@ -12,6 +12,10 @@ public class Menu_System : MonoBehaviour
     public GameObject imageOut;
     //  public GameObject imageIn;
 
+
+    public GameObject menuPrincipal;
+    public GameObject menuAreUSure;
+
     bool firstGame=false;
     
     int current;
@@ -32,10 +36,39 @@ public class Menu_System : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("StartGame pulsado");
-        firstGame = true;
-        PlayerPrefs.SetInt("FirstGame", 1);
+        if (firstGame)
+        { 
+            AreYouSure();
+            
+
+        }
+        else
+        {
+            Debug.Log("StartGame pulsado");
+            firstGame = true;
+            PlayerPrefs.SetInt("FirstGame", 1);
+            GoToDestination();
+        }
+    }
+
+    public void AreYouSure()
+    {
+        menuPrincipal.SetActive(false);
+        menuAreUSure.SetActive(true);
+    }
+
+    public void YesIAm()
+    {
+
+        menuAreUSure.SetActive(false);
+        menuPrincipal.SetActive(true);
         GoToDestination();
+    }
+
+    public void NoImNot()
+    { 
+        menuAreUSure.SetActive(false);
+        menuPrincipal.SetActive(true);
     }
 
     public void GoToDestination()
