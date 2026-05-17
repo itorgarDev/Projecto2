@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasControls;
     [SerializeField] private GameObject pauseMenuCanvasBrillo;
     [SerializeField] private GameObject pauseMenuCanvasOscuro;
+    [SerializeField] private GameObject canvasMapa;
 
 
     [SerializeField] private Animator scrollAnimator;
@@ -59,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     private float verticalVelocity = 0f;
+
+    bool isMapOpen = false;
    
     void Awake()
     {
@@ -80,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Reasignar menú al cambiar de escena
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        controls.Player.Map.performed += OnMapPerformed;
     }
 
     private void Start()
@@ -129,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
+        if (isMapOpen) return;
         if (pauseMenuCanvas == null)
         {
             FindPauseMenu();
@@ -202,6 +208,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {
+        if (isMapOpen) return;
         moveInput = ctx.ReadValue<Vector2>();
     }
 
@@ -212,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDashPerformed(InputAction.CallbackContext ctx)
     {
+        if (isMapOpen) return;
         Vector3 direction = moveInput.x * right + moveInput.y * forward;
 
         if (direction.magnitude > 0.1f && Time.time - lastDashTime >= dashCooldown && !isDashing)
@@ -223,8 +231,29 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnMapPerformed(InputAction.CallbackContext context)
+    {
+        if (canvasMapa == null)
+        {
+            Debug.LogWarning("CanvasMapa no asignado en el inspector.");
+            return;
+        }
+
+        if (isPaused) return;
+
+        // Alternar estado REAL del mapa
+        isMapOpen = !isMapOpen;
+
+        canvasMapa.SetActive(isMapOpen);
+        Time.timeScale = isMapOpen ? 0f : 1f;
+
+        Debug.Log(isMapOpen ? "Mapa abierto" : "Mapa cerrado");
+    }
+
+
     private void OnTakePerformed(InputAction.CallbackContext ctx)
     {
+        if (isMapOpen) return;
         if (ctx.performed && currentItem != null)
         {
             currentItem.PickUp();
@@ -233,6 +262,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
+        if (isMapOpen) return;
         if (!ctx.performed) return;
 
         // si dialogo esta activo continua
@@ -260,6 +290,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnAttackPerformed(InputAction.CallbackContext ctx)
     {
+        if (isMapOpen) return;
         if (ctx.performed && playerAttack != null)
         {
             playerAttack.PerformAttack();

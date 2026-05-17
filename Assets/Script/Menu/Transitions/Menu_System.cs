@@ -61,7 +61,7 @@ public class Menu_System : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (CompareTag("templo")&&other.CompareTag("Player"))
         {
             GoToDestination();
         }
