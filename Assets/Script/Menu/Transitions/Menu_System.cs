@@ -92,8 +92,11 @@ public class Menu_System : MonoBehaviour
     public void MainMenu()
     {
         current = SceneManager.GetActiveScene().buildIndex;
-        Mantener_Scene.Instance.keptScene = current;
-        PlayerPrefs.SetInt("LastScene", current);
+
+        FindObjectOfType<SavePlay>().lastScene = current;
+        FindObjectOfType<SavePlay>().SaveData();
+        // Mantener_Scene.Instance.keptScene = current;
+        //PlayerPrefs.SetInt("LastScene", current);
         sceneDestination = 0;
         Time.timeScale = 1f;
         GoToDestination();

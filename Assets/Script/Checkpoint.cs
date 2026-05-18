@@ -21,7 +21,13 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetFloat("CP_X", transform.position.x);
             PlayerPrefs.SetFloat("CP_Y", transform.position.y);
             PlayerPrefs.SetFloat("CP_Z", transform.position.z);
-            PlayerPrefs.Save();
+
+            // Guardar índice
+            FindObjectOfType<SavePlay>().lastCheckpoint = numeroCkeckpoint;
+
+            // Guardar datos globales
+            FindObjectOfType<SavePlay>().SaveData();
+
 
             Debug.Log("Checkpoint " + numeroCkeckpoint + " activado. Pos = " + transform.position);
         }
