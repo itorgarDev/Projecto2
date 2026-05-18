@@ -94,7 +94,7 @@ public class Menu_System : MonoBehaviour
         current = SceneManager.GetActiveScene().buildIndex;
         Mantener_Scene.Instance.keptScene = current;
         PlayerPrefs.SetInt("LastScene", current);
-       // sceneDestination = 0;
+        sceneDestination = 0;
         Time.timeScale = 1f;
         GoToDestination();
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
