@@ -106,13 +106,14 @@ public class Menu_System : MonoBehaviour
     {
         current = SceneManager.GetActiveScene().buildIndex;
 
-        FindObjectOfType<SavePlay>().lastScene = current;
-        FindObjectOfType<SavePlay>().SaveData();
-        // Mantener_Scene.Instance.keptScene = current;
-        PlayerPrefs.SetInt("LastScene", current);
+        // Guardar correctamente la escena actual
+        SavePlay.Instance.lastScene = current;
+        SavePlay.Instance.SaveData();
+
         sceneDestination = 0;
         Time.timeScale = 1f;
         GoToDestination(0);
+
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
 
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SavePlay : MonoBehaviour
 {
+    public static SavePlay Instance;
     public int lastScene;
     public int lastCheckpoint;
 
@@ -11,25 +12,33 @@ public class SavePlay : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
         LoadData();
     }
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("sceneEnd",lastScene);
-        PlayerPrefs.SetInt("checkyCheck", lastCheckpoint);
-        PlayerPrefs.SetInt("firstGame", firstGameActive ? 0 : 1);
+        PlayerPrefs.SetInt("LastScene", lastScene);
+        PlayerPrefs.SetInt("LastCheckpoint", lastCheckpoint);
+        PlayerPrefs.SetInt("FirstGame", firstGameActive ? 1 : 0);
+
         PlayerPrefs.Save();
-        Debug.Log("Datos guardados");
+        Debug.Log("Datos guardados correctamente");
     }
 
     public void LoadData()
     {
-        lastScene=PlayerPrefs.GetInt("sceneEnd",lastScene) ;
-        lastCheckpoint=PlayerPrefs.GetInt("checkyCheck",lastCheckpoint) ;
-        firstGameActive=PlayerPrefs.GetInt("firstGame",0)==1;
+        lastScene = PlayerPrefs.GetInt("LastScene", 0);
+        lastCheckpoint = PlayerPrefs.GetInt("LastCheckpoint", 0);
+        firstGameActive = PlayerPrefs.GetInt("FirstGame", 0) == 1;
 
-        Debug.Log("Datos guardados");
+        Debug.Log("Datos cargados correctamente");
     }
 }
