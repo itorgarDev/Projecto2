@@ -47,7 +47,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasControls;
     [SerializeField] private GameObject pauseMenuCanvasBrillo;
     [SerializeField] private GameObject pauseMenuCanvasOscuro;
+
     [SerializeField] private GameObject canvasMapa;
+    [SerializeField] private GameObject canvasE;
 
 
     [SerializeField] private Animator scrollAnimator;
@@ -399,6 +401,13 @@ public class PlayerMovement : MonoBehaviour
         {
             HUDController.Instance.UpdateDashCooldown(timeTranscurred, dashCooldown);
         }
+
+        if (currentItem == null && currentNpc == null)
+        {
+            if (canvasE.activeSelf)
+                canvasE.SetActive(false);
+        }
+
     }
 
     private IEnumerator DashCoroutine(Vector3 dashDirection) // Corutina para manejar el dash
@@ -442,7 +451,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     private void OnTriggerStay(Collider other) 
-    {
+    { 
+        canvasE.SetActive(true);
         //detecta items
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
         {
@@ -458,6 +468,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        canvasE.SetActive(false);
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item) && item == currentItem)
         {
             currentItem = null; // actualiza el valor de currentitem si YA NO  esta dentro del triger

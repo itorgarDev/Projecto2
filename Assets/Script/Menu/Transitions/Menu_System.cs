@@ -16,6 +16,8 @@ public class Menu_System : MonoBehaviour
     public GameObject menuPrincipal;
     public GameObject menuAreUSure;
 
+    public bool whereCutscene;
+
     bool firstGame=false;
     
     int current;
@@ -29,6 +31,7 @@ public class Menu_System : MonoBehaviour
     public void Start()
     {
         firstGame = PlayerPrefs.GetInt("FirstGame", 0) == 1;
+        whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
         Debug.Log("Start() firstGame = " + firstGame);
         imageOut.SetActive(false);
         // imageIn.SetActive(false);
@@ -46,8 +49,10 @@ public class Menu_System : MonoBehaviour
         {
             Debug.Log("StartGame pulsado");
             firstGame = true;
-            PlayerPrefs.SetInt("FirstGame", 1);
-            GoToDestination();
+            whereCutscene = true;
+            PlayerPrefs.SetInt("FirstGame",1);
+            PlayerPrefs.SetInt("WhereCutscene", whereCutscene ? 1 : 0);
+            GoToDestination(3);
         }
     }
 
@@ -62,7 +67,11 @@ public class Menu_System : MonoBehaviour
 
         menuAreUSure.SetActive(false);
         menuPrincipal.SetActive(true);
-        GoToDestination();
+ //       whereCutscene = true;
+        PlayerPrefs.SetInt("WhereCutscene", 1);
+        PlayerPrefs.SetInt("FirstGame", 1);
+
+        GoToDestination(3);
     }
 
     public void NoImNot()
@@ -71,8 +80,10 @@ public class Menu_System : MonoBehaviour
         menuPrincipal.SetActive(true);
     }
 
-    public void GoToDestination()
+    public void GoToDestination(int valor)
     {
+        sceneDestination = valor;
+
         //Time.timeScale = 0f;
         imageOut.SetActive(true);
         transitionFadeout.SetTrigger("StartFade");
@@ -80,11 +91,13 @@ public class Menu_System : MonoBehaviour
        
     }
 
+
     IEnumerator LoadSceneWithTransition()
     {
 
        
         yield return new WaitForSeconds(transitionTime);
+        Debug.Log("Cargando escena: " + sceneDestination);
         SceneManager.LoadScene(sceneDestination);
 
     }
@@ -96,13 +109,14 @@ public class Menu_System : MonoBehaviour
         FindObjectOfType<SavePlay>().lastScene = current;
         FindObjectOfType<SavePlay>().SaveData();
         // Mantener_Scene.Instance.keptScene = current;
-        //PlayerPrefs.SetInt("LastScene", current);
+        PlayerPrefs.SetInt("LastScene", current);
         sceneDestination = 0;
         Time.timeScale = 1f;
-        GoToDestination();
+        GoToDestination(0);
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
 
     }
+
 
     public void ReturnToScene()
     {
@@ -110,7 +124,22 @@ public class Menu_System : MonoBehaviour
         if (!firstGame) return;
         int lastScene = PlayerPrefs.GetInt("LastScene", 0);
         sceneDestination=lastScene;
-        GoToDestination();
+
+        GoToDestination(sceneDestination);
+    }
+
+    public void GoToCutscene (int valorScene)
+    {
+//        whereCutscene = false;
+        PlayerPrefs.SetInt("WhereCutscene", 0);
+        imageOut.SetActive(true);
+        GoToDestination(valorScene);
+    }
+
+    public void WhereToCutscene()
+    {
+        if(whereCutscene) GoToDestination(1);
+        else GoToDestination(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,7 +147,7 @@ public class Menu_System : MonoBehaviour
 
         if (CompareTag("templo")&&other.CompareTag("Player"))
         {
-            GoToDestination();
+            GoToDestination(2);
         }
     }
 
