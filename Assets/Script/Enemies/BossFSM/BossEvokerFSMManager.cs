@@ -44,7 +44,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
     protected override void InitializeStats()
     {
-        maxHealth = 10f;       // VIDA DEL BOSS en float
+        maxHealth = 15f;       // VIDA DEL BOSS en float
         currentHealth = maxHealth;
         isBoss = true;
     }
@@ -61,7 +61,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
             enemy = GetComponent<EnemyFSMManager>();
 
         // Primera transición: de wave 0 a 1 (evaluando con floats)
-        if (currentWave == 0 && enemy.CurrentHealth <= 4f)
+        if (currentWave == 0 && enemy.CurrentHealth <= 10f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 1");
             currentWave = 1;
@@ -70,7 +70,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
         }
 
         // Segunda transición: de wave 1 a 2 (evaluando con floats)
-        if (currentWave == 1 && enemy.CurrentHealth <= 2f)
+        if (currentWave == 1 && enemy.CurrentHealth <= 5f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 2");
             currentWave = 2;

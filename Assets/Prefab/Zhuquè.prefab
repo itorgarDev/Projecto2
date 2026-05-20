@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 962057156795421032}
   - component: {fileID: 8724185406681991471}
+  - component: {fileID: 5538478889526536080}
   - component: {fileID: 6177175899270141326}
   - component: {fileID: 8801483627196886240}
   m_Layer: 0
@@ -57,6 +58,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5538478889526536080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602285671352395557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47a6d9218a036f40b2028227ff80616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6177175899270141326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +90,7 @@ MonoBehaviour:
   GroundDamageRecieve: 0
   CurrentPhase: 1
   isGrounded: 0
+  maxShootRange: 30
   target: {fileID: 0}
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}

@@ -6,57 +6,66 @@ public class ShootState : TemplateStateMachine
     float shootTimer;
     float shootDuration = 1f;
 
+    private PhoenixFuzzyController fuzzyBrain;
+
     public ShootState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
     {
-        phoenix = _stateMachineFlow; //
+        phoenix = _stateMachineFlow;
     }
 
     public override void Enter()
     {
-        base.Enter(); //
+        base.Enter();
 
-        Debug.Log("ENTER Shoot"); //
-        shootTimer = 0f; //
+        Debug.Log("ENTER Shoot");
+        shootTimer = 0f;
 
-        if (phoenix != null && phoenix.firePoint != null) //
+        if (fuzzyBrain == null && phoenix != null)
         {
-            // 1. Apuntamos a la barriga del jugador sumando un desfase vertical (1.1 metros hacia arriba)
-            if (phoenix.target != null) //
+            fuzzyBrain = phoenix.GetComponent<PhoenixFuzzyController>();
+        }
+
+        if (phoenix != null && phoenix.firePoint != null)
+        {
+            if (phoenix.target != null)
             {
-                // CAMBIADO: Modificamos el punto objetivo sumándole altura al transform base del jugador
                 Vector3 targetBodyPosition = phoenix.target.position + new Vector3(0f, 1.1f, 0f);
-
-                // Calculamos la dirección inclinando el firePoint hacia el torso
                 Vector3 targetDirection = targetBodyPosition - phoenix.firePoint.position;
-                phoenix.firePoint.rotation = Quaternion.LookRotation(targetDirection); //
+                phoenix.firePoint.rotation = Quaternion.LookRotation(targetDirection);
             }
 
-            // 2. Pillamos la bala apagada del pool
-            GameObject bulletMother = ProjectilePool.Instance.GetProjectile(phoenix.firePoint.position, phoenix.firePoint.rotation); //
-
-            // 3. La configuramos bien
-            Projectile pScript = bulletMother.GetComponent<Projectile>(); //
-            if (pScript != null) //
+            // le pasamos la distancia y estamina actuales de la fsm para que el fuzzy decida el patron
+            Projectile.ShootPattern chosenPattern = Projectile.ShootPattern.SingleBullet;
+            if (fuzzyBrain != null)
             {
-                pScript.isClone = false; //
+                chosenPattern = fuzzyBrain.EvaluateShootPattern(phoenix.PlayerDistance, phoenix.stamina);
             }
 
-            // 4. La encendemos a salvo
-            bulletMother.SetActive(true); //
+            GameObject bulletMother = ProjectilePool.Instance.GetProjectile(phoenix.firePoint.position, phoenix.firePoint.rotation);
+
+            Projectile pScript = bulletMother.GetComponent<Projectile>();
+            if (pScript != null)
+            {
+                pScript.isClone = false;
+                // aqui le metes el patron que ha ganado en el fuzzy a la bala
+                pScript.shootPattern = chosenPattern;
+
+            }
+
+            bulletMother.SetActive(true);
         }
         else
         {
-            Debug.LogError("[ShootState] Te falta arrastrar el firePoint en el Phoenix!"); //
+            Debug.LogError("[ShootState] Te falta arrastrar el firePoint en el Phoenix!");
         }
     }
 
     public override void UpdateLogic()
     {
-        base.UpdateLogic(); //
-        shootTimer += Time.deltaTime; //
+        base.UpdateLogic();
+        shootTimer += Time.deltaTime;
 
-        // cuando pasa el segundo de ataque, vuelve a volar
-        if (shootTimer >= shootDuration) //
-            phoenix.ChangeState(phoenix.flyState); //
+        if (shootTimer >= shootDuration)
+            phoenix.ChangeState(phoenix.flyState);
     }
 }

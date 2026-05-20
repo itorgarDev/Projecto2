@@ -6,88 +6,113 @@ public class FlyState : TemplateStateMachine
 
     // variables pal tiempo de recarga del tiro
     float shootCooldownTimer = 0f;
-    float timeBetweenAttacks = 3f; // se tiene k esperar 3 segundos entre atakes
+    float timeBetweenAttacks = 1.1f; // se tiene k esperar 1.1 segundos entre atakes
 
     public FlyState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
     {
-        phoenix = _stateMachineFlow; //
+        phoenix = _stateMachineFlow;
     }
 
     public override void Enter()
     {
-        Debug.Log("ENTER Fly"); //
-        phoenix.ResetAire(); //
+        Debug.Log("ENTER Fly");
+        phoenix.ResetAire();
 
         // cada vez k vuelve a volar, reiniciamos el reloj de recarga pa k no tire instantaneo
-        shootCooldownTimer = 0f; //
+        shootCooldownTimer = 0f;
     }
 
     public override void UpdateLogic()
     {
         // medimos la distancia directa contra el player
-        if (phoenix.target != null) //
+        if (phoenix.target != null)
             phoenix.PlayerDistance = Vector3.Distance(phoenix.transform.position, phoenix.target.position); //
 
-        phoenix.AirTime += Time.deltaTime; //
+        phoenix.AirTime += Time.deltaTime;
 
-        // aqui baja la estamina con el multiplicador q tenias puesto
-        phoenix.stamina -= Time.deltaTime * 0.05f; //
-        if (phoenix.stamina < 0f) //
-            phoenix.stamina = 0f; //
+        // aqui bajamos la estamina 
+        phoenix.stamina -= Time.deltaTime * 0.05f;
+        if (phoenix.stamina < 0f)
+            phoenix.stamina = 0f;
 
         // si se queda sin vida en fase uno pos va a cambiar de fase
-        if (phoenix.CurrentPhase == 1 && phoenix.Health <= 0f) //
+        if (phoenix.CurrentPhase == 1 && phoenix.Health <= 0f)
         {
-            phoenix.ChangeState(phoenix.phaseTransitionState); //
-            return; //
+            phoenix.ChangeState(phoenix.phaseTransitionState);
+            return;
         }
 
-        // --- EL ARREGLO DEL BUCLE ---
         // aumentamos el reloj de la recarga
-        shootCooldownTimer += Time.deltaTime; //
+        shootCooldownTimer += Time.deltaTime;
 
-        // MODIFICADO: Ahora evalúa usando la variable expuesta del Inspector (maxShootRange) en vez del '8f' fijo
-        if (phoenix.PlayerDistance < phoenix.maxShootRange && shootCooldownTimer >= timeBetweenAttacks) //
+        if (phoenix.PlayerDistance < phoenix.maxShootRange && shootCooldownTimer >= timeBetweenAttacks)
         {
-            phoenix.ChangeState(phoenix.shootState); //
+            phoenix.ChangeState(phoenix.shootState);
             return; //
         }
 
         // si se cansa ponemos el goingup en false pa q baje
-        if (phoenix.stamina < 0.2f) //
+        if (phoenix.stamina < 0.2f)
         {
-            phoenix.transitionAirState.goingUp = false; //
-            phoenix.ChangeState(phoenix.transitionAirState); //
-            return; //
+            phoenix.transitionAirState.goingUp = false;
+            phoenix.ChangeState(phoenix.transitionAirState);
+            return;
         }
 
-        OrbitalMovement(); //
-        LookAtPlayer(); //
+        OrbitalMovement();
+        LookAtPlayer();
     }
 
-    void OrbitalMovement() //
+    void OrbitalMovement()
     {
-        if (phoenix.target == null) return; //
+        if (phoenix.target == null) return;
 
-        Vector3 center = phoenix.target.position; //
-        Vector3 offset = phoenix.transform.position - center; //
+        Vector3 center = phoenix.target.position;
+        Vector3 offset = phoenix.transform.position - center;
+        float currentDist = offset.magnitude;
 
-        if (offset.magnitude < 0.1f) //
-            offset = new Vector3(1f, 0f, 0f); //
+        if (currentDist < 0.1f)
+        {
+            offset = new Vector3(1f, 0f, 0f);
+            currentDist = 1f;
+        }
 
-        Vector3 orbital = Vector3.Cross(offset, Vector3.up).normalized; //
+        // pillamos los multiplicadores que calcula el fuzzy usando la distancia, estamina y vida
+        PhoenixFuzzyController fuzzyBrain = phoenix.GetComponent<PhoenixFuzzyController>();
+        float speedMultiplier = 1f;
+        float harassmentWeight = 0f;
 
-        phoenix.transform.position += orbital * 4f * Time.deltaTime; //
+        if (fuzzyBrain != null)
+        {
+            speedMultiplier = fuzzyBrain.EvaluateOrbitalSpeedMultiplier(phoenix.PlayerDistance, phoenix.stamina);
+            harassmentWeight = fuzzyBrain.EvaluateHarassmentWeight(phoenix.PlayerDistance, phoenix.Health, phoenix.maxHealth);
+        }
+
+        // calculamos el radio objetivo dinámico. Si esta agonizando el acoso vale 1 y el radio baja a 8 (espiral kamikaze)
+        float targetRadio = 20f - (harassmentWeight * 12f);
+
+        // fuerza orbital para girar en circulos (la tuya de siempre)
+        Vector3 orbitalDirection = Vector3.Cross(offset, Vector3.up).normalized;
+        float finalOrbitalSpeed = 4f * speedMultiplier; // el 4f es tu velocidad base
+        Vector3 orbitalVelocity = orbitalDirection * finalOrbitalSpeed;
+
+        // fuerza radial para corregir la distancia y que no se safe del mapa
+        Vector3 radialDirection = offset.normalized;
+        float radialError = currentDist - targetRadio;
+        Vector3 radialVelocity = -radialDirection * radialError * 1.5f; // el 1.5f es la fuerza de atraccion pa volver al radio suave
+
+        // combinamos las dos velocidades en este frame
+        phoenix.transform.position += (orbitalVelocity + radialVelocity) * Time.deltaTime;
     }
 
-    void LookAtPlayer() //
+    void LookAtPlayer()
     {
-        if (phoenix.target == null) return; //
+        if (phoenix.target == null) return;
 
-        Vector3 dir = phoenix.target.position - phoenix.transform.position; //
-        dir.y = 0f; //
+        Vector3 dir = phoenix.target.position - phoenix.transform.position;
+        dir.y = 0f;
 
-        if (dir.sqrMagnitude > 0.01f) //
-            phoenix.transform.rotation = Quaternion.LookRotation(dir); //
+        if (dir.sqrMagnitude > 0.01f)
+            phoenix.transform.rotation = Quaternion.LookRotation(dir);
     }
 }

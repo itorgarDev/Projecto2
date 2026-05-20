@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     [Header("Burst Setup")]
     public int burstAmount = 3;
-    public float timeBetweenBullets = 0.2f;
+    public float timeBetweenBullets = 1f;
 
     [HideInInspector] public bool isClone = false;
     private Coroutine burstCoroutine;
@@ -76,6 +76,7 @@ public class Projectile : MonoBehaviour
                 clone.SetActive(true);
             }
             yield return new WaitForSeconds(timeBetweenBullets);
+            Debug.Log("PASAAA ALGOO");
         }
 
         DeactivateAndReturnToPool();
