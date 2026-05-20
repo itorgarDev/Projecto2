@@ -17,7 +17,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     public float GroundDamageRecieve = 0f;
     public int CurrentPhase = 1;
     public bool isGrounded = false; // nos dice si esta en el suelo de verdad o no
-    public float maxShootRange = 15f;
+    public float maxShootRange = 30f;
 
     [Header("Referencias")]
     public Transform target;
