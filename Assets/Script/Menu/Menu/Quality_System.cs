@@ -25,5 +25,14 @@ public class Quality_System : MonoBehaviour
         QualitySettings.SetQualityLevel(dropdown.value);
         PlayerPrefs.SetInt("numeroCalidad",dropdown.value);
         calidad=dropdown.value;
+
+        // Desactiva el objeto "Blocker" si quedó activo tras cambiar la calidad
+        GameObject blocker = GameObject.Find("Blocker");
+        if (blocker != null && blocker.activeInHierarchy)
+        {
+            blocker.SetActive(false);
+            Debug.Log("Blocker desactivado tras cambiar la calidad.");
+        }
+
     }
 }
