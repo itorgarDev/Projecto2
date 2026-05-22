@@ -19,7 +19,8 @@ public class SavePlay : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
+
         LoadData();
     }
 
