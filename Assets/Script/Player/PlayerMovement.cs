@@ -422,6 +422,11 @@ public class PlayerMovement : MonoBehaviour
         float elapsed = 0f;
         float dashSpeed = dashDistance / dashDuration; // velocidad necesaria para recorrer la distancia exacta
 
+        if (playerAttack != null && playerAttack.IsAttacking)
+        {
+            playerAttack.ForceCancelAttack();
+        }
+
         while (elapsed < dashDuration)
         {
             float step = dashSpeed * Time.fixedDeltaTime;
