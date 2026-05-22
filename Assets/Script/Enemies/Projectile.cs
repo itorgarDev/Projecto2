@@ -64,21 +64,18 @@ public class Projectile : MonoBehaviour
     {
         for (int i = 0; i < burstAmount; i++)
         {
-            GameObject clone = ProjectilePool.Instance.GetProjectile(transform.position, transform.rotation);
+            // El i*-1.5f desplaza la bala hacia atras cada vez
+            Vector3 spawnOffset = transform.forward * (i * -1.5f);
+            GameObject clone = ProjectilePool.Instance.GetProjectile(transform.position + spawnOffset, transform.rotation);
 
             if (clone != null)
             {
                 Projectile pScript = clone.GetComponent<Projectile>();
-                if (pScript != null)
-                {
-                    pScript.isClone = true;
-                }
+                if (pScript != null) pScript.isClone = true;
                 clone.SetActive(true);
             }
             yield return new WaitForSeconds(timeBetweenBullets);
-            Debug.Log("PASAAA ALGOO");
         }
-
         DeactivateAndReturnToPool();
     }
 
@@ -105,11 +102,9 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        // 3. IMPACTO CONTRA ESCENARIO (Muros o Suelo)
-        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
+        // contra todo lo demas
             DeactivateAndReturnToPool();
-        }
+        
     }
 
     private void DeactivateAndReturnToPool()

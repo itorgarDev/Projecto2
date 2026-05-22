@@ -42,7 +42,14 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = false;
     }
-
+    public void ForceCancelAttack()
+    {
+        isAttacking = false;
+        weaponCollider.enabled = false;
+        // Esto asegura que el animator no se quede en un estado de bucle infinito
+        animator.ResetTrigger("Attack");
+        Debug.Log("[PlayerAttack] Ataque forzado a cancelar por dash");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (hasDealtDamage) return;
