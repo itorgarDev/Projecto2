@@ -14,7 +14,7 @@ public class PhaseTransitionState : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
-
+       
         Debug.Log("[Fenix] ENTER Fase2");
         timer = 0f;
 

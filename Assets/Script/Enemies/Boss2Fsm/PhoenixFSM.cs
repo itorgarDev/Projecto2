@@ -22,12 +22,20 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     [Header("Referencias")]
     public Transform target;
     public GameObject bulletPrefab; 
-    public Transform firePoint;     
+    public Transform firePoint;
+
+    [Header("Animación")]
+    public Animator animator;
 
     [Header("Sistema de Vida")]
     public float Health = 15f;
     public float maxHealth = 15f;
     [HideInInspector] public bool isDead = false;
+
+    void Awake()
+    {
+        animator = GetComponentInChildren<Animator>(); 
+    }
 
     protected override void GetInitialState(out TemplateStateMachine _stateMachine)
     {
@@ -88,6 +96,6 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     {
         GroundTime = 0f;
         GroundDamageRecieve = 0f;
-        isGrounded = true; // Al resetear el tierra, significa que está en el suelo
+        isGrounded = true; // Al resetear el tierra, significa que ESTA en el suelo
     }
 }

@@ -17,6 +17,7 @@ public class TransitionAirState : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
+        phoenix.animator.SetTrigger("Rest");
         Debug.Log("ENTER  TransitionAir (goingUp: " + goingUp + ")");
         timer = 0f;
     }
@@ -48,8 +49,9 @@ public class TransitionAirState : TemplateStateMachine
         {
             RaycastHit hit;
             // tiramos el rayo hacia abajo un par de metros
-            if (Physics.Raycast(phoenix.transform.position, Vector3.down, out hit, 2f))
+            if (Physics.Raycast(phoenix.transform.position, Vector3.down, out hit, 20f))
             {
+                Debug.DrawRay(phoenix.transform.position, Vector3.down * 20, Color.red);
                 // si la distancia al suelo real es muy xikitita, es q ya a aterrizado
                 if (hit.distance <= 0.3f)
                 {

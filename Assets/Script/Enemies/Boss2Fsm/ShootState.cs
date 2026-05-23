@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections; // hace falta esto pa las corrutinas
 
 public class ShootState : TemplateStateMachine
 {
     PhoenixFSM phoenix;
     float shootTimer;
-    float shootDuration = 1f;
+    float shootDuration = 0.3f; // lo q dura el estado este
 
     private PhoenixFuzzyController fuzzyBrain;
 
@@ -17,6 +18,8 @@ public class ShootState : TemplateStateMachine
     {
         base.Enter();
 
+        // avisamos al animator q empiece el ataque ya
+        phoenix.animator.SetTrigger("Attack");
         Debug.Log("ENTER Shoot");
         shootTimer = 0f;
 
@@ -25,6 +28,7 @@ public class ShootState : TemplateStateMachine
             fuzzyBrain = phoenix.GetComponent<PhoenixFuzzyController>();
         }
 
+        // esto es pa q mire al jugador, o eso intenta el pobre
         if (phoenix != null && phoenix.firePoint != null)
         {
             if (phoenix.target != null)
@@ -34,30 +38,39 @@ public class ShootState : TemplateStateMachine
                 phoenix.firePoint.rotation = Quaternion.LookRotation(targetDirection);
             }
 
-            // le pasamos la distancia y estamina actuales de la fsm para que el fuzzy decida el patron
-            Projectile.ShootPattern chosenPattern = Projectile.ShootPattern.SingleBullet;
-            if (fuzzyBrain != null)
-            {
-                chosenPattern = fuzzyBrain.EvaluateShootPattern(phoenix.PlayerDistance, phoenix.stamina);
-            }
-
-            GameObject bulletMother = ProjectilePool.Instance.GetProjectile(phoenix.firePoint.position, phoenix.firePoint.rotation);
-
-            Projectile pScript = bulletMother.GetComponent<Projectile>();
-            if (pScript != null)
-            {
-                pScript.isClone = false;
-                // aqui le metes el patron que ha ganado en el fuzzy a la bala
-                pScript.shootPattern = chosenPattern;
-
-            }
-
-            bulletMother.SetActive(true);
+            // lanzamos la corrutina pa q dispare en el momento justo
+            // como va a velocidad 4, el 1.16s se keda en 0.29s
+            phoenix.StartCoroutine(DelayedShoot(0.29f));
         }
         else
         {
-            Debug.LogError("[ShootState] Te falta arrastrar el firePoint en el Phoenix!");
+            Debug.LogError("[ShootState] Te falta arrastrar el firePoint en el Phoenix, espabilao!");
         }
+    }
+
+    private IEnumerator DelayedShoot(float delay)
+    {
+        // esperamos el tiempo q toca pa q cuadre con la animacion
+        yield return new WaitForSeconds(delay);
+
+        // a ver q patron decide el cerebro este
+        Projectile.ShootPattern chosenPattern = Projectile.ShootPattern.SingleBullet;
+        if (fuzzyBrain != null)
+        {
+            chosenPattern = fuzzyBrain.EvaluateShootPattern(phoenix.PlayerDistance, phoenix.stamina);
+        }
+
+        // sacamos la bala del pool pa no petar la memoria
+        GameObject bulletMother = ProjectilePool.Instance.GetProjectile(phoenix.firePoint.position, phoenix.firePoint.rotation);
+
+        Projectile pScript = bulletMother.GetComponent<Projectile>();
+        if (pScript != null)
+        {
+            pScript.isClone = false;
+            pScript.shootPattern = chosenPattern;
+        }
+
+        bulletMother.SetActive(true);
     }
 
     public override void UpdateLogic()
@@ -65,6 +78,7 @@ public class ShootState : TemplateStateMachine
         base.UpdateLogic();
         shootTimer += Time.deltaTime;
 
+        // kuando pasa el tiempo volvemos a volar, tranki
         if (shootTimer >= shootDuration)
             phoenix.ChangeState(phoenix.flyState);
     }
