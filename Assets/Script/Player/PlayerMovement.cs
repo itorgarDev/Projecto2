@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private TakeDrop currentItem;
     private DialogueSystem currentNpc;
+    private BridgeSwap currentBridge;
     private bool isPaused = false;
     private PlayerAttack playerAttack;
     private PlayerStats stats;
@@ -280,6 +281,12 @@ public class PlayerMovement : MonoBehaviour
             currentNpc.StartDialogue();
             return;
         }
+
+        if (currentBridge != null)
+        {
+            currentBridge.InteractWithBridge();
+            return;
+        }
     }
 
     void OnEnable()
@@ -459,6 +466,7 @@ public class PlayerMovement : MonoBehaviour
     { 
         canvasE.SetActive(true);
         //detecta items
+       
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
         {
             currentItem = item; // actualiza el valor de currentitem si esta dentro del triger
@@ -468,6 +476,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.TryGetComponent<DialogueSystem>(out DialogueSystem npcDialogue)) 
         { 
             currentNpc = npcDialogue; 
+        }
+
+        if (other.TryGetComponent<BridgeSwap>(out BridgeSwap bridge))
+        {
+            currentBridge = bridge;
         }
     }
 
@@ -485,6 +498,11 @@ public class PlayerMovement : MonoBehaviour
 
             // esto hace que los mensajes desaparezcan y se reseteen si se aleja del npc
             if (npcDialogue.IsDialogueActive) npcDialogue.EndDialogue();
+        }
+
+        if (other.TryGetComponent<BridgeSwap>(out BridgeSwap bridge) && bridge == currentBridge)
+        {
+            currentBridge = null;
         }
     }
 }
