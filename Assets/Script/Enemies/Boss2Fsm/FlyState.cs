@@ -17,7 +17,7 @@ public class FlyState : TemplateStateMachine
     {
         Debug.Log("ENTER Fly");
         phoenix.ResetAire();
-
+        phoenix.animator.SetBool("IsFlying", true);
         // cada vez k vuelve a volar, reiniciamos el reloj de recarga pa k no tire instantaneo
         shootCooldownTimer = 0f;
     }
@@ -91,7 +91,7 @@ public class FlyState : TemplateStateMachine
         // calculamos el radio objetivo dinámico. Si esta agonizando el acoso vale 1 y el radio baja a 8 (espiral kamikaze)
         float targetRadio = 20f - (harassmentWeight * 12f);
 
-        // fuerza orbital para girar en circulos (la tuya de siempre)
+        // fuerza orbital para girar en circulos 
         Vector3 orbitalDirection = Vector3.Cross(offset, Vector3.up).normalized;
         float finalOrbitalSpeed = 4f * speedMultiplier; // el 4f es tu velocidad base
         Vector3 orbitalVelocity = orbitalDirection * finalOrbitalSpeed;

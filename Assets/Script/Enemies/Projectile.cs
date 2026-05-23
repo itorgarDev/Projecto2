@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,8 +11,12 @@ public class Projectile : MonoBehaviour
 
     [Header("Stats and Damage")]
     public float damage = 1f;
-    public float speed = 18f;
+    public float speed = 24f;
     public float lifeTime = 15f;
+
+    [Header("Tracking Setup")]
+    private Transform target;
+    public float trackingStrength = 3f; // cuanto mas alto mas gira la bala 
 
     [Header("Burst Setup")]
     public int burstAmount = 3;
@@ -24,6 +29,19 @@ public class Projectile : MonoBehaviour
     {
         CancelInvoke(nameof(DeactivateAndReturnToPool));
         Invoke(nameof(DeactivateAndReturnToPool), lifeTime);
+
+        if (target == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogWarning("[Bala] Oye, no encuentro a nadie con el tag 'Player' en la escena!");
+            }
+        }
 
         if (!isClone)
         {
@@ -43,10 +61,75 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        // Todas las balas avanzan siempre
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+        // Si hay un jugador, rotamos hacia el poco a poco
+        if (target != null)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
 
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, trackingStrength * Time.deltaTime);
+            }
+
+            // Seguro para que no de vueltas en circulos infinitos si te esquiva de cerca
+            if (Vector3.Distance(transform.position, target.position) < 4f)
+            {
+                target = null;
+            }
+        }
+
+        //EL RAYCAST para que la bala detecte to
+        float moveDistance = speed * Time.deltaTime;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, moveDistance + 0.2f))
+        {
+            // Si el rayo choca, procesamos el impacto y no nos movemos mas
+            ProcessingHit(hit.collider);
+            return;
+        }
+
+        // Si el camino esta limpio, avanza
+        transform.Translate(Vector3.forward * moveDistance);
+    }
+    private void ProcessingHit(Collider other)
+    {
+        // Ignoramos si choca con otra bala 
+        if (other.GetComponent<Projectile>() != null)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            return;
+        }
+
+        // DAÑO AL JUGADOR
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            Debug.Log("[Raycast] Impacto al jugador.");
+            player.TakeDamage((int)damage);
+            DeactivateAndReturnToPool();
+            return;
+        }
+
+        // DAÑO A OTRAS COSAS DAÑABLES
+        IDamageable victim = other.GetComponent<IDamageable>();
+        if (victim != null)
+        {
+            victim.SystemTakeDamage(damage);
+            DeactivateAndReturnToPool();
+            return;
+        }
+
+        // SI CHOCA CON TODO LO DEMAS
+        Debug.Log("[Raycast] Choco contra: " + other.name);
+        DeactivateAndReturnToPool();
+    }
+    private void DeactivateAndReturnToPool()
+    {
+        isClone = false;
+        ProjectilePool.Instance.ReturnToPool(gameObject);
+    }
     private void ExecutePattern()
     {
         switch (shootPattern)
@@ -78,38 +161,5 @@ public class Projectile : MonoBehaviour
         }
         DeactivateAndReturnToPool();
     }
-
-    // --- SISTEMA DE DAÑO LIBERADO Y DIRECTO ---
-    private void OnTriggerEnter(Collider other)
-    {
-        // 1. DAÑO AL JUGADOR
-        // Recuerda: Si el script de tu jugador se llama diferente a 'PlayerMovement', cambia ese nombre aquí abajo
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
-        if (player != null)
-        {
-            Debug.Log("[Bala] ¡Golpe directo al jugador! Quitando vida: " + damage);
-            player.TakeDamage((int)damage);
-            DeactivateAndReturnToPool();
-            return;
-        }
-
-        // 2. DAÑO A ENEMIGOS (Por si acaso)
-        IDamageable victim = other.GetComponent<IDamageable>();
-        if (victim != null)
-        {
-            victim.SystemTakeDamage(damage);
-            DeactivateAndReturnToPool();
-            return;
-        }
-
-        // contra todo lo demas
-            DeactivateAndReturnToPool();
-        
-    }
-
-    private void DeactivateAndReturnToPool()
-    {
-        isClone = false;
-        ProjectilePool.Instance.ReturnToPool(gameObject);
-    }
+   
 }

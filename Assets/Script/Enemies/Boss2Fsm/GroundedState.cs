@@ -14,6 +14,8 @@ public class GroundedState : TemplateStateMachine
         base.Enter();
         Debug.Log("ENTER  Grounded");
         phoenix.ResetTierra();
+        phoenix.animator.SetBool("IsFlying", false);
+        phoenix.animator.SetBool("IsIdle", true);
     }
 
     public override void UpdateLogic()
