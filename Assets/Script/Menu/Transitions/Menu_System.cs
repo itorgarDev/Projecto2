@@ -97,6 +97,7 @@ public class Menu_System : MonoBehaviour
 
        
         yield return new WaitForSeconds(transitionTime);
+
         Debug.Log("Cargando escena: " + sceneDestination);
         SceneManager.LoadScene(sceneDestination);
 

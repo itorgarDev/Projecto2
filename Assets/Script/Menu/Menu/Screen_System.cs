@@ -7,6 +7,8 @@ using TMPro;
 public class Screen_System : MonoBehaviour
 {
     public Toggle toggle;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip tick;
 
     //
     public TMP_Dropdown resolutionDropdown;
@@ -14,6 +16,8 @@ public class Screen_System : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         if(Screen.fullScreen)
         {
             toggle.isOn=true;
@@ -34,6 +38,7 @@ public class Screen_System : MonoBehaviour
         if (fullScreen==true)
         {
             Debug.Log("Pantalla completa");
+            audioSource.PlayOneShot(tick);
         }
 
         else
@@ -70,4 +75,6 @@ public class Screen_System : MonoBehaviour
        Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
+
+
 }
