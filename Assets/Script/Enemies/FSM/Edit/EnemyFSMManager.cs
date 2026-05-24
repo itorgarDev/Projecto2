@@ -35,8 +35,8 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     public event System.Action OnDeath;
 
     [Header("Ataque")]
-    [SerializeField] private Collider weaponCollider;
-    [SerializeField] private float hitboxDuration = 0.3f;
+    [SerializeField] public Collider weaponCollider;
+    [SerializeField] public float hitboxDuration = 0.3f;
     [SerializeField] private float attackCooldown = 1.2f;
     [SerializeField] private int damage = 1;
 
@@ -103,11 +103,16 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         animator.SetTrigger("Attack");
 
+        /*weaponCollider.enabled = true;
+        Invoke(nameof(DisableCollider), hitboxDuration);*/
+    }
+    public void EnemyHit()
+    {
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
 
-    private void DisableCollider()
+    public void DisableCollider()
     {
         weaponCollider.enabled = false;
     }
@@ -126,6 +131,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
+
 
         if (isBoss)
         {

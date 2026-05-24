@@ -5,6 +5,7 @@ public class Attack : TemplateStateMachine
     private EnemyFSMManager _fsm;
     private BossEvokerFSMManager _fsmBoss;
 
+
     public Attack(EnemyFSMManager stateMachineFlow) : base("Attacking", stateMachineFlow)
     {
         _fsm = stateMachineFlow;
@@ -13,7 +14,7 @@ public class Attack : TemplateStateMachine
     public override void Enter()
     {
         base.Enter();
-        
+
     }
 
     public override void UpdateLogic()
@@ -54,3 +55,4 @@ public class Attack : TemplateStateMachine
         //_fsmBoss.enemyAttack.TryAttack();
     }
 }
+
