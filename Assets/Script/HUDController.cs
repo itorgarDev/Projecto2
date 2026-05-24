@@ -29,6 +29,16 @@ public class HUDController : MonoBehaviour
     public TMP_Text pickupText;
     private Coroutine pickupCoroutine;
 
+    [Header("Componentes de Jefes")]
+    public GameObject bossPanel;       // bossUI
+    public Image bossHealthFill; // barra llena
+    public GameObject bossNamePanel; // marco del nombre
+    public TMP_Text bossNameText;      // Texto para mostrar el nombre del Boss actual
+
+    private PhoenixFSM activeFenix;
+    private EnemyFSMManager activeEvoker;
+    private float activeBossMaxHp;
+
     private void Awake()
     {
         Instance = this;
@@ -37,8 +47,26 @@ public class HUDController : MonoBehaviour
     void Start()
     {
         UpdateHealthBar();
+        if (bossPanel != null) bossPanel.SetActive(false);
     }
-
+    void Update()
+    {
+        if (bossPanel != null && bossPanel.activeSelf)
+        {
+            if (activeFenix != null)
+            {
+                // Calcula el porcentaje de vida y actualiza el relleno
+                bossHealthFill.fillAmount = Mathf.Clamp01(activeFenix.Health / activeBossMaxHp);
+                if (activeFenix.isDead) UntrackBoss();
+            }
+            else if (activeEvoker != null)
+            {
+                // Calcula el porcentaje de vida y actualiza el relleno
+                bossHealthFill.fillAmount = Mathf.Clamp01(activeEvoker.CurrentHealth / activeBossMaxHp);
+                if (activeEvoker.CurrentHealth <= 0) UntrackBoss();
+            }
+        }
+    }
     public void UpdateHealthBar()
     {
         if (stats.maxHealth <= 0) return; // Seguridad
@@ -79,6 +107,25 @@ public class HUDController : MonoBehaviour
             if (dashGlow.activeSelf) dashGlow.SetActive(false);
         }
     }
+
+    public void TrackBoss(PhoenixFSM fenix, EnemyFSMManager evoker, string bossName, float maxHp)
+    {
+        activeFenix = fenix;
+        activeEvoker = evoker;
+        activeBossMaxHp = maxHp;
+
+        if (bossPanel != null) bossPanel.SetActive(true);
+        if (bossNamePanel != null) bossNamePanel.SetActive(true);
+        if (bossNameText != null) bossNameText.text = bossName;
+    }
+
+    public void UntrackBoss()
+    {
+        activeFenix = null;
+        activeEvoker = null;
+        if (bossPanel != null) bossPanel.SetActive(false);
+    }
+
     public void ShowPickupMessage(string itemName)
     {
         pickupText.text = "Has recogido: " + itemName;

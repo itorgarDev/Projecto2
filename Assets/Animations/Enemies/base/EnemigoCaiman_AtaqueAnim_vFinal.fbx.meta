@@ -19,12 +19,19 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Armature|Ataque' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Muslo.L' has translation animation that
+      will be discarded.\n\t'Muslo.R' has translation animation that will be discarded.\n\nClip
+      'Armature|Patrullar' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Muslo.L'
+      has translation animation that will be discarded.\n\t'Muslo.R' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,7 +89,237 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      position: {x: -0, y: 0.48848376, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Bone
+      parentName: Armature
+      position: {x: 0.00072858453, y: 0.00041418552, z: 0.031431336}
+      rotation: {x: 0.4519273, y: 0.53066957, z: 0.5512535, w: 0.45855325}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Pecho
+      parentName: Bone
+      position: {x: -5.7742e-10, y: 0.009999999, z: 1.6219399e-11}
+      rotation: {x: -0, y: -0.000000026077034, z: 0.0000000037252907, w: 1}
+      scale: {x: 0.99999976, y: 1.0000001, z: 1}
+    - name: Hombro.L
+      parentName: Pecho
+      position: {x: 4.4703483e-10, y: 0.020957526, z: -5.0291415e-10}
+      rotation: {x: -0.6480675, y: 0.05954898, z: -0.050943404, w: 0.7575403}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Brazo.L
+      parentName: Hombro.L
+      position: {x: -1.4901161e-10, y: 0.010686412, z: -0.0000000025331974}
+      rotation: {x: 0.07091856, y: 0.06835589, z: 0.089787826, w: -0.9910783}
+      scale: {x: 0.9999996, y: 1.0000002, z: 1.0000007}
+    - name: Antebrazo.L
+      parentName: Brazo.L
+      position: {x: 1.4901161e-10, y: 0.02014201, z: -0.000000004209578}
+      rotation: {x: 0.010354612, y: 0.0020296646, z: 0.035415508, w: 0.99931693}
+      scale: {x: 1.0000005, y: 1.0000012, z: 1.000001}
+    - name: Pulgar.L
+      parentName: Antebrazo.L
+      position: {x: 0.000000002980232, y: 0.01119512, z: 0}
+      rotation: {x: -0.036081485, y: -0.03815917, z: 0.4912174, w: 0.8694525}
+      scale: {x: 0.9999995, y: 1.0000002, z: 0.9999998}
+    - name: Pulgar.L_end
+      parentName: Pulgar.L
+      position: {x: -0, y: 0.007883623, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mano.L
+      parentName: Antebrazo.L
+      position: {x: 0.000000002980232, y: 0.01119512, z: 0}
+      rotation: {x: -0.022995979, y: -0.03267779, z: -0.1461563, w: 0.98845416}
+      scale: {x: 1.0000004, y: 0.9999988, z: 0.9999994}
+    - name: Mano.L_end
+      parentName: Mano.L
+      position: {x: -0, y: 0.011066158, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arma
+      parentName: Antebrazo.L
+      position: {x: 0.000000002980232, y: 0.01119512, z: 0}
+      rotation: {x: -0.7458884, y: 0.00000003393507, z: -0.32914785, w: 0.5790615}
+      scale: {x: 0.9999997, y: 1.0000001, z: 0.9999993}
+    - name: arma.001
+      parentName: Arma
+      position: {x: -0.0008105284, y: 0.0016485256, z: 0.000120170116}
+      rotation: {x: 0.9496979, y: 0.19879809, z: 0.20293725, w: 0.13179438}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.9999998}
+    - name: Arma_end
+      parentName: Arma
+      position: {x: -0, y: 0.007839111, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hombro.R
+      parentName: Pecho
+      position: {x: 4.4703483e-10, y: 0.020957526, z: -5.0291415e-10}
+      rotation: {x: 0.64933366, y: -0.059496224, z: -0.05107142, w: 0.7564507}
+      scale: {x: 1.0000005, y: 0.9999999, z: 1.0000002}
+    - name: Brazo.R
+      parentName: Hombro.R
+      position: {x: 2.9802322e-10, y: 0.010919985, z: 0.00000000115484}
+      rotation: {x: 0.120412335, y: -0.043640655, z: 0.06381381, w: 0.98970914}
+      scale: {x: 0.9999996, y: 1.0000008, z: 1.0000012}
+    - name: Antebrazo.R
+      parentName: Brazo.R
+      position: {x: 2.2351741e-10, y: 0.020142006, z: 0.0000000011920929}
+      rotation: {x: -0.0113720745, y: -0.0021273084, z: 0.041650876, w: 0.9990652}
+      scale: {x: 0.99999976, y: 1.0000001, z: 1.0000004}
+    - name: Pulgar.R
+      parentName: Antebrazo.R
+      position: {x: 8.9406965e-10, y: 0.01119512, z: 0.0000000012200325}
+      rotation: {x: 0.10327262, y: 0.000000018626451, z: 0.49129537, w: 0.8648489}
+      scale: {x: 0.9999993, y: 1.0000002, z: 1.0000004}
+    - name: Pulgar.R_end
+      parentName: Pulgar.R
+      position: {x: -0, y: 0.007883623, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mano.R
+      parentName: Antebrazo.R
+      position: {x: 8.9406965e-10, y: 0.01119512, z: 0.0000000012200325}
+      rotation: {x: 0.022995576, y: 0.0326777, z: -0.14615637, w: 0.9884543}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000008}
+    - name: Mano.R_end
+      parentName: Mano.R
+      position: {x: -0, y: 0.011066161, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cuello
+      parentName: Pecho
+      position: {x: 4.4703483e-10, y: 0.020957526, z: -5.0291415e-10}
+      rotation: {x: -0.0000000020683515, y: 0.000000111676556, z: -0.07931699, w: 0.9968494}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Cabeza
+      parentName: Cuello
+      position: {x: 2.0489097e-10, y: 0.005033661, z: -3.9115547e-10}
+      rotation: {x: 0.0000000061649854, y: -0.000000029101367, z: 0.3030402, w: 0.9529778}
+      scale: {x: 1, y: 1, z: 0.9999998}
+    - name: Cabeza_end
+      parentName: Cabeza
+      position: {x: -0, y: 0.024030259, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Muslo.L
+      parentName: Bone
+      position: {x: 0.0024850257, y: -0.0013534506, z: -0.008883285}
+      rotation: {x: 0.9739147, y: 0.01151602, z: -0.22660634, w: 0.0026794188}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Gemelo.L
+      parentName: Muslo.L
+      position: {x: 8.9406965e-10, y: 0.01884363, z: 0}
+      rotation: {x: 0.081592806, y: 0.0055805556, z: 0.048511792, w: 0.9954688}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: Pie1.L
+      parentName: Gemelo.L
+      position: {x: -0, y: 0.016449925, z: 0}
+      rotation: {x: 0.31309453, y: 0.000000010710209, z: 0.59484303, w: 0.7403605}
+      scale: {x: 1.0000008, y: 1.0000011, z: 1.0000008}
+    - name: Pie2.L
+      parentName: Pie1.L
+      position: {x: -7.636845e-10, y: 0.015707044, z: 2.9802322e-10}
+      rotation: {x: -0.030809596, y: 0.00000010145607, z: -0.058520302, w: -0.9978107}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: Pie2.L_end
+      parentName: Pie2.L
+      position: {x: -0, y: 0.0104570305, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Muslo.R
+      parentName: Bone
+      position: {x: -0.0032557272, y: 0.0000106029765, z: 0.00723471}
+      rotation: {x: 0.9746093, y: 0.011524149, z: 0.22359999, w: -0.0026438858}
+      scale: {x: 0.99999964, y: 0.99999964, z: 1.0000001}
+    - name: Gemelo.R
+      parentName: Muslo.R
+      position: {x: -5.9604643e-10, y: 0.01884363, z: -7.45058e-10}
+      rotation: {x: -0.081291854, y: -0.005580489, z: 0.04901439, w: 0.9954688}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: Pie1.R
+      parentName: Gemelo.R
+      position: {x: -0, y: 0.016449925, z: 0}
+      rotation: {x: -0.26213112, y: 0.00000015669502, z: 0.6223355, w: 0.73755395}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000007}
+    - name: Pie2.R
+      parentName: Pie1.R
+      position: {x: 8.9406965e-10, y: 0.015707044, z: 0.0000000017881393}
+      rotation: {x: 0.03776071, y: -0.00000000794303, z: -0.05429528, w: -0.9978107}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
+    - name: Pie2.R_end
+      parentName: Pie2.R
+      position: {x: -0, y: 0.0104570305, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cola
+      parentName: Bone
+      position: {x: -5.7742e-10, y: 0.009999999, z: 1.6219399e-11}
+      rotation: {x: -0.0000001192093, y: -0.0000000903383, z: 0.9589047, w: -0.28372836}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
+    - name: Cola.001
+      parentName: Cola
+      position: {x: -0.0000000012293457, y: 0.013053577, z: -1.4901161e-10}
+      rotation: {x: -0.000000024000636, y: -0.000000016819222, z: 0.09491802, w: 0.9954851}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+    - name: Cola.002
+      parentName: Cola.001
+      position: {x: -7.636845e-10, y: 0.010463052, z: 5.9604643e-10}
+      rotation: {x: 0.00000009553876, y: -0.000000057821502, z: -0.34048373, w: -0.94025046}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: Cola.003
+      parentName: Cola.002
+      position: {x: -1.4901161e-10, y: 0.009781101, z: -1.862645e-10}
+      rotation: {x: -0.00000009206381, y: -0.0000000040226524, z: 0.029334873, w: 0.99956965}
+      scale: {x: 1, y: 0.9999996, z: 0.99999976}
+    - name: Cola.004
+      parentName: Cola.003
+      position: {x: -2.2351741e-10, y: 0.009588172, z: -6.1467287e-10}
+      rotation: {x: 0.000000028698867, y: 0.000000045247333, z: 0.03113304, w: 0.99951524}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000002}
+    - name: Cola.005
+      parentName: Cola.004
+      position: {x: -0.0000000016391277, y: 0.009351875, z: -5.9604643e-10}
+      rotation: {x: -1.235332e-10, y: -0.0000000016322766, z: 0.005274954, w: 0.9999861}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Cola.006
+      parentName: Cola.005
+      position: {x: -0.0000000011920929, y: 0.0088087255, z: -4.4703483e-10}
+      rotation: {x: -0.000000042362746, y: -0.00000009322339, z: 0.026348555, w: 0.99965286}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.9999999}
+    - name: Cola.006_end
+      parentName: Cola.006
+      position: {x: -0, y: 0.012307028, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Empty.003
+      parentName: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      position: {x: -3.202867, y: 2.9250667, z: -1.9745567}
+      rotation: {x: 1, y: 0, z: 0, w: -0.0000000754979}
+      scale: {x: -234.30125, y: -234.30125, z: -234.30125}
+    - name: ROPA
+      parentName: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      position: {x: 1.0507096, y: 0.047429204, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: arma
+      parentName: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      position: {x: -15.202674, y: 1.4672745, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 18.806076, y: 7.2518826, z: 100}
+    - name: cuerpo
+      parentName: EnemigoCaiman_AtaqueAnim_vFinal(Clone)
+      position: {x: -0, y: 4.7062387, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -93,13 +330,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

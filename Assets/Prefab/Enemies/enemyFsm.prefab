@@ -936,6 +936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6646094356250935071}
   - component: {fileID: 3730340498996841967}
+  - component: {fileID: 4542024712016035666}
   m_Layer: 0
   m_Name: EnemigoCaiman_IdleAnim_vFinal
   m_TagString: Untagged
@@ -983,6 +984,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4542024712016035666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009907288067735708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c625ca03cb7522c4786406ec1f0e3a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5052561420513121962
 GameObject:
   m_ObjectHideFlags: 0

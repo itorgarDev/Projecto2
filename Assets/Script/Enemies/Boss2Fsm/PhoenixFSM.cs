@@ -63,6 +63,8 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
         Health -= amount;
         Debug.Log("[Fenix] Daño recibido: " + amount + ". Vida actual: " + Health);
 
+       
+
         GroundDamageRecieve += amount;
 
         // por si le metes el ultimo viaje en el suelo en fase 1
@@ -77,15 +79,6 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
             Die();
         }
     }
-
-    // aqui paramos todo cuando el bicho la palme de verdad
-    private void Die()
-    {
-        isDead = true;
-        Debug.Log("[Fenix] El jefe a sido derrotado");
-        Destroy(gameObject);
-    }
-
     public void ResetAire()
     {
         AirTime = 0f;
@@ -98,4 +91,12 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
         GroundDamageRecieve = 0f;
         isGrounded = true; // Al resetear el tierra, significa que ESTA en el suelo
     }
+    // aqui paramos todo cuando el bicho la palme de verdad
+    private void Die()
+    {
+        isDead = true;
+        Debug.Log("[Fenix] El jefe a sido derrotado");
+        Destroy(gameObject);
+    }
+
 }

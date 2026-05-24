@@ -8,6 +8,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
     //estados
     public BossIdle bossIdleState;
+    public BossAttack bossAttackState;
     public Summon summonState;
     public Shield shieldState;
 
@@ -32,6 +33,8 @@ public class BossEvokerFSMManager : EnemyFSMManager
         // Creamos la instancia específica del boss y la asignamos también al campo base `idleState`
         bossIdleState = new BossIdle(this);
         idleState = bossIdleState;
+
+        bossAttackState = new BossAttack(this);
 
         shieldState = new Shield(this);
         summonState = new Summon(this);
