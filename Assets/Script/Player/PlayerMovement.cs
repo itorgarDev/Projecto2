@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -65,7 +66,20 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity = 0f;
 
     bool isMapOpen = false;
-   
+    private bool isWalking = false;
+    
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixerGroup sfxGroup;
+
+    [SerializeField] private AudioClip caminarSfx;
+    [SerializeField] private AudioClip atacarSfx;
+    [SerializeField] private AudioClip dashSfx;
+    [SerializeField] private AudioClip dañoSfx; 
+    [SerializeField] private AudioClip muerteSfx;
+
+
     void Awake()
     {
         controls = new PlayerControls();
@@ -88,6 +102,13 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         controls.Player.Map.performed += OnMapPerformed;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        if (sfxGroup != null)
+            audioSource.outputAudioMixerGroup = sfxGroup;
+
     }
 
     private void Start()
@@ -96,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1;
         FindPauseMenu();
         stats.currentHealth = stats.maxHealth;
+
+    
 
     }
 
@@ -147,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused)
         {
             isPaused = true;
+            audioMixer.SetFloat("SFXVolume", -80f);
             Time.timeScale = 0;
 
             pauseMenuCanvas.SetActive(true);
@@ -163,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isPaused = false;
+            audioMixer.SetFloat("SFXVolume", 0f);
             HidePanels();
             Time.timeScale = 1;
 
@@ -213,11 +238,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isMapOpen) return;
         moveInput = ctx.ReadValue<Vector2>();
+        if (!isWalking)
+        {
+            isWalking = true;
+            audioSource.PlayOneShot(caminarSfx);
+        }
     }
 
     private void OnMoveCanceled(InputAction.CallbackContext ctx)
     {
         moveInput = Vector2.zero;
+        isWalking=false;    
     }
 
     private void OnDashPerformed(InputAction.CallbackContext ctx)
@@ -300,9 +331,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnAttackPerformed(InputAction.CallbackContext ctx)
     {
         if (isMapOpen) return;
+        if (isPaused) return;
         if (ctx.performed && playerAttack != null)
         {
             playerAttack.PerformAttack();
+            audioSource.PlayOneShot(atacarSfx);
         }
     }
 
@@ -311,6 +344,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsImmortal) return;
 
         stats.TakeDamage(amount);
+        audioSource.PlayOneShot(dañoSfx);
 
         if (stats.currentHealth <= 0)
         {
