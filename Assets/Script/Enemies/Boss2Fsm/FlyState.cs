@@ -3,6 +3,8 @@ using UnityEngine;
 public class FlyState : TemplateStateMachine
 {
     PhoenixFSM phoenix;
+    private SphereCollider arenaCollider;
+    public bool playerInside = false;
 
     // variables pal tiempo de recarga del tiro
     float shootCooldownTimer = 0f;
@@ -20,13 +22,42 @@ public class FlyState : TemplateStateMachine
         phoenix.animator.SetBool("IsFlying", true);
         // cada vez k vuelve a volar, reiniciamos el reloj de recarga pa k no tire instantaneo
         shootCooldownTimer = 0f;
+
+        if (arenaCollider == null && phoenix != null)
+        {
+            BossArenaDetector sonDetector = phoenix.GetComponentInChildren<BossArenaDetector>();
+            if (sonDetector != null)
+            {
+                arenaCollider = sonDetector.GetComponent<SphereCollider>();
+            }
+            else
+            {
+                Debug.LogError("[FlyState] No encuentro el BossArenaDetector en los hijos del Fenix!");
+            }
+        }
     }
 
     public override void UpdateLogic()
     {
+        if (!playerInside && arenaCollider != null && phoenix.target != null)
+        {
+            // Calculamos la distancia solo para encender tu bool por primera vez
+            float distancia = Vector3.Distance(arenaCollider.transform.position, phoenix.target.position);
+            if (distancia <= arenaCollider.radius)
+            {
+                playerInside = true; // ¡Se activa tu bool!
+            }
+        }
+        // Si el detector nos dice que el player no ha entrado, el Fenix se queda tieso flotando
+        if (!playerInside)
+        {
+            // Bloqueamos movimiento orbital, disparos, gasto de estamina, TODO.
+            return;
+        }
+
         // medimos la distancia directa contra el player
         if (phoenix.target != null)
-            phoenix.PlayerDistance = Vector3.Distance(phoenix.transform.position, phoenix.target.position); //
+            phoenix.PlayerDistance = Vector3.Distance(phoenix.transform.position, phoenix.target.position); 
 
         phoenix.AirTime += Time.deltaTime;
 

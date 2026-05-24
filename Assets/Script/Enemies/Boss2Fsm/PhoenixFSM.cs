@@ -63,8 +63,6 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
         Health -= amount;
         Debug.Log("[Fenix] Daño recibido: " + amount + ". Vida actual: " + Health);
 
-       
-
         GroundDamageRecieve += amount;
 
         // por si le metes el ultimo viaje en el suelo en fase 1
