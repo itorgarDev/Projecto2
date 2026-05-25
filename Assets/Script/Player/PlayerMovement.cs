@@ -335,7 +335,7 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed && playerAttack != null)
         {
             playerAttack.PerformAttack();
-            audioSource.PlayOneShot(atacarSfx);
+            audioSource.PlayOneShot(atacarSfx,0.25f);
         }
     }
 
