@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.Audio;
 
 
 public class SoundController : MonoBehaviour
@@ -67,14 +68,6 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip zRespawn;
     [SerializeField] private AudioClip zExplosion;
     [SerializeField] private AudioClip zEgg;
-
-    [Header("Sfx Xuanwu")]
-
-    [SerializeField] private AudioClip xMelee;
-    [SerializeField] private AudioClip xShield;
-    [SerializeField] private AudioClip xDialogue;
-    [SerializeField] private AudioClip xSnake;
-    [SerializeField] private AudioClip xDamage;
 
     [Header("Sfx Xuanwu")]
 
