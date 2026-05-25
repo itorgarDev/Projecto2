@@ -120,6 +120,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     private void OnTriggerEnter(Collider other)
     {
         PlayerMovement player = other.GetComponent<PlayerMovement>();
+        
         if (player != null)
         {
             player.TakeDamage(damage);
