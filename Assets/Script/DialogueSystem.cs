@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class DialogueSystem : MonoBehaviour
@@ -24,6 +25,30 @@ public class DialogueSystem : MonoBehaviour
     public bool IsDialogueActive => dialoguePanel.activeSelf;
     public bool IsNpcNameActive => dialogueName.activeSelf;
 
+    [Header("Sonidos Maoqius")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioClip sonido1;
+    [SerializeField] private AudioClip sonido2;
+    [SerializeField] private AudioClip sonido3;
+    [SerializeField] private AudioClip sonido4;
+    [SerializeField] private AudioClip sonido5;
+    AudioClip[] systemAudiosMaoqius; 
+
+
+    public void Start()
+    {
+          audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        if (sfxGroup != null)
+            audioSource.outputAudioMixerGroup = sfxGroup;
+
+        systemAudiosMaoqius = new AudioClip[] { sonido1, sonido2, sonido3, sonido4, sonido5 };
+
+    }
+
     public void StartDialogue()
     {
         npcName.text = name;
@@ -33,18 +58,20 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(true);
         dialogueName.SetActive(true);
         dialogueText.text = message[index];
+        SoundSystem();
     }
 
     public void ContinueDialogue()
     {
         if (!IsNpcNameActive) return;
         if (!IsDialogueActive) return;
-
+        
         index++;
 
         if (index < message.Length)
         {
             dialogueText.text = message[index];
+            SoundSystem();
         }
         else
         {
@@ -58,5 +85,15 @@ public class DialogueSystem : MonoBehaviour
         dialogueName.SetActive(false);
     }
 
+
+    public void SoundSystem()
+    {
+        if (systemAudios == null || systemAudios.Length == 0)
+            return;
+
+        int index = Random.Range(0, systemAudios.Length);
+        audioSource.PlayOneShot(systemAudiosMaoqius[index],0.25f);
+
+    }
 
 }

@@ -185,6 +185,13 @@ MonoBehaviour:
   - "Esto\u2026 Qiuro me est\xE1 mirando un poco raro."
   - "\xBFDeber\xEDa de preocuparme? Se le ve con una carucha."
   - A lo mejor quiere que le deje en paz, para que descanse.
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &15248219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -614,6 +621,13 @@ MonoBehaviour:
   - "\xA1\xDAnete a mi tour! El precio lo pones al final del recorrido."
   - "Siempre que este no sean 0 w\xE9ns, claro est\xE1."
   - "Siempre que este no sean 0 w\xE9ns, claro est\xE1. \xA1Salimos en nada!"
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &49038958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4246,6 +4260,13 @@ MonoBehaviour:
     todo. No se da por vencida."
   - "\xA1Vaya pelos m\xE1s sucios que me llevas! Qu\xE9date quieto, que te los quito
     con la escoba."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &593032510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4656,6 +4677,13 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &697572726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5412,6 +5440,13 @@ MonoBehaviour:
   - "\xBFSer\xE1 que las deidades est\xE1n enfadadas? \xBFO ser\xE1 que no me encuentro
     bien?"
   - "Ya dec\xEDa yo que ese huevo centenario sab\xEDa un poco raro."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &791787972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7498,6 +7533,13 @@ MonoBehaviour:
   - "Es que\u2026 Maolina\u2026hoy est\xE1 muy guapa\u2026"
   - "\xA1Ahhh! \xA1No-no-no quer\xEDa decir eso! Maldita sea."
   - "Pero es que no puedo dejar de mirarla\u2026"
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &929057872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7579,6 +7621,13 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &933706318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7699,7 +7748,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d9b8adbbf7eef664097e9fc9d04cde79, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9122,6 +9171,13 @@ MonoBehaviour:
   - "\xBFA qu\xE9 se debe vuestra visita? Espero que sea duradera."
   - "Aunque si no vais a estar mucho tiempo, ten\xE9is que entrar s\xED o s\xED en
     el templo."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &1043765606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9350,6 +9406,13 @@ MonoBehaviour:
   - "\xBFC\xF3mo es posible que sea mitad blanco y mitad negro al mismo tiempo?"
   - "\xBFNo ser\xEDa m\xE1s eficaz ser completamente de un color, como todos nosotros?"
   - Sin duda, una paradoja de manual.
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &1093482083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10000,6 +10063,13 @@ MonoBehaviour:
   - "Deber\xEDas de soplar alguno, a ver si se te cumple tu deseo."
   - "Yo una vez lo hice. Pero no dese\xE9 tener alergia al polen."
   - "\xA1Tal vez tengas m\xE1s suerte que yo!"
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &1224602245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10688,6 +10758,13 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &1251400165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11793,6 +11870,13 @@ MonoBehaviour:
   - "\xA1Quiero viajar por el mundo! Llevo a\xF1os sin salir de esta villa."
   - 'Pero tengo miedo de una cosa: pasar por delante de la casa de Maola.'
   - "\xBFY si le piso lo barrido? \xA1Me partir\xEDa la escoba en la cabeza!"
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &1425014817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13835,6 +13919,13 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
+  audioMixer: {fileID: 24100000, guid: 97a049f19392824478cf73c532e1909e, type: 2}
+  sfxGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e, type: 2}
+  sonido1: {fileID: 8300000, guid: 8fbbd03eda8deaf4cbbb976513ba2d89, type: 3}
+  sonido2: {fileID: 8300000, guid: 2f160ae4e90876749a27b0f4cc7eb731, type: 3}
+  sonido3: {fileID: 8300000, guid: 686e0a4f1b6f8d74eaf13e9c2842f2fe, type: 3}
+  sonido4: {fileID: 8300000, guid: 8bf08da005d31ed44815fd8e78e97d19, type: 3}
+  sonido5: {fileID: 8300000, guid: 6809a72f4ee2c0845936dd51235d8de5, type: 3}
 --- !u!65 &1693411576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16096,6 +16187,13 @@ MonoBehaviour:
   - "Para escribir poes\xEDa, filosof\xEDa, la lista de la compra\u2026"
   - "E incluso para cosas m\xE1s locas, como\u2026\xBFpintar un huevo? \xBFQui\xE9n
     har\xEDa una locura as\xED?"
+  audioMixer: {fileID: 0}
+  sfxGroup: {fileID: 0}
+  sonido1: {fileID: 0}
+  sonido2: {fileID: 0}
+  sonido3: {fileID: 0}
+  sonido4: {fileID: 0}
+  sonido5: {fileID: 0}
 --- !u!65 &2035582391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19497,6 +19595,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1445033845968535569, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2314104838060649543, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: imageOut
@@ -22287,6 +22390,18 @@ PrefabInstance:
       propertyPath: canvasE
       value: 
       objectReference: {fileID: 967555615300628725}
+    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+        type: 3}
+      propertyPath: sfxGroup
+      value: 
+      objectReference: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e,
+        type: 2}
+    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+        type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 97a049f19392824478cf73c532e1909e,
+        type: 2}
     - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: canvasMapa
