@@ -185,13 +185,6 @@ MonoBehaviour:
   - "Esto\u2026 Qiuro me est\xE1 mirando un poco raro."
   - "\xBFDeber\xEDa de preocuparme? Se le ve con una carucha."
   - A lo mejor quiere que le deje en paz, para que descanse.
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &15248219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -621,13 +614,6 @@ MonoBehaviour:
   - "\xA1\xDAnete a mi tour! El precio lo pones al final del recorrido."
   - "Siempre que este no sean 0 w\xE9ns, claro est\xE1."
   - "Siempre que este no sean 0 w\xE9ns, claro est\xE1. \xA1Salimos en nada!"
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &49038958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2964,6 +2950,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1930722310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &340202870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6966488710529686277, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502194198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586457be80ad5a347a169963916073c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &352871068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9942ea3ea9034f349a20cfe424d9d232,
@@ -4260,13 +4258,6 @@ MonoBehaviour:
     todo. No se da por vencida."
   - "\xA1Vaya pelos m\xE1s sucios que me llevas! Qu\xE9date quieto, que te los quito
     con la escoba."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &593032510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4677,13 +4668,6 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &697572726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5440,13 +5424,6 @@ MonoBehaviour:
   - "\xBFSer\xE1 que las deidades est\xE1n enfadadas? \xBFO ser\xE1 que no me encuentro
     bien?"
   - "Ya dec\xEDa yo que ese huevo centenario sab\xEDa un poco raro."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &791787972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7475,6 +7452,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b1abfcabfaeb244b82e7c31c0a11a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &920585571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 6041511980059527407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fbca95ce3986d4791cafe6adc349f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &929057869
 GameObject:
   m_ObjectHideFlags: 0
@@ -7533,13 +7522,6 @@ MonoBehaviour:
   - "Es que\u2026 Maolina\u2026hoy est\xE1 muy guapa\u2026"
   - "\xA1Ahhh! \xA1No-no-no quer\xEDa decir eso! Maldita sea."
   - "Pero es que no puedo dejar de mirarla\u2026"
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &929057872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7621,13 +7603,6 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &933706318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9171,13 +9146,6 @@ MonoBehaviour:
   - "\xBFA qu\xE9 se debe vuestra visita? Espero que sea duradera."
   - "Aunque si no vais a estar mucho tiempo, ten\xE9is que entrar s\xED o s\xED en
     el templo."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &1043765606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9406,13 +9374,6 @@ MonoBehaviour:
   - "\xBFC\xF3mo es posible que sea mitad blanco y mitad negro al mismo tiempo?"
   - "\xBFNo ser\xEDa m\xE1s eficaz ser completamente de un color, como todos nosotros?"
   - Sin duda, una paradoja de manual.
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &1093482083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10063,13 +10024,6 @@ MonoBehaviour:
   - "Deber\xEDas de soplar alguno, a ver si se te cumple tu deseo."
   - "Yo una vez lo hice. Pero no dese\xE9 tener alergia al polen."
   - "\xA1Tal vez tengas m\xE1s suerte que yo!"
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &1224602245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10758,13 +10712,6 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &1251400165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11870,13 +11817,6 @@ MonoBehaviour:
   - "\xA1Quiero viajar por el mundo! Llevo a\xF1os sin salir de esta villa."
   - 'Pero tengo miedo de una cosa: pasar por delante de la casa de Maola.'
   - "\xBFY si le piso lo barrido? \xA1Me partir\xEDa la escoba en la cabeza!"
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &1425014817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12365,6 +12305,11 @@ PrefabInstance:
     - target: {fileID: 6966488710529686277, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}
       propertyPath: sceneDestination
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032793887680247202, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13919,13 +13864,6 @@ MonoBehaviour:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
     de los  que hayan probado antes.
   - "\xA1Un manjar digno de deidades! 100 w\xE9ns, uno por cada a\xF1o."
-  audioMixer: {fileID: 24100000, guid: 97a049f19392824478cf73c532e1909e, type: 2}
-  sfxGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e, type: 2}
-  sonido1: {fileID: 8300000, guid: 8fbbd03eda8deaf4cbbb976513ba2d89, type: 3}
-  sonido2: {fileID: 8300000, guid: 2f160ae4e90876749a27b0f4cc7eb731, type: 3}
-  sonido3: {fileID: 8300000, guid: 686e0a4f1b6f8d74eaf13e9c2842f2fe, type: 3}
-  sonido4: {fileID: 8300000, guid: 8bf08da005d31ed44815fd8e78e97d19, type: 3}
-  sonido5: {fileID: 8300000, guid: 6809a72f4ee2c0845936dd51235d8de5, type: 3}
 --- !u!65 &1693411576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16187,13 +16125,6 @@ MonoBehaviour:
   - "Para escribir poes\xEDa, filosof\xEDa, la lista de la compra\u2026"
   - "E incluso para cosas m\xE1s locas, como\u2026\xBFpintar un huevo? \xBFQui\xE9n
     har\xEDa una locura as\xED?"
-  audioMixer: {fileID: 0}
-  sfxGroup: {fileID: 0}
-  sonido1: {fileID: 0}
-  sonido2: {fileID: 0}
-  sonido3: {fileID: 0}
-  sonido4: {fileID: 0}
-  sonido5: {fileID: 0}
 --- !u!65 &2035582391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16383,6 +16314,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3eb712f6ce34d6c4f88c06e1f3def1ec,
     type: 3}
   m_PrefabInstance: {fileID: 610951088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2079759158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4145923287997871928, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7119600738339814509}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2111833375 stripped
 Transform:
@@ -22409,6 +22346,11 @@ PrefabInstance:
       objectReference: {fileID: 9196715209017336143}
     - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
+      propertyPath: panelDeath
+      value: 
+      objectReference: {fileID: 2079759158}
+    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+        type: 3}
       propertyPath: scrollAnimator
       value: 
       objectReference: {fileID: 7094485422570066826}
@@ -23724,6 +23666,141 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837952265857465073, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Name
+      value: GO_Button_Return
+      objectReference: {fileID: 0}
+    - target: {fileID: 864904757315459998, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Name
+      value: Button_Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 920585571}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Die
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234500500265728390, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500457578667324971, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -453
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500457578667324971, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -78
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 340202870}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5547212422161359148}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu_System, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 920585571}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5547212422161359148}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Die
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640454105426880265, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3710958825571601158, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: stats
@@ -23739,6 +23816,23 @@ PrefabInstance:
       propertyPath: pickupPanel
       value: 
       objectReference: {fileID: 2123848250}
+    - target: {fileID: 3888208542224978005, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_text
+      value: 'Menu
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145923287997871928, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Name
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145923287997871928, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4608651289493540201, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -23839,13 +23933,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5537921694813443656, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5125
+      objectReference: {fileID: 0}
     - target: {fileID: 6424354445882819166, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6683846790832051981, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_text
+      value: Continuar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884152897786139507, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Name
+      value: GO_Button_MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407989237830766749, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 454
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205455095662717829, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205455095662717829, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205455095662717829, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205455095662717829, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6884152897786139507, guid: 64e4fc08385be2644be4f9a93f15d5d1, type: 3}
+    - {fileID: 837952265857465073, guid: 64e4fc08385be2644be4f9a93f15d5d1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e4fc08385be2644be4f9a93f15d5d1, type: 3}

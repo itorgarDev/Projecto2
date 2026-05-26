@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject canvasMapa;
     [SerializeField] private GameObject canvasE;
 
+    [SerializeField] private GameObject panelDeath;
 
     [SerializeField] private Animator scrollAnimator;
 
@@ -341,14 +342,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (stats.currentHealth <= 0)
         {
-            SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
-            Die();
+            GameOver();
+            
+            
         }
     }
 
+    public void GameOver()
+    {
+        SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
+        Time.timeScale = 0f;
+        panelDeath.SetActive(true);
+        if (panelDeath != null)
+        {
+            panelDeath.SetActive(true);
+            Debug.Log("PanelDeath activado");
+        }
+    }
 
     private void Die()
     {
+        Time.timeScale = 1f;
+        panelDeath.SetActive(false);
         transform.position = RespawnSystem.LastCheckpointPos;
 
         stats.currentHealth = stats.maxHealth;
