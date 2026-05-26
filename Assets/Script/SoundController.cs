@@ -85,7 +85,7 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip xSnake;
     [SerializeField] private AudioClip xDamage;
 
-    public float globalCooldown = 0.05f;
+    public float globalCooldown = 1f;
 
     private Dictionary<AudioClip, float> lastPlayTime = new Dictionary<AudioClip, float>();
 
@@ -139,7 +139,7 @@ public class SoundController : MonoBehaviour
         if (systemAudios.Length == 0) return;
 
         int index = Random.Range(0, systemAudios.Length);
-        audioSource.PlayOneShot(systemAudios[index], 0.25f);
+        audioSource.PlayOneShot(systemAudios[index], 0.15f);
     }
 
     public void PlayAmbience(AudioClip clip)
