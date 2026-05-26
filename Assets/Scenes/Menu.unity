@@ -279,6 +279,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12188039}
   m_CullTransparentMesh: 1
+--- !u!1 &37381040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37381042}
+  - component: {fileID: 37381041}
+  m_Layer: 0
+  m_Name: SfxSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &37381041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37381040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58e9110e36adef4bae8790df552fc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 97a049f19392824478cf73c532e1909e, type: 2}
+  sfxGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e, type: 2}
+  walkSfx: {fileID: 8300000, guid: 1eea20752bcf0be4e9ee26953cf98682, type: 3}
+  attackSfx: {fileID: 8300000, guid: 451de3f36ee0fbe4991f6656587b3ea6, type: 3}
+  dashSfx: {fileID: 8300000, guid: a3346867752450c4dbb53bcc1da38efe, type: 3}
+  damageSfx: {fileID: 8300000, guid: fb87f305bbce69d44a8ae548785b660a, type: 3}
+  bridge: {fileID: 8300000, guid: 452b5b6fd8c4f1a47b12a35540904ec4, type: 3}
+  item: {fileID: 8300000, guid: 859913ef782149c449918aff358b61e6, type: 3}
+  deathSfx: {fileID: 8300000, guid: 4746d4c59ce0a6540882a95c0a7d3721, type: 3}
+  checkpoint: {fileID: 8300000, guid: ac5f5ffb1275c574696fd36cfc88f3ba, type: 3}
+  wood: {fileID: 8300000, guid: 0313457abb1b96842bb3e3ef419842a7, type: 3}
+  woodDestroyed: {fileID: 8300000, guid: 6754b757275960e478426785aaad07e2, type: 3}
+  stone: {fileID: 8300000, guid: 4158c00e3071ed2418a526c00bbb9d2f, type: 3}
+  stoneDestroyed: {fileID: 8300000, guid: 4a078b749c0bd024d82dcb0da13cab56, type: 3}
+  health: {fileID: 8300000, guid: 61ad4fbda4acad540b793a073c791585, type: 3}
+  sfxMQ1: {fileID: 8300000, guid: 8fbbd03eda8deaf4cbbb976513ba2d89, type: 3}
+  sfxMQ2: {fileID: 8300000, guid: 2f160ae4e90876749a27b0f4cc7eb731, type: 3}
+  sfxMQ3: {fileID: 8300000, guid: 686e0a4f1b6f8d74eaf13e9c2842f2fe, type: 3}
+  sfxMQ4: {fileID: 8300000, guid: 8bf08da005d31ed44815fd8e78e97d19, type: 3}
+  sfxMQ5: {fileID: 8300000, guid: 6809a72f4ee2c0845936dd51235d8de5, type: 3}
+  cAttack: {fileID: 8300000, guid: 2cab58d2affc71a44a4fb3e683a78084, type: 3}
+  cDeath: {fileID: 8300000, guid: 7d5f1f6a2e1db7b48a3de08a25011ae7, type: 3}
+  cSteps: {fileID: 8300000, guid: 84494236c5f50b9479a559376b176578, type: 3}
+  cDamage: {fileID: 8300000, guid: 097993d72521f7e4985219e56174fc53, type: 3}
+  cExclamation: {fileID: 8300000, guid: 2988c6c098fc1934caa959f8d9e219a8, type: 3}
+  cLiberation: {fileID: 8300000, guid: 83577cb90a2713841952909d96f91729, type: 3}
+  ambVillages: {fileID: 0}
+  ambGrass: {fileID: 0}
+  ambRiver: {fileID: 0}
+  ambMountains: {fileID: 0}
+  zBark: {fileID: 0}
+  zDamage: {fileID: 0}
+  zFire: {fileID: 0}
+  zFlying: {fileID: 0}
+  zRespawn: {fileID: 0}
+  zExplosion: {fileID: 0}
+  zEgg: {fileID: 0}
+  xMelee: {fileID: 0}
+  xShield: {fileID: 0}
+  xDialogue: {fileID: 0}
+  xSnake: {fileID: 0}
+  xDamage: {fileID: 0}
+  globalCooldown: 0.05
+--- !u!4 &37381042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37381040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3079.976, y: 430.2785, z: 563.0292}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88081200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10800,3 +10887,4 @@ SceneRoots:
   - {fileID: 280969044}
   - {fileID: 4155510621069649907}
   - {fileID: 779855623}
+  - {fileID: 37381042}

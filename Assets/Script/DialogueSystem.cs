@@ -25,28 +25,12 @@ public class DialogueSystem : MonoBehaviour
     public bool IsDialogueActive => dialoguePanel.activeSelf;
     public bool IsNpcNameActive => dialogueName.activeSelf;
 
-    [Header("Sonidos Maoqius")]
-    private AudioSource audioSource;
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private AudioMixerGroup sfxGroup;
-    [SerializeField] private AudioClip sonido1;
-    [SerializeField] private AudioClip sonido2;
-    [SerializeField] private AudioClip sonido3;
-    [SerializeField] private AudioClip sonido4;
-    [SerializeField] private AudioClip sonido5;
-    AudioClip[] systemAudios; 
+   
 
 
     public void Start()
     {
-          audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-        if (sfxGroup != null)
-            audioSource.outputAudioMixerGroup = sfxGroup;
-
-        systemAudios = new AudioClip[] { sonido1, sonido2, sonido3, sonido4, sonido5 };
-
+        
     }
 
     public void StartDialogue()
@@ -58,7 +42,7 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(true);
         dialogueName.SetActive(true);
         dialogueText.text = message[index];
-        SoundSystem();
+        SoundController.Instance.PlayRandomMQ();
     }
 
     public void ContinueDialogue()
@@ -71,7 +55,7 @@ public class DialogueSystem : MonoBehaviour
         if (index < message.Length)
         {
             dialogueText.text = message[index];
-            SoundSystem();
+            SoundController.Instance.PlayRandomMQ();
         }
         else
         {
@@ -83,17 +67,6 @@ public class DialogueSystem : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueName.SetActive(false);
-    }
-
-
-    public void SoundSystem()
-    {
-        if (systemAudios == null || systemAudios.Length == 0)
-            return;
-
-        int index = Random.Range(0, systemAudios.Length);
-        audioSource.PlayOneShot(systemAudios[index],0.25f);
-
     }
 
 }
