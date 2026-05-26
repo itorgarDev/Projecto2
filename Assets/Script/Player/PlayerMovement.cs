@@ -67,17 +67,10 @@ public class PlayerMovement : MonoBehaviour
 
     bool isMapOpen = false;
     private bool isWalking = false;
-    
 
-    private AudioSource audioSource;
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private AudioMixerGroup sfxGroup;
 
-    [SerializeField] private AudioClip caminarSfx;
-    [SerializeField] private AudioClip atacarSfx;
-    [SerializeField] private AudioClip dashSfx;
-    [SerializeField] private AudioClip dañoSfx; 
-    [SerializeField] private AudioClip muerteSfx;
+
 
 
     void Awake()
@@ -103,11 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Map.performed += OnMapPerformed;
 
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-        if (sfxGroup != null)
-            audioSource.outputAudioMixerGroup = sfxGroup;
+        
 
     }
 
@@ -241,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isWalking)
         {
             isWalking = true;
-            audioSource.PlayOneShot(caminarSfx);
+            SoundController.Instance.PlaySFX(SoundController.Instance.walkSfx);
         }
     }
 
@@ -260,6 +249,9 @@ public class PlayerMovement : MonoBehaviour
         {
             dashDir = direction.normalized;   // guardamos la dirección del dash
             dashRequested = true;             // marcamos que se ha pedido un dash
+
+            SoundController.Instance.PlaySFX(SoundController.Instance.dashSfx);
+
         }
         Debug.Log("DASH INPUT");
 
@@ -292,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentItem.PickUp();
             currentItem = null;
+            SoundController.Instance.PlaySFX(SoundController.Instance.item);
         }
     }
     private void OnInteractPerformed(InputAction.CallbackContext ctx)
@@ -335,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed && playerAttack != null)
         {
             playerAttack.PerformAttack();
-            audioSource.PlayOneShot(atacarSfx,0.25f);
+            SoundController.Instance.PlaySFX(SoundController.Instance.attackSfx);
         }
     }
 
@@ -344,10 +337,11 @@ public class PlayerMovement : MonoBehaviour
         if (IsImmortal) return;
 
         stats.TakeDamage(amount);
-        audioSource.PlayOneShot(dañoSfx);
+        SoundController.Instance.PlaySFX(SoundController.Instance.damageSfx);
 
         if (stats.currentHealth <= 0)
         {
+            SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
             Die();
         }
     }
