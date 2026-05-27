@@ -9,6 +9,7 @@ public class Fadein : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         StartCoroutine(FadeIn());
     }
 
@@ -16,7 +17,7 @@ public class Fadein : MonoBehaviour
     {
         imageIn.SetActive(true);
         transitionFadein.SetTrigger("EndFade");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(2f);
         imageIn.SetActive(false);
     }
 }
