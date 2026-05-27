@@ -72,11 +72,17 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
 
     public float DistanceToPlayer()
     {
-        return Vector3.Distance(transform.position, player.position);
+        if (Time.timeScale == 0f) return Mathf.Infinity;
+        if (player == null) return Mathf.Infinity;
+
+        return Vector3.Distance(transform.position, player.position);   
     }
 
     public bool CanSeePlayer()
     {
+        if (Time.timeScale == 0f) return false;
+        if (player == null) return false;
+
         Vector3 dir = (player.position - transform.position).normalized;
         float dist = DistanceToPlayer();
 
@@ -102,7 +108,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     private void PerformAttack()
     {
         animator.SetTrigger("Attack");
-
+        //SoundController.Instance.PlaySFX(SoundController.Instance.cAttack);
         /*weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);*/
     }
@@ -132,7 +138,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
-
+       // SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
 
         if (isBoss)
         {
@@ -150,5 +156,6 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         OnDeath?.Invoke();
         EnemyPool.Instance.ReturnToPool(this);
+       // SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
     }
 }
