@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if(gameOverPanel!=null) gameOverPanel.SetActive(false);
-
+    
 
     }
 

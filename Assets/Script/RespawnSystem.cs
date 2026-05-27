@@ -8,7 +8,7 @@ public class RespawnSystem : MonoBehaviour
     public static Vector3 LastCheckpointPos;
     public static int CurrentCheckpointIndex = 0;
 
-    public static Dictionary<int, Vector3> Checkpoints = new Dictionary<int, Vector3>();
+  //  public static Dictionary<int, Vector3> Checkpoints = new Dictionary<int, Vector3>();
 
     public Transform player;
 

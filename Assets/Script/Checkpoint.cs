@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
     private void Awake()
     {
 
-        RespawnSystem.Checkpoints[numeroCkeckpoint] = transform.position;
+       // RespawnSystem.Checkpoints[numeroCkeckpoint] = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
