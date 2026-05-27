@@ -50,12 +50,12 @@ public class SoundController : MonoBehaviour
     [Space(10)]
     [Header("Sfx Enemy")]
 
-    [SerializeField] private AudioClip cAttack;
-    [SerializeField] private AudioClip cDeath;
-    [SerializeField] private AudioClip cSteps;
-    [SerializeField] private AudioClip cDamage;
-    [SerializeField] private AudioClip cExclamation;
-    [SerializeField] private AudioClip cLiberation;
+    public AudioClip cAttack;
+    public AudioClip cDeath;
+    public AudioClip cSteps;
+    public AudioClip cDamage;
+    public AudioClip cExclamation;
+    public AudioClip cLiberation;
 
     [Space(10)]
     [Header("Sfx Ambience")]
