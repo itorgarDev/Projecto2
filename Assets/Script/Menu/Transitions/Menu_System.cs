@@ -26,11 +26,24 @@ public class Menu_System : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         Debug.Log("PlayerPrefs borrados");
+
+        if (SavePlay.Instance != null)
+        {
+            SavePlay.Instance.lastScene = 0;
+            SavePlay.Instance.lastCheckpoint = 0;
+            SavePlay.Instance.firstGameActive = false;
+
+            //  Guarda los nuevos valores vacíos
+            SavePlay.Instance.SaveData();
+            Debug.Log("Datos reiniciados en memoria y guardados correctamente");
+        }
+        firstGame = false;
     }
 
     public void Start()
     {
         firstGame = SavePlay.Instance.firstGameActive;
+        firstGame = true;
         whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
         Debug.Log("Start() firstGame = " + firstGame);
         imageOut.SetActive(false);
@@ -50,7 +63,7 @@ public class Menu_System : MonoBehaviour
             Debug.Log("StartGame pulsado");
             firstGame = true;
             whereCutscene = true;
-            PlayerPrefs.SetInt("FirstGame",1);
+            SavePlay.Instance.SetFirstGame(true);
             PlayerPrefs.SetInt("WhereCutscene", whereCutscene ? 1 : 0);
             GoToDestination(3);
         }
@@ -67,9 +80,13 @@ public class Menu_System : MonoBehaviour
 
         menuAreUSure.SetActive(false);
         menuPrincipal.SetActive(true);
- //       whereCutscene = true;
+
+        SavePlay.Instance.SetFirstGame(true); // Guardado correcto
+        firstGame = true;
+
+        //       whereCutscene = true;
         PlayerPrefs.SetInt("WhereCutscene", 1);
-        PlayerPrefs.SetInt("FirstGame", 1);
+        //SavePlay.Instance.SetFirstGame(true);
 
         GoToDestination(3);
     }
@@ -95,8 +112,9 @@ public class Menu_System : MonoBehaviour
     IEnumerator LoadSceneWithTransition()
     {
 
-       
-        yield return new WaitForSeconds(transitionTime);
+
+        // Espera en tiempo real para que funcione aunque el juego esté pausado
+        yield return new WaitForSecondsRealtime(transitionTime);
 
         Debug.Log("Cargando escena: " + sceneDestination);
         SceneManager.LoadScene(sceneDestination);
@@ -109,14 +127,13 @@ public class Menu_System : MonoBehaviour
 
         // Guardar correctamente la escena actual
         SavePlay.Instance.lastScene = current;
-        SavePlay.Instance.firstGameActive = true; 
-        SavePlay.Instance.SaveData();
+        SavePlay.Instance.SetFirstGame(true); // Guardado correcto
+        firstGame = true;
 
-        PlayerPrefs.SetInt("FirstGame", 1);         
-
-
-        sceneDestination = 0;
+       
         Time.timeScale = 1f;
+
+        SavePlay.Instance.SetFirstGame(true);
         GoToDestination(0);
 
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
@@ -126,12 +143,13 @@ public class Menu_System : MonoBehaviour
 
     public void ReturnToScene()
     {
+        //Time.timeScale = 1f;
         Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
         if (!firstGame) return;
         int lastScene = SavePlay.Instance.lastScene;
         GoToDestination(lastScene);
 
-        GoToDestination(sceneDestination);
+        //GoToDestination(sceneDestination);
     }
 
     public void GoToCutscene (int valorScene)
@@ -147,7 +165,7 @@ public class Menu_System : MonoBehaviour
         if(whereCutscene) GoToDestination(1);
         else GoToDestination(0);
     }
-
+/*
     private void OnTriggerEnter(Collider other)
     {
 
@@ -156,5 +174,6 @@ public class Menu_System : MonoBehaviour
             GoToDestination(2);
         }
     }
+*/
 
 }

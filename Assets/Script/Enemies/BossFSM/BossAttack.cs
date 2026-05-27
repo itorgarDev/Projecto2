@@ -18,11 +18,15 @@ public class BossAttack : TemplateStateMachine
 
     public override void UpdateLogic()
     {
+        if (Time.timeScale == 0f) return;
         // BLOQUEAMOS LA LÓGICA DEL ENEMIGO BASE
     }
 
     public override void Updatephysics()
     {
+        if (Time.timeScale == 0f) return;
+
+        
         // BLOQUEAMOS TAMBIÉN LA FÍSICA DEL ENEMIGO BASE
 
         Vector3 dir = (boss.player.position - boss.transform.position).normalized;
