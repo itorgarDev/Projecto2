@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private AudioMixer audioMixer;
 
+    [SerializeField] private GameObject playerPrefab;
 
 
 
@@ -342,6 +343,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (stats.currentHealth <= 0)
         {
+            SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
             GameOver();
             
             
@@ -350,28 +352,43 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
-        SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
+        // Congelar el juego
+        
+
+        // Desactivar movimiento y ataques
+        controls.Disable();
+        rb.velocity = Vector3.zero;
         Time.timeScale = 0f;
+
+        // Mostrar panel de muerte
         panelDeath.SetActive(true);
-        if (panelDeath != null)
-        {
-            panelDeath.SetActive(true);
-            Debug.Log("PanelDeath activado");
-        }
     }
 
-    private void Die()
+    public void Die()
     {
+        // Reactivar tiempo
         Time.timeScale = 1f;
+
+        // Ocultar panel
         panelDeath.SetActive(false);
+
+        
+
+        // Mover al checkpoint
         transform.position = RespawnSystem.LastCheckpointPos;
 
+        // Resetear físicas
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        // Restaurar vida
         stats.currentHealth = stats.maxHealth;
-        FindObjectOfType<HUDController>().UpdateHealthBar();
+        HUDController.Instance.UpdateHealthBar();
+
+        // Reactivar controles
+        controls.Enable();
 
 
-        isDashing = false;
-        IsImmortal = false;
     }
 
 

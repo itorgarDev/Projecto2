@@ -41,6 +41,12 @@ public class Attack : TemplateStateMachine
     public override void Updatephysics()
     {
         base.Updatephysics();
+
+        if (_fsm.player == null)
+        {
+            stateMachineFlow.ChangeState(_fsm.idleState);
+            return;
+        }
         //Debug.Log("ESTOY EN ATTACK");
 
         // Mirar al jugador

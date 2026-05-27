@@ -52,6 +52,7 @@ public class SimpleCameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (target == null) return;
         // Calcula la dirección de movimiento solo en el plano XZ
         Vector3 moveDelta = target.position - lastTargetPosition;
         Vector3 moveDirection = new Vector3(moveDelta.x, 0, moveDelta.z).normalized;
