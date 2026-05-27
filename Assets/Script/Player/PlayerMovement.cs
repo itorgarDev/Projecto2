@@ -353,12 +353,11 @@ public class PlayerMovement : MonoBehaviour
     public void GameOver()
     {
         // Congelar el juego
-        
 
+        Time.timeScale = 0f;
         // Desactivar movimiento y ataques
         controls.Disable();
         rb.velocity = Vector3.zero;
-        Time.timeScale = 0f;
 
         // Mostrar panel de muerte
         panelDeath.SetActive(true);
@@ -371,8 +370,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Ocultar panel
         panelDeath.SetActive(false);
-
-        
 
         // Mover al checkpoint
         transform.position = RespawnSystem.LastCheckpointPos;
