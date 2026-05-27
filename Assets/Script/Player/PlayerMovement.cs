@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused)
         {
             isPaused = true;
-            audioMixer.SetFloat("SFXVolume", -80f);
+           // audioMixer.SetFloat("SFXVolume", -80f);
             Time.timeScale = 0;
 
             pauseMenuCanvas.SetActive(true);

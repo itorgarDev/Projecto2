@@ -10,6 +10,8 @@ public class SoundController : MonoBehaviour
 {
     public static SoundController Instance;
 
+
+
     [Header("AudioSources")]
 
     private AudioSource audioSource;
@@ -116,6 +118,34 @@ public class SoundController : MonoBehaviour
         if (sfxMQ4) valid.Add(sfxMQ4);
         if (sfxMQ5) valid.Add(sfxMQ5);
         systemAudios = valid.ToArray();
+
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        if (sfxGroup != null)
+            audioSource.outputAudioMixerGroup = sfxGroup;
+
+        Debug.Log($"[SoundController] Audio reactivado en escena: {scene.name}");
     }
 
     public void PlaySFX(AudioClip clip)

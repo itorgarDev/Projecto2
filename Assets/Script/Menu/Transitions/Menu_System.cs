@@ -43,7 +43,7 @@ public class Menu_System : MonoBehaviour
     public void Start()
     {
         firstGame = SavePlay.Instance.firstGameActive;
-        firstGame = true;
+        //firstGame = true;
         whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
         Debug.Log("Start() firstGame = " + firstGame);
         imageOut.SetActive(false);
@@ -61,7 +61,7 @@ public class Menu_System : MonoBehaviour
         else
         {
             Debug.Log("StartGame pulsado");
-            firstGame = true;
+            SavePlay.Instance.SetFirstGame(true);
             whereCutscene = true;
             SavePlay.Instance.SetFirstGame(true);
             PlayerPrefs.SetInt("WhereCutscene", whereCutscene ? 1 : 0);
@@ -81,8 +81,8 @@ public class Menu_System : MonoBehaviour
         menuAreUSure.SetActive(false);
         menuPrincipal.SetActive(true);
 
-        SavePlay.Instance.SetFirstGame(true); // Guardado correcto
-        firstGame = true;
+        SavePlay.Instance.SetFirstGame(true); 
+       
 
         //       whereCutscene = true;
         PlayerPrefs.SetInt("WhereCutscene", 1);
@@ -128,7 +128,7 @@ public class Menu_System : MonoBehaviour
         // Guardar correctamente la escena actual
         SavePlay.Instance.lastScene = current;
         SavePlay.Instance.SetFirstGame(true); // Guardado correcto
-        firstGame = true;
+       // firstGame = true;
 
        
         Time.timeScale = 1f;
@@ -143,9 +143,10 @@ public class Menu_System : MonoBehaviour
 
     public void ReturnToScene()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
         if (!firstGame) return;
+
         int lastScene = SavePlay.Instance.lastScene;
         GoToDestination(lastScene);
 
