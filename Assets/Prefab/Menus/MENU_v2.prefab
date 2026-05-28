@@ -6351,7 +6351,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7452757959266893945}
-  - component: {fileID: 2030874381454635898}
   m_Layer: 0
   m_Name: Paneles
   m_TagString: Untagged
@@ -6380,21 +6379,6 @@ Transform:
   - {fileID: 3237884339431576581}
   m_Father: {fileID: 4564443605711247102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2030874381454635898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6495523966014736591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72af618563b650f48a41fd1d9015b4a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfx: {fileID: 8300000, guid: 105fc0700a10c754cab6e38505acd7f0, type: 3}
-  slider: {fileID: 8300000, guid: cfa95480c0bb33140ba45eb97654661f, type: 3}
-  sfxGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e, type: 2}
 --- !u!1 &6502655615900024259
 GameObject:
   m_ObjectHideFlags: 0
@@ -6552,7 +6536,6 @@ GameObject:
   - component: {fileID: 4513042274370329859}
   - component: {fileID: 9138933177950120074}
   - component: {fileID: 1426701481943923727}
-  - component: {fileID: 7976595600673317216}
   m_Layer: 5
   m_Name: Panel_Video
   m_TagString: Untagged
@@ -6633,103 +6616,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 8885830767448828354}
   calidad: 0
---- !u!82 &7976595600673317216
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6536842925750284281}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 105fc0700a10c754cab6e38505acd7f0, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.58
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6724760037193544681
 GameObject:
   m_ObjectHideFlags: 0
@@ -6920,6 +6806,7 @@ GameObject:
   - component: {fileID: 1515843342798112834}
   - component: {fileID: 8655981455210034011}
   - component: {fileID: 2314104838060649543}
+  - component: {fileID: 6290829459382764968}
   m_Layer: 0
   m_Name: MENU_v2
   m_TagString: options
@@ -6999,6 +6886,21 @@ MonoBehaviour:
   menuPrincipal: {fileID: 0}
   menuAreUSure: {fileID: 0}
   whereCutscene: 0
+--- !u!114 &6290829459382764968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963183249313755322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af618563b650f48a41fd1d9015b4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: {fileID: 8300000, guid: 105fc0700a10c754cab6e38505acd7f0, type: 3}
+  slider: {fileID: 8300000, guid: cfa95480c0bb33140ba45eb97654661f, type: 3}
+  sfxGroup: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e, type: 2}
 --- !u!1 &7248140726232915812
 GameObject:
   m_ObjectHideFlags: 0
