@@ -166,7 +166,7 @@ public class Menu_System : MonoBehaviour
         if(whereCutscene) GoToDestination(1);
         else GoToDestination(0);
     }
-/*
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -175,6 +175,5 @@ public class Menu_System : MonoBehaviour
             GoToDestination(2);
         }
     }
-*/
 
 }

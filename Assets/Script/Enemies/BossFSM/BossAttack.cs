@@ -14,6 +14,7 @@ public class BossAttack : TemplateStateMachine
         
         
         boss.animatorBoss.SetTrigger("Attack");
+        SoundController.Instance.PlaySFX(SoundController.Instance.xMelee);
     }
 
     public override void UpdateLogic()

@@ -32,21 +32,21 @@ public class SoundController : MonoBehaviour
     [Space(10)]
     [Header("Sfx Other")]
 
-    [SerializeField] private AudioClip checkpoint;
-    [SerializeField] private AudioClip wood;
-    [SerializeField] private AudioClip woodDestroyed;
-    [SerializeField] private AudioClip stone;
-    [SerializeField] private AudioClip stoneDestroyed;
-    [SerializeField] private AudioClip health;
+    public AudioClip checkpoint;
+    public AudioClip wood;
+    public AudioClip woodDestroyed;
+    public AudioClip stone;
+    public AudioClip stoneDestroyed;
+    public AudioClip health;
 
     [Space(10)]
     [Header("Sfx Maoqius")]
 
-    [SerializeField] private AudioClip sfxMQ1;
-    [SerializeField] private AudioClip sfxMQ2;
-    [SerializeField] private AudioClip sfxMQ3;
-    [SerializeField] private AudioClip sfxMQ4;
-    [SerializeField] private AudioClip sfxMQ5;
+    public AudioClip sfxMQ1;
+    public AudioClip sfxMQ2;
+    public AudioClip sfxMQ3;
+    public AudioClip sfxMQ4;
+    public AudioClip sfxMQ5;
     AudioClip[] systemAudios;
 
     [Space(10)]
@@ -62,30 +62,30 @@ public class SoundController : MonoBehaviour
     [Space(10)]
     [Header("Sfx Ambience")]
 
-    [SerializeField] private AudioClip ambVillages;
-    [SerializeField] private AudioClip ambGrass;
-    [SerializeField] private AudioClip ambRiver;
-    [SerializeField] private AudioClip ambMountains;
+    public AudioClip ambVillages;
+    public AudioClip ambGrass;
+    public AudioClip ambRiver;
+    public AudioClip ambMountains;
 
     [Space(10)]
     [Header("Sfx Zhuque")]
 
-    [SerializeField] private AudioClip zBark;
-    [SerializeField] private AudioClip zDamage;
-    [SerializeField] private AudioClip zFire;
-    [SerializeField] private AudioClip zFlying;
-    [SerializeField] private AudioClip zRespawn;
-    [SerializeField] private AudioClip zExplosion;
-    [SerializeField] private AudioClip zEgg;
+    public AudioClip zBark;
+    public AudioClip zDamage;
+    public AudioClip zFire;
+    public AudioClip zFlying;
+    public AudioClip zRespawn;
+    public AudioClip zExplosion;
+    public AudioClip zEgg;
 
     [Space(10)]
     [Header("Sfx Xuanwu")]
 
-    [SerializeField] private AudioClip xMelee;
-    [SerializeField] private AudioClip xShield;
-    [SerializeField] private AudioClip xDialogue;
-    [SerializeField] private AudioClip xSnake;
-    [SerializeField] private AudioClip xDamage;
+    public AudioClip xMelee;
+    public AudioClip xShield;
+    public AudioClip xDialogue;
+    public AudioClip xSnake;
+    public AudioClip xDamage;
 
     public float globalCooldown = 1f;
 

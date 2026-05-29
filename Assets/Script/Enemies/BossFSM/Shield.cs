@@ -20,9 +20,12 @@ public class Shield : TemplateStateMachine
 
         // Activar escudo visual
         _shieldSphere.SetActive(true);
+        
 
         // Hacer al boss inmortal
         _fsm.isShielded = true;
+
+        SoundController.Instance.PlaySFX(SoundController.Instance.xShield);
 
         // Parar movimiento
         _fsm.rb.velocity = Vector3.zero;

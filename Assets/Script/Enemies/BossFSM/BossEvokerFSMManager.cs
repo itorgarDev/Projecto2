@@ -69,6 +69,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 1");
             currentWave = 1;
             ChangeState(summonState);
+
             return;
         }
 
@@ -78,6 +79,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 2");
             currentWave = 2;
             ChangeState(summonState);
+
             return;
         }
     }
