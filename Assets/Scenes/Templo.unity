@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8032793887680247202, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -585,6 +590,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6536842925750284281, guid: da01cd2c4206c6044b1590114d6b826f,
     type: 3}
   m_PrefabInstance: {fileID: 804401197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1417015055 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3271070939916839043, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1439676862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1439676862
 PrefabInstance:
@@ -965,7 +976,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1417015055}
     - target: {fileID: 5126201549857729076, guid: 65b0255d5f5ffcf459c2b59362d36439,
         type: 3}
       propertyPath: m_Name

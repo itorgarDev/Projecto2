@@ -30,6 +30,8 @@ public class Checkpoint : MonoBehaviour
 
 
             Debug.Log("Checkpoint " + numeroCkeckpoint + " activado. Pos = " + transform.position);
+
+            SoundController.Instance.PlaySFX(SoundController.Instance.checkpoint);
         }
     }
     

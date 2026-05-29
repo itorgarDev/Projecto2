@@ -44,13 +44,16 @@ public class TakeDrop : MonoBehaviour
         {
             case ItemEffect.Heal:
                 stats.Heal(amount);
+                SoundController.Instance.PlaySFX(SoundController.Instance.health);
                 break;
 
             case ItemEffect.Attack:
                 stats.AddAttack(amount);
+                SoundController.Instance.PlaySFX(SoundController.Instance.wood);
                 break;
             case ItemEffect.MaxHealthUp:
                 stats.IncreaseMaxHealth(amount);
+                SoundController.Instance.PlaySFX(SoundController.Instance.health);
                 break;
         }
     }

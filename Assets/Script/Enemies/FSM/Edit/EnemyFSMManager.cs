@@ -42,6 +42,16 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
 
     private float lastAttackTime = -Mathf.Infinity;
 
+    public enum EnemySoundType
+    {
+        Normal,
+        Xuanwu
+    }
+
+    public EnemySoundType soundType;
+
+
+
     protected virtual void Awake() // Lo hacemos virtual por si el boss necesita sobreescribirlo limpiamente
     {
         rb = GetComponent<Rigidbody>();
@@ -108,7 +118,18 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     private void PerformAttack()
     {
         animator.SetTrigger("Attack");
-        //SoundController.Instance.PlaySFX(SoundController.Instance.cAttack);
+        
+        switch (soundType)
+        {
+            case EnemySoundType.Xuanwu:
+                SoundController.Instance.PlaySFX(SoundController.Instance.xMelee);
+                break;
+
+            case EnemySoundType.Normal:
+                SoundController.Instance.PlaySFX(SoundController.Instance.cAttack);
+                break;
+        }
+
         /*weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);*/
     }
@@ -138,7 +159,20 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
-       // SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
+        if (currentHealth < 0)
+        {
+            switch (soundType)
+            {
+                case EnemySoundType.Xuanwu:
+                    SoundController.Instance.PlaySFX(SoundController.Instance.xDamage);
+                    break;
+
+                case EnemySoundType.Normal:
+                    SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
+                    break;
+            }
+        }
+        
 
         if (isBoss)
         {
@@ -156,6 +190,15 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     {
         OnDeath?.Invoke();
         EnemyPool.Instance.ReturnToPool(this);
-       // SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
+        switch (soundType)
+        {
+            case EnemySoundType.Xuanwu:
+                SoundController.Instance.PlaySFX(SoundController.Instance.xMelee);
+                break;
+
+            case EnemySoundType.Normal:
+                SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
+                break;
+        }
     }
 }
