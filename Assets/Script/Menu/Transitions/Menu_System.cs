@@ -29,14 +29,21 @@ public class Menu_System : MonoBehaviour
 
         if (SavePlay.Instance != null)
         {
+            //  Reiniciar valores internos
             SavePlay.Instance.lastScene = 0;
             SavePlay.Instance.lastCheckpoint = 0;
             SavePlay.Instance.firstGameActive = false;
 
-            //  Guarda los nuevos valores vacíos
+            SavePlay.Instance.vida = 5;       // valor base de vida
+            SavePlay.Instance.ataque = 1;     // valor base de ataque
+            SavePlay.Instance.maxHealth = 5;  // si usas maxHealth en SavePlay
+            SavePlay.Instance.bolsaItem1 = false;
+
+            // Guardar los nuevos valores vacios
             SavePlay.Instance.SaveData();
             Debug.Log("Datos reiniciados en memoria y guardados correctamente");
         }
+
         firstGame = false;
     }
 
@@ -61,6 +68,7 @@ public class Menu_System : MonoBehaviour
         }
         else
         {
+            ResetPrefs();
             Debug.Log("StartGame pulsado");
             SavePlay.Instance.SetFirstGame(true);
             whereCutscene = true;
@@ -78,11 +86,12 @@ public class Menu_System : MonoBehaviour
 
     public void YesIAm()
     {
-
+        ResetPrefs();
+        SavePlay.Instance.SetFirstGame(true);
         menuAreUSure.SetActive(false);
         menuPrincipal.SetActive(true);
 
-        SavePlay.Instance.SetFirstGame(true); 
+      //  SavePlay.Instance.SetFirstGame(true); 
        
 
         //       whereCutscene = true;
@@ -141,7 +150,7 @@ public class Menu_System : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        SavePlay.Instance.SetFirstGame(true);
+       // SavePlay.Instance.SetFirstGame(true);
         GoToDestination(0);
 
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);

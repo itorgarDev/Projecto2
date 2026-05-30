@@ -25,13 +25,20 @@ public class PlayerStats : MonoBehaviour
     public void AddAttack(int amount)
     {
         attack += amount;
+        SaveStats();
     }
 
     public void IncreaseMaxHealth(int amount)
     {
         maxHealth += amount;
         currentHealth = maxHealth; // se cura al nuevo máximo
+
+        SavePlay.Instance.maxHealth = maxHealth;
+        SavePlay.Instance.vida = currentHealth;
+        SavePlay.Instance.SaveData();
+
         hud.UpdateHealthBar();
+        SaveStats();
 
     }
 
@@ -46,19 +53,30 @@ public class PlayerStats : MonoBehaviour
 
     public void SaveStats()
     {
+        /*
         PlayerPrefs.SetInt("player_maxHealth", maxHealth);
         PlayerPrefs.SetInt("player_currentHealth", currentHealth);
         PlayerPrefs.SetInt("player_attack", attack);
 
         PlayerPrefs.Save();
+        */
+
+        SavePlay.Instance.vida = currentHealth;
+        SavePlay.Instance.ataque = attack;
+        SavePlay.Instance.SaveData();
+
     }
 
     public void LoadStats()
     {
         // Si no existe el dato, usa el valor actual como predeterminado
-        maxHealth = PlayerPrefs.GetInt("player_maxHealth", maxHealth);
-        currentHealth = PlayerPrefs.GetInt("player_currentHealth", currentHealth);
-        attack = PlayerPrefs.GetInt("player_attack", attack);
+        //maxHealth = PlayerPrefs.GetInt("player_maxHealth", maxHealth);
+        //currentHealth = PlayerPrefs.GetInt("player_currentHealth", currentHealth);
+        //attack = PlayerPrefs.GetInt("player_attack", attack);
+
+        maxHealth = SavePlay.Instance.maxHealth;
+        currentHealth = SavePlay.Instance.vida;
+        attack = SavePlay.Instance.ataque;
 
         hud.UpdateHealthBar();
     }
