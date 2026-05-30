@@ -44,6 +44,7 @@ public class Menu_System : MonoBehaviour
     {
         firstGame = SavePlay.Instance.firstGameActive;
         //firstGame = true;
+
         whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
         Debug.Log("Start() firstGame = " + firstGame);
         imageOut.SetActive(false);
@@ -126,11 +127,18 @@ public class Menu_System : MonoBehaviour
         current = SceneManager.GetActiveScene().buildIndex;
 
         // Guardar correctamente la escena actual
-        SavePlay.Instance.lastScene = current;
-        SavePlay.Instance.SetFirstGame(true); // Guardado correcto
-       // firstGame = true;
+        if (current != 3 && current != 4)
+        {
+            SavePlay.Instance.lastScene = current;
+            Debug.Log("Escena guardada correctamente: " + current);
+        }
+        else
+        {
+            Debug.Log("Escena " + current + " no se guarda (cinemática o créditos).");
+        }
+        // firstGame = true;
 
-       
+
         Time.timeScale = 1f;
 
         SavePlay.Instance.SetFirstGame(true);
@@ -144,6 +152,7 @@ public class Menu_System : MonoBehaviour
     public void ReturnToScene()
     {
         Time.timeScale = 1f;
+
         Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
         if (!firstGame) return;
 
@@ -170,10 +179,11 @@ public class Menu_System : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (CompareTag("templo")&&other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            GoToDestination(2);
+            GoToDestination(sceneDestination);
         }
     }
+
 
 }

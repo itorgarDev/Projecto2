@@ -35,7 +35,7 @@ public class SavePlay : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
+        if (scene.buildIndex == 0 || scene.buildIndex == 3 || scene.buildIndex == 4)
         {
             Debug.Log("Escena de menú detectada — no se actualiza lastScene.");
             return;

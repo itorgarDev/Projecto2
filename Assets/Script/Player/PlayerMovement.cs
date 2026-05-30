@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasVideo;
     [SerializeField] private GameObject pauseMenuCanvasControls;
     [SerializeField] private GameObject pauseMenuCanvasBrillo;
-    [SerializeField] private GameObject pauseMenuCanvasOscuro;
+   // [SerializeField] private GameObject pauseMenuCanvasOscuro;
 
     [SerializeField] private GameObject canvasMapa;
     [SerializeField] private GameObject canvasE;
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0;
 
             pauseMenuCanvas.SetActive(true);
-            pauseMenuCanvasOscuro?.SetActive(true);
+            //pauseMenuCanvasOscuro?.SetActive(true);
             pauseMenuCanvasScroll?.SetActive(true);
             pauseMenuCanvasOptions?.SetActive(true);
 
@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
             HidePanels();
             Time.timeScale = 1;
 
-            pauseMenuCanvasOscuro?.SetActive(false);
+           // pauseMenuCanvasOscuro?.SetActive(false);
             pauseMenuCanvasScroll?.SetActive(false);
             pauseMenuCanvasOptions?.SetActive(false);
 
