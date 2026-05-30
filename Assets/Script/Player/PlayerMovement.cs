@@ -107,9 +107,14 @@ public class PlayerMovement : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         FindPauseMenu();
-        stats.currentHealth = stats.maxHealth;
+        stats.LoadStats();
+        if (stats.hud != null)
+        {
+            stats.hud.UpdateHealthBar();
+        }
+        //stats.currentHealth = stats.maxHealth;
 
-    
+
 
     }
 
@@ -117,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Esperar un frame para que MENU_FINAL(Clone) aparezca en la jerarquía
         StartCoroutine(DelayedFindMenu());
+        StartCoroutine(RefreshHUD());
     }
 
     private IEnumerator DelayedFindMenu()
@@ -124,8 +130,21 @@ public class PlayerMovement : MonoBehaviour
         yield return null; // esperar 1 frame
         FindPauseMenu();
     }
-           
-    private void FindPauseMenu()
+
+    private IEnumerator RefreshHUD()
+    {
+        yield return null; // esperar 1 frame para que HUD exista
+
+        PlayerStats stats = GetComponent<PlayerStats>();
+        if (stats != null && stats.hud != null)
+        {
+          stats.LoadStats();
+          stats.hud.UpdateHealthBar();
+        }
+    }
+
+
+private void FindPauseMenu()
     {
     }
 
