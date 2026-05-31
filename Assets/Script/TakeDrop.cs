@@ -21,19 +21,16 @@ public class TakeDrop : MonoBehaviour
     public void PickUp()
     {
         HUDController.Instance.ShowPickupMessage(itemName);
-
         ApplyEffect();
+
+        UniqueItemv2 unique = GetComponent<UniqueItemv2>();
+        if (unique != null)
+        {
+            SavePlay.Instance.MarkItemCollected(unique.id);
+        }
 
         if (pickupEffect != null)
             Instantiate(pickupEffect, transform.position, Quaternion.identity);
-
-        if (itemName == "BolsaItem1")
-        {
-            SavePlay.Instance.bolsaItem1 = true;
-            PlayerPrefs.SetInt("BolsaItem1", 1); // Guardar en disco
-            SavePlay.Instance.SaveData();
-        }
-
 
         Destroy(transform.root.gameObject);
     }
