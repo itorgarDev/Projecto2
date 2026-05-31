@@ -39,11 +39,10 @@ public class PhaseTransitionState : TemplateStateMachine
 
         if (timer >= duration)
         {
-            // ¡REPARADO! En vez de mandarlo a volar directo en el suelo,
-            // le decimos al estado de transicion que tiene que SUBIR.
+           
             phoenix.transitionAirState.goingUp = true;
 
-            // Lo mandamos al estado que se encarga de moverlo hacia el cielo fisicamente
+           
             phoenix.ChangeState(phoenix.transitionAirState);
         }
     }

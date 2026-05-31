@@ -28,7 +28,7 @@ public class ShootState : TemplateStateMachine
             fuzzyBrain = phoenix.GetComponent<PhoenixFuzzyController>();
         }
 
-        // esto es pa q mire al jugador, o eso intenta el pobre
+        // esto es pa q mire al jugador
         if (phoenix != null && phoenix.firePoint != null)
         {
             if (phoenix.target != null)
@@ -78,7 +78,7 @@ public class ShootState : TemplateStateMachine
         base.UpdateLogic();
         shootTimer += Time.deltaTime;
 
-        // kuando pasa el tiempo volvemos a volar, tranki
+        // cuando pasa el tiempo volvemos a volar, tranki
         if (shootTimer >= shootDuration)
             phoenix.ChangeState(phoenix.flyState);
     }

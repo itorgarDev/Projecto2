@@ -8,7 +8,7 @@ public class FlyState : TemplateStateMachine
 
     // variables pal tiempo de recarga del tiro
     float shootCooldownTimer = 0f;
-    float timeBetweenAttacks = 1.1f; // se tiene k esperar 1.1 segundos entre atakes
+    float timeBetweenAttacks = 1.1f; // se tiene k esperar 1.1 segundos entre ataquees
 
     public FlyState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
     {
@@ -41,11 +41,11 @@ public class FlyState : TemplateStateMachine
     {
         if (!playerInside && arenaCollider != null && phoenix.target != null)
         {
-            // Calculamos la distancia solo para encender tu bool por primera vez
+            
             float distancia = Vector3.Distance(arenaCollider.transform.position, phoenix.target.position);
             if (distancia <= arenaCollider.radius)
             {
-                playerInside = true; // ¡Se activa tu bool!
+                playerInside = true; 
             }
         }
         // Si el detector nos dice que el player no ha entrado, el Fenix se queda tieso flotando
@@ -79,7 +79,7 @@ public class FlyState : TemplateStateMachine
         if (phoenix.PlayerDistance < phoenix.maxShootRange && shootCooldownTimer >= timeBetweenAttacks)
         {
             phoenix.ChangeState(phoenix.shootState);
-            return; //
+            return;
         }
 
         // si se cansa ponemos el goingup en false pa q baje

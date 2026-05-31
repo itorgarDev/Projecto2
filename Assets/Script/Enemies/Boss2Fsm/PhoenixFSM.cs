@@ -48,7 +48,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
         _stateMachine = flyState;
     }
 
-    // este metodo es el contrato q llama el player cuando pega
+    
     public void SystemTakeDamage(float amount)
     {
         if (isDead) return;

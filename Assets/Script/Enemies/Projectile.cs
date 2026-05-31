@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("[Bala] Oye, no encuentro a nadie con el tag 'Player' en la escena!");
+                Debug.LogWarning("[Bala] no encuentro a nadie con el tag 'Player' en la escena!");
             }
         }
 
@@ -79,13 +79,13 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        //EL RAYCAST para que la bala detecte to
+        
         float moveDistance = speed * Time.deltaTime;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, moveDistance + 0.2f))
         {
-            // Si el rayo choca, procesamos el impacto y no nos movemos mas
+            // Si el raycast choca, procesamos el impacto y no nos movemos mas
             ProcessingHit(hit.collider);
             return;
         }

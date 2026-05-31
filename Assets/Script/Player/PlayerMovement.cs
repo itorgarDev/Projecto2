@@ -144,9 +144,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-private void FindPauseMenu()
-    {
-    }
+    private void FindPauseMenu()
+        {
+        }
 
    
 

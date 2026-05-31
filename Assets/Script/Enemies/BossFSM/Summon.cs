@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Summon: estado que genera una oleada de minions y pasa a Shield
-// Mantén los comentarios y Debug.Log para depuración tal y como pediste.
+
 public class Summon : TemplateStateMachine
 {
     private BossEvokerFSMManager _fsm;
@@ -34,9 +33,9 @@ public class Summon : TemplateStateMachine
     {
         for (int i = 0; i < amount; i++)
         {
-            // posición alrededor del boss (ajusta si trabajas en 2D)
+            // posición alrededor del boss 
             Vector3 spawnPos = _fsm.transform.position + Random.insideUnitSphere * 2f;
-            spawnPos.y = _fsm.transform.position.y; // opcional: mantener la misma altura
+            spawnPos.y = _fsm.transform.position.y; // mantiene la misma altura
 
             // Sacamos del pool al minion
             EnemyFSMManager minion = EnemyPool.Instance.GetFromPool(spawnPos);
@@ -46,11 +45,6 @@ public class Summon : TemplateStateMachine
                 Debug.LogWarning("[Summon] GetFromPool devolvió null para spawnPos: " + spawnPos);
                 continue;
             }
-
-            // Asegúrate de que el pool coloque/active correctamente al minion.
-            // Si tu pool no posiciona, descomenta estas líneas:
-            // minion.transform.position = spawnPos;
-            // minion.gameObject.SetActive(true);
 
             Debug.Log("[Summon] Minion spawnado en " + spawnPos);
 

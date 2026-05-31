@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
 
     void Idle()
     {
-        // Aquí puedes poner animación idle si quieres
+        
     }
 
     void Chase()

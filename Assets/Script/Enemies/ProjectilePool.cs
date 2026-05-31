@@ -22,6 +22,10 @@ public class ProjectilePool : MonoBehaviour
         }
     }
 
+    // Busca un proyectil inactivo en la piscina, lo posiciona y lo devuelve.
+    // Si no hay ninguno libre, crea uno nuevo para expandir el pool de forma dinámica.
+    // no se pone en true nunca para que no explote, de activarlas se encarga projectile.cs
+
     public GameObject GetProjectile(Vector3 position, Quaternion rotation)
     {
         for (int i = 0; i < pooledProjectiles.Count; i++)
@@ -31,7 +35,6 @@ public class ProjectilePool : MonoBehaviour
                 GameObject obj = pooledProjectiles[i];
                 obj.transform.position = position;
                 obj.transform.rotation = rotation;
-                // ¡OJO! Hemos quitado el SetActive(true) de aki pa k no de bucle infinito
                 return obj;
             }
         }

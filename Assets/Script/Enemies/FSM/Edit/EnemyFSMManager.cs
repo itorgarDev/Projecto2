@@ -1,6 +1,4 @@
 using UnityEngine;
-
-// Añadimos el contrato IDamageable aquí para que todos los enemigos comunes y jefes que hereden lo tengan
 public class EnemyFSMManager : StateMachineFlow, IDamageable
 {
     public Idle idleState;
@@ -26,12 +24,11 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     public Animator animatorExclamation;
 
     [Header("Vida")]
-    // Cambiamos a float para que coincida perfectamente con el sistema del Fénix y el player
     [SerializeField] protected float maxHealth;
     [SerializeField] protected float currentHealth;
     [SerializeField] protected bool isBoss;
     public bool IsBoss => isBoss;
-    public float CurrentHealth => currentHealth; // Ahora devuelve float
+    public float CurrentHealth => currentHealth; 
     public event System.Action OnDeath;
 
     [Header("Ataque")]
@@ -130,6 +127,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
                 break;
         }
 
+        // ahora la activamos por evento
         /*weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);*/
     }
@@ -154,7 +152,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
         }
     }
 
-    // ¡REPARADO! Cambiado para cumplir el contrato IDamageable usando float
+    
     public void SystemTakeDamage(float amount)
     {
         currentHealth -= amount;

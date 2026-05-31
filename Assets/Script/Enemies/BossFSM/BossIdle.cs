@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // BossIdle hereda de Idle y añade la comprobación de vida para las oleadas del boss.
-// Mantén los comentarios y los Debug.Log para facilitar la depuración.
+
 public class BossIdle : Idle
 {
     private BossEvokerFSMManager bossFsm;
