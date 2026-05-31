@@ -27,6 +27,14 @@ public class TakeDrop : MonoBehaviour
         if (pickupEffect != null)
             Instantiate(pickupEffect, transform.position, Quaternion.identity);
 
+        if (itemName == "BolsaItem1")
+        {
+            SavePlay.Instance.bolsaItem1 = true;
+            PlayerPrefs.SetInt("BolsaItem1", 1); // Guardar en disco
+            SavePlay.Instance.SaveData();
+        }
+
+
         Destroy(transform.root.gameObject);
     }
         
