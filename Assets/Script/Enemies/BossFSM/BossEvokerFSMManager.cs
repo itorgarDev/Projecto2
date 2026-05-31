@@ -20,7 +20,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
     public Animator animatorBoss;
 
 
-    protected override void Awake() // Usamos override para que vaya fino
+    protected override void Awake() 
     {
         base.Awake();
 
@@ -63,7 +63,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
         if (enemy == null)
             enemy = GetComponent<EnemyFSMManager>();
 
-        // Primera transición: de wave 0 a 1 (evaluando con floats)
+       
         if (currentWave == 0 && enemy.CurrentHealth <= 10f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 1");
@@ -73,7 +73,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
             return;
         }
 
-        // Segunda transición: de wave 1 a 2 (evaluando con floats)
+       
         if (currentWave == 1 && enemy.CurrentHealth <= 5f)
         {
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 2");

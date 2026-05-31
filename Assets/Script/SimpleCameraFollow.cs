@@ -24,17 +24,17 @@ public class SimpleCameraFollow : MonoBehaviour
             return;
         }
 
-        // 2. Si estamos en la escena 0 → destruir Player
+        // Si estamos en la escena 0 → destruir Player
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             Destroy(gameObject);
             return;
         }
 
-        // 3. Registrar este Player como el único
+        // Registrar este Player como el único
         //instance = this;
 
-        // 4. Hacerlo persistente SOLO si no estamos en escena 0
+        // Hacerlo persistente SOLO si no estamos en escena 0
         DontDestroyOnLoad(gameObject);
         */
     }

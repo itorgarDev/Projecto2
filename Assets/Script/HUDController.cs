@@ -11,18 +11,17 @@ public class HUDController : MonoBehaviour
     public PlayerStats stats;
 
     [Header("Componentes de la Barra de Vida")]
-    // Cambiamos RectTransform por Image para usar el sistema Filled
     public Image backgroundBar; // lowHP.png
     public Image healthFill;    // FullHp.png
 
     [Header("Ajustes de Crecimiento de Vida")]
-    public float baseHealth = 5f;       // La vida inicial del jugador (para no crecer la barra si no pasas de este nivel)
-    public float baseWidth = 400f;       // El tamaño inicial de tus imágenes
+    public float baseHealth = 5f;       // La vida inicial del jugador (para no crecer la barra si no pasa de este nivel)
+    public float baseWidth = 400f;      
     public float pixelsPerExtraHealth = 10f; // Cuántos píxeles crece por CADA punto extra de vida por encima de la base
 
     [Header("Componentes del Dash")]
-    public Image dashFillImage; // La imagen 'dash.png' (el relleno brillante)
-    public GameObject dashGlow; // El objeto con el marco dorado/brillo
+    public Image dashFillImage; 
+    public GameObject dashGlow; 
 
     [Header("Pickup Message")]
     public GameObject pickupPanel;
@@ -71,19 +70,18 @@ public class HUDController : MonoBehaviour
     {
         if (stats.maxHealth <= 0) return; // Seguridad
 
-        // 1. Calculamos cuánta vida EXTRA tiene el jugador respecto a la base
-        // Mathf.Max evita números negativos si la vida máxima baja por alguna maldición o algo
+        // Calculamos cuánta vida EXTRA tiene el jugador respecto a la base
+        // Mathf.Max evita números negativos por si acaso
         float extraHealth = Mathf.Max(0, stats.maxHealth - baseHealth);
 
-        // 2. Calculamos el ancho total: El base (400) + los píxeles extra
+        // Calculamos el ancho total: El base (400) + los píxeles extra
         float currentWidth = baseWidth + (extraHealth * pixelsPerExtraHealth);
 
-        // 3. Estiramos el contenedor (Fondo) y el relleno para que midan lo mismo
+        // Estiramos el contenedor (Fondo) y el relleno para que midan lo mismo
         backgroundBar.rectTransform.sizeDelta = new Vector2(currentWidth, backgroundBar.rectTransform.sizeDelta.y);
         healthFill.rectTransform.sizeDelta = new Vector2(currentWidth, healthFill.rectTransform.sizeDelta.y);
 
-        // 4. LA CLAVE: Actualizamos el color usando FillAmount de 0 a 1. 
-        // ¡Adiós a los huecos negros y a las matemáticas de desplazamiento!
+        //Actualizamos el color usando FillAmount. 
         healthFill.fillAmount = (float)stats.currentHealth / stats.maxHealth;
     }
 
@@ -97,7 +95,7 @@ public class HUDController : MonoBehaviour
         // La ola se llena verticalmente
         dashFillImage.fillAmount = progress;
 
-        // Si el progreso es 1 (listo), activamos el brillo. Si no, lo apagamos.
+        // Si el progreso es 1 (listo), activamos el marco. Si no, lo apagamos.
         if (progress >= 1f)
         {
             if (!dashGlow.activeSelf) dashGlow.SetActive(true);

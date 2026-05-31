@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; // Necesario para mostrar texto en pantalla
+using UnityEngine.UI; 
 
 public class TakeDrop : MonoBehaviour
 {
     public string itemName; // Nombre del ítem
-    public GameObject pickupEffect; // Efecto visual opcional
+   
 
     public ItemEffect effectType; // enum
     public int amount = 1;       // Cuánto sube vida o ataque
@@ -28,10 +28,7 @@ public class TakeDrop : MonoBehaviour
         {
             SavePlay.Instance.MarkItemCollected(unique.id);
         }
-
-        if (pickupEffect != null)
-            Instantiate(pickupEffect, transform.position, Quaternion.identity);
-
+       
         Destroy(transform.root.gameObject);
     }
         
