@@ -5397,13 +5397,17 @@ MonoBehaviour:
   pauseMenuCanvasVideo: {fileID: 0}
   pauseMenuCanvasControls: {fileID: 0}
   pauseMenuCanvasBrillo: {fileID: 0}
-  pauseMenuCanvasOscuro: {fileID: 0}
+  canvasMapa: {fileID: 0}
+  canvasE: {fileID: 0}
+  panelDeath: {fileID: 0}
   scrollAnimator: {fileID: 0}
   gravity: 40
   snapDistance: 1.2
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  audioMixer: {fileID: 0}
+  playerPrefab: {fileID: 0}
 --- !u!114 &8693824243233691697
 MonoBehaviour:
   m_ObjectHideFlags: 0
