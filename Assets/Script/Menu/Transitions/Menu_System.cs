@@ -37,7 +37,7 @@ public class Menu_System : MonoBehaviour
             SavePlay.Instance.vida = 5;       // valor base de vida
             SavePlay.Instance.ataque = 1;     // valor base de ataque
             SavePlay.Instance.maxHealth = 5;  // si usas maxHealth en SavePlay
-            SavePlay.Instance.bolsaItem1 = false;
+            //SavePlay.Instance.bolsaItem1 = false;
 
             // Guardar los nuevos valores vacios
             SavePlay.Instance.SaveData();

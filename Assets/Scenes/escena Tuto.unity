@@ -17892,6 +17892,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3465765252028604296, guid: 6e3f1740fb1a3bc498b48a8271b8cc56,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6851180495067185269, guid: 6e3f1740fb1a3bc498b48a8271b8cc56,
         type: 3}
       propertyPath: amount
@@ -18016,10 +18021,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 834234744744871616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d5c00c700837043a963360f35a63c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cf769c03aa711a4b8f68f58f81f580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: BolsaItem1
 --- !u!224 &840927863272865410
 RectTransform:
   m_ObjectHideFlags: 0
