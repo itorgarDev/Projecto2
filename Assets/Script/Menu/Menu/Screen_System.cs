@@ -35,6 +35,9 @@ public class Screen_System : MonoBehaviour
     public void FullScreen (bool fullScreen)
     {
         Screen.fullScreen = fullScreen;
+        SavePlay.Instance.fullScreen = fullScreen;
+        SavePlay.Instance.SaveData();
+
         if (fullScreen==true)
         {
             Debug.Log("Pantalla completa");

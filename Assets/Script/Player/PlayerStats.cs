@@ -73,9 +73,10 @@ public class PlayerStats : MonoBehaviour
         //maxHealth = PlayerPrefs.GetInt("player_maxHealth", maxHealth);
         //currentHealth = PlayerPrefs.GetInt("player_currentHealth", currentHealth);
         //attack = PlayerPrefs.GetInt("player_attack", attack);
-
-        maxHealth = SavePlay.Instance.maxHealth;
+       
         currentHealth = SavePlay.Instance.vida;
+        maxHealth = SavePlay.Instance.maxHealth;
+       
         attack = SavePlay.Instance.ataque;
 
         hud.UpdateHealthBar();

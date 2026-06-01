@@ -42,7 +42,8 @@ public class Audio_System : MonoBehaviour
         float volumen = Mathf.Log10(Mathf.Max(valor, 0.0001f)) * 20;
         mixer.SetFloat("MasterVolume", volumen);
         PlayerPrefs.SetFloat("MasterVolume", valor);
-
+        SavePlay.Instance.masterVolume = valor;
+        SavePlay.Instance.SaveData();
 
 
     }
@@ -53,7 +54,8 @@ public class Audio_System : MonoBehaviour
         float volumen = Mathf.Log10(Mathf.Max(valor, 0.0001f)) * 20;
         mixer.SetFloat("MusicVolume", volumen);
         PlayerPrefs.SetFloat("MusicVolume", valor);
-
+        SavePlay.Instance.musicVolume = valor;
+        SavePlay.Instance.SaveData();
     }
 
     public void ChangeSliderSFX(float valor)
@@ -62,7 +64,8 @@ public class Audio_System : MonoBehaviour
         float volumen = Mathf.Log10(Mathf.Max(valor, 0.0001f)) * 20;
         mixer.SetFloat("SFXVolume", volumen);
         PlayerPrefs.SetFloat("SFXVolume", valor);
-
+        SavePlay.Instance.sfxVolume = valor;
+        SavePlay.Instance.SaveData();
 
     }
 }

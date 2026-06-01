@@ -14,8 +14,14 @@ public class Brightness_System : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("brillo", 0.5f);
+        float brillo = SavePlay.Instance.brightness;
+        slider.value = brillo;
+        sliderValue = brillo;
         panelBrillo.color = new Color(panelBrillo.color.r,panelBrillo.color.g,panelBrillo.color.b,slider.value/3);
+
+        SavePlay.Instance.brightness = slider.value;
+
+        SavePlay.Instance.SaveData();
     }
 
     void Update()
@@ -37,6 +43,23 @@ public class Brightness_System : MonoBehaviour
         sliderValue=valor;
         PlayerPrefs.SetFloat("brillo", sliderValue);
         panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, slider.value/3);
+
+        SavePlay.Instance.brightness = valor;
+        SavePlay.Instance.SaveData();
     }
+
+    public void ApplyBrightness(float valor)
+    {
+        slider.value = valor;
+        sliderValue = valor;
+
+        panelBrillo.color = new Color(
+            panelBrillo.color.r,
+            panelBrillo.color.g,
+            panelBrillo.color.b,
+            valor / 3
+        );
+    }
+
 }
 

@@ -123,7 +123,38 @@ public class PlayerMovement : MonoBehaviour
         // Esperar un frame para que MENU_FINAL(Clone) aparezca en la jerarquía
         StartCoroutine(DelayedFindMenu());
         StartCoroutine(RefreshHUD());
+        ApplySavedSettings();
+
     }
+
+    private void ApplySavedSettings()
+    {
+        // AUDIO
+        AudioListener.volume = SavePlay.Instance.masterVolume;
+
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(SavePlay.Instance.musicVolume, 0.0001f)) * 20);
+            audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(SavePlay.Instance.sfxVolume, 0.0001f)) * 20);
+        }
+
+        // VIDEO
+        QualitySettings.SetQualityLevel((int)SavePlay.Instance.quality);
+
+        Screen.fullScreen = SavePlay.Instance.fullScreen;
+
+        // VIDEO
+        QualitySettings.SetQualityLevel((int)SavePlay.Instance.quality);
+        Screen.fullScreen = SavePlay.Instance.fullScreen;
+
+        // BRILLO
+        Brightness_System brillo = FindObjectOfType<Brightness_System>();
+        if (brillo != null)
+        {
+            brillo.ApplyBrightness(SavePlay.Instance.brightness);
+        }
+    }
+
 
     private IEnumerator DelayedFindMenu()
     {
@@ -515,11 +546,11 @@ public class PlayerMovement : MonoBehaviour
             float step = dashSpeed * Time.fixedDeltaTime;
             Vector3 nextPos = rb.position + dashDirection * step;
 
-            /*// comprobamos si entre la posición actual y la siguiente hay algo sólido
+            // comprobamos si entre la posición actual y la siguiente hay algo sólido
             if (Physics.Raycast(rb.position, dashDirection, out RaycastHit hit, step + 0.1f, obstacleMask))
             {
                 break; // solo se detiene si lo que hay delante es una pared
-            }*/
+            }
 
 
             rb.MovePosition(nextPos);
@@ -535,8 +566,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
-
 
     private void OnTriggerStay(Collider other) 
     { 
