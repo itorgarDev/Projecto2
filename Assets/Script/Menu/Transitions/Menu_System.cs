@@ -37,8 +37,18 @@ public class Menu_System : MonoBehaviour
             SavePlay.Instance.vida = 5;       // valor base de vida
             SavePlay.Instance.ataque = 1;     // valor base de ataque
             SavePlay.Instance.maxHealth = 5;  // si usas maxHealth en SavePlay
-            //SavePlay.Instance.bolsaItem1 = false;
+                                              //SavePlay.Instance.bolsaItem1 = false;
+            SavePlay.Instance.masterVolume = 0.5f;
+            SavePlay.Instance.musicVolume = 0.5f;
+            SavePlay.Instance.sfxVolume = 0.5f;
 
+            // Reiniciar configuración de vídeo
+            SavePlay.Instance.brightness = 0.5f;
+            SavePlay.Instance.quality = 2; // calidad media
+            SavePlay.Instance.fullScreen = true;
+
+            // Reiniciar ítems únicos
+            SavePlay.Instance.collectedItems.Clear();
             // Guardar los nuevos valores vacios
             SavePlay.Instance.SaveData();
             Debug.Log("Datos reiniciados en memoria y guardados correctamente");

@@ -89,6 +89,14 @@
             PlayerPrefs.SetInt(item.Key, item.Value ? 1 : 0);
         }
 
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+
+        PlayerPrefs.SetFloat("Brightness", brightness);
+        PlayerPrefs.SetInt("Quality", (int)quality);
+        PlayerPrefs.SetInt("FullScreen", fullScreen ? 1 : 0);
+
         PlayerPrefs.Save();
         Debug.Log("Datos guardados correctamente");
 
@@ -113,8 +121,17 @@
             collectedItems[key] = PlayerPrefs.GetInt(key, 0) == 1;
         }
 
-   //     Debug.Log("Datos cargados correctamente — BolsaItem1 = " + bolsaItem1);
-        }
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+
+        brightness = PlayerPrefs.GetFloat("Brightness", 1f);
+        quality = PlayerPrefs.GetInt("Quality", 2);
+        fullScreen = PlayerPrefs.GetInt("FullScreen", 1) == 1;
+
+
+        //     Debug.Log("Datos cargados correctamente — BolsaItem1 = " + bolsaItem1);
+    }
 
 
     public void SetFirstGame(bool value)

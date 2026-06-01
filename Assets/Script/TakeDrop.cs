@@ -58,6 +58,8 @@ public class TakeDrop : MonoBehaviour
             case ItemEffect.MaxHealthUp:
                 stats.IncreaseMaxHealth(amount);
                 SoundController.Instance.PlaySFX(SoundController.Instance.health);
+
+                SavePlay.Instance.maxHealth = stats.maxHealth;
                 SavePlay.Instance.vida = stats.currentHealth;
                 SavePlay.Instance.SaveData();
                 break;
