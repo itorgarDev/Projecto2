@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 390469173}
   - component: {fileID: 390469175}
   - component: {fileID: 390469174}
+  - component: {fileID: 390469176}
   m_Layer: 6
   m_Name: TerrainSnow
   m_TagString: Untagged
@@ -419,7 +420,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390469172}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ccb155071da57974289e80da7ac7b6a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -472,6 +473,28 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &390469176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390469172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7673e4ca2eeabf4ea43f246929ef96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snowHeightMapUpdate: {fileID: 4800000, guid: 0a13a4a773048fd4fb7e2a01722d5c18,
+    type: 3}
+  _stepPrint: {fileID: 2800000, guid: e082595a3731e8b4a9e589400ea30300, type: 3}
+  _snowMaterial: {fileID: 2100000, guid: 38913f35883f88a4eb8249e020f671fd, type: 2}
+  _trailsPositions:
+  - {fileID: 1278873463}
+  _drawDistance: 0.3
+  _heightMapUpdate: {fileID: 0}
+  _snowHeightMap: {fileID: 0}
+  _index: 0
 --- !u!1001 &588667546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -580,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 3271070939916839043, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 123.40001
+      value: 1026
       objectReference: {fileID: 0}
     - target: {fileID: 3271070939916839043, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
@@ -6740,6 +6763,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1566110254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -204.86469
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0018082
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1134.6586
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff09a0bfc0de42b47ace34afe7f2645e, type: 2}
+    - target: {fileID: 919132149155446097, guid: 3618287832614884abd862c164e16e80,
+        type: 3}
+      propertyPath: m_Name
+      value: Suelo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3618287832614884abd862c164e16e80, type: 3}
 --- !u!1001 &1870572567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7730,3 +7826,4 @@ SceneRoots:
   - {fileID: 1870572567}
   - {fileID: 1483900699}
   - {fileID: 1936321294}
+  - {fileID: 1566110254}
