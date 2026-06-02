@@ -14,7 +14,39 @@ public class RespawnSystem : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        PlayerPrefs.SetFloat("CP_X", player.position.x);
+        PlayerPrefs.SetFloat("CP_Y", player.position.y);
+        PlayerPrefs.SetFloat("CP_Z", player.position.z);
+        PlayerPrefs.Save();
+
+        LastCheckpointPos = player.position;
+        player.position = LastCheckpointPos;
+        Debug.Log("RespawnSystem -> Player reposicionado en " + LastCheckpointPos);
     }
 
     void Start()
