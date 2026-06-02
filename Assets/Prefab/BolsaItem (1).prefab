@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5758538896800367671}
   - component: {fileID: 1153680490891752997}
   - component: {fileID: 6851180495067185269}
+  - component: {fileID: 5337031275729956047}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -69,6 +70,19 @@ MonoBehaviour:
   itemName: espada
   effectType: 0
   amount: 1
+--- !u!114 &5337031275729956047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431704271078381903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf769c03aa711a4b8f68f58f81f580f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1001 &1310168553328436439
 PrefabInstance:
   m_ObjectHideFlags: 0
