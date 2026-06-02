@@ -11,6 +11,8 @@ public class TakeDrop : MonoBehaviour
 
     public ItemEffect effectType; // enum
     public int amount = 1;       // Cuánto sube vida o ataque
+    [Tooltip("Arrastra aquí la pared invisible que desaparecerá al recoger este ítem.")]
+    public GameObject lockZone; // pared que no te deja avanzar
     
     private void Start()
     {
@@ -63,6 +65,13 @@ public class TakeDrop : MonoBehaviour
                 SavePlay.Instance.vida = stats.currentHealth;
                 SavePlay.Instance.SaveData();
                 break;
+            case ItemEffect.Key:
+                if (lockZone != null)
+                {
+                    lockZone.SetActive(false);
+             
+                }
+                break;
         }
     }
 
@@ -73,5 +82,6 @@ public enum ItemEffect
     None,
     Heal,
     Attack,
-    MaxHealthUp
+    MaxHealthUp,
+    Key
 }
