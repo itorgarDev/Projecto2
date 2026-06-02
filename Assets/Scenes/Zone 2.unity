@@ -328,10 +328,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1599880014612711452, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2684135727211616487, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}
       propertyPath: m_Name
       value: Transition_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032793887680247202, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5293,6 +5303,11 @@ PrefabInstance:
       propertyPath: transitionFadeout
       value: 
       objectReference: {fileID: 10057956}
+    - target: {fileID: 4513042274370329859, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: panelBrillo
+      value: 
+      objectReference: {fileID: 1530496586}
     - target: {fileID: 6963183249313755322, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: m_Name
@@ -6999,6 +7014,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7566762758442452101}
   m_SourcePrefab: {fileID: 100100000, guid: 4c45289e951f44c4aa83a8856cef9f7e, type: 3}
+--- !u!114 &1530496586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8747384386151146902, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 764200081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764200083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1537473467
 PrefabInstance:
   m_ObjectHideFlags: 0
