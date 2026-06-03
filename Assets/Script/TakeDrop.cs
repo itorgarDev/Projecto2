@@ -68,8 +68,13 @@ public class TakeDrop : MonoBehaviour
             case ItemEffect.Key:
                 if (lockZone != null)
                 {
-                    lockZone.SetActive(false);
-             
+                  // lockZone.SetActive(false);
+                    UniqueItemv2 muroUnique = lockZone.GetComponent<UniqueItemv2>();
+                    if (muroUnique != null)
+                    {
+                        SavePlay.Instance.MarkItemCollected(muroUnique.id);
+                    }
+                    Destroy(lockZone);
                 }
                 break;
         }
