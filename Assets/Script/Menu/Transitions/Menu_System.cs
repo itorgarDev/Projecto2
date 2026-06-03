@@ -6,8 +6,12 @@ public class Menu_System : MonoBehaviour
 {
     public int sceneDestination;
 
-   
-    
+
+    public static bool returningToScene = false;
+    public static bool isResumingGame = false;
+
+
+    public static bool comingFromCheckpointButton = false;
 
 
     public float transitionTime = 1f;
@@ -92,6 +96,8 @@ public class Menu_System : MonoBehaviour
             whereCutscene = true;
             SavePlay.Instance.SetFirstGame(true);
             PlayerPrefs.SetInt("WhereCutscene", whereCutscene ? 1 : 0);
+            RespawnSystem.CurrentCheckpointIndex = 0;
+            SavePlay.Instance.lastCheckpoint = 0;
             GoToDestination(3);
         }
     }
@@ -115,7 +121,8 @@ public class Menu_System : MonoBehaviour
         //       whereCutscene = true;
         PlayerPrefs.SetInt("WhereCutscene", 1);
         //SavePlay.Instance.SetFirstGame(true);
-
+        RespawnSystem.CurrentCheckpointIndex = 0;
+        SavePlay.Instance.lastCheckpoint = 0;
         GoToDestination(3);
     }
 
@@ -124,6 +131,14 @@ public class Menu_System : MonoBehaviour
         menuAreUSure.SetActive(false);
         menuPrincipal.SetActive(true);
     }
+
+    public void LoadFromCheckpoint()
+    {
+        isResumingGame = true;
+        RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
+        GoToDestination(SavePlay.Instance.lastScene);
+    }
+
 
     public void GoToDestination(int valor)
     {
@@ -140,78 +155,71 @@ public class Menu_System : MonoBehaviour
 
     IEnumerator LoadSceneWithTransition()
     {
+        yield return new WaitForSecondsRealtime(transitionTime);
 
-        int originScene = PlayerPrefs.GetInt("OriginScene", -1);
+        SceneManager.LoadScene(sceneDestination);
+        isResumingGame = false;
+    }
+
+
+    /*private void SetCheckpointForScene(int originScene)
+    {
+        // Caso especial: StartGame  escena 5 checkpoint 1
+        if (sceneDestination == 5 && SavePlay.Instance.lastCheckpoint == 0)
+        {
+            RespawnSystem.CurrentCheckpointIndex = 1;
+            return;
+        }
 
         switch (sceneDestination)
         {
-            case 5: // Escena 1
+            case 5:
                 if (originScene == 6)
-                    RespawnSystem.CurrentCheckpointIndex = 11; // entrada desde escena 2  puente
+                    RespawnSystem.CurrentCheckpointIndex = 11;
                 else if (originScene == 2)
-                    RespawnSystem.CurrentCheckpointIndex = 11; // entrada desde escena 3  templo
-                else
-                    RespawnSystem.CurrentCheckpointIndex = 0; // por defecto
-                break;
-            case 6:
-                if (originScene == 5)
-                    RespawnSystem.CurrentCheckpointIndex = 10; // entrada desde escena 1  puente
-                else if (originScene == 7)
-                    RespawnSystem.CurrentCheckpointIndex = 1; // entrada desde escena 3  templo
+                    RespawnSystem.CurrentCheckpointIndex = 11;
                 else
                     RespawnSystem.CurrentCheckpointIndex = 0;
                 break;
 
-            case 7: // Escena 3
+            case 6:
+                if (originScene == 5)
+                    RespawnSystem.CurrentCheckpointIndex = 11;
+                else if (originScene == 7)
+                    RespawnSystem.CurrentCheckpointIndex = 1;
+                else
+                    RespawnSystem.CurrentCheckpointIndex = 0;
+                break;
+
+            case 7:
                 RespawnSystem.CurrentCheckpointIndex = 0;
                 break;
 
-            case 2: // Escena templo
+            case 2:
                 RespawnSystem.CurrentCheckpointIndex = 0;
                 break;
-
-
         }
-        // Espera en tiempo real para que funcione aunque el juego esté pausado
-        yield return new WaitForSecondsRealtime(transitionTime);
+    }*/
 
-        Debug.Log("Cargando escena: " + sceneDestination);
-        SceneManager.LoadScene(sceneDestination);
 
-    }
 
     public void MainMenu()
     {
         current = SceneManager.GetActiveScene().buildIndex;
 
-        // Guardar correctamente la escena actual
         if (current != 3 && current != 4)
-        {
             SavePlay.Instance.lastScene = current;
-            Debug.Log("Escena guardada correctamente: " + current);
-        }
-        else
-        {
-            Debug.Log("Escena " + current + " no se guarda (cinemática o créditos).");
-        }
-        // firstGame = true;
-
 
         Time.timeScale = 1f;
 
-        SavePlay.Instance.lastCheckpoint = RespawnSystem.CurrentCheckpointIndex;
-        //SavePlay.Instance.SaveData();
+        if (!comingFromCheckpointButton)
+            SavePlay.Instance.lastCheckpoint = RespawnSystem.CurrentCheckpointIndex;
 
+        comingFromCheckpointButton = false;
 
-        // SavePlay.Instance.lastCheckpoint = RespawnSystem.CurrentCheckpointIndex;
-        Debug.Log("Checkpoint guardado correctamente: " + SavePlay.Instance.lastCheckpoint);
-
-        // SavePlay.Instance.SetFirstGame(true);
         GoToDestination(0);
-
-        Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
-
     }
+
 
 
     public void ReturnToScene()
@@ -220,15 +228,14 @@ public class Menu_System : MonoBehaviour
 
         Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
         if (!firstGame) return;
-
+        //returningToScene = false;
+        isResumingGame = true;
         int lastScene = SavePlay.Instance.lastScene;
 
         RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
-        Debug.Log("ReturnToScene -> Restaurando checkpoint " + RespawnSystem.CurrentCheckpointIndex);
-
         GoToDestination(lastScene);
 
-        //GoToDestination(sceneDestination);
+       //GoToDestination(sceneDestination);
     }
 
     public void GoToCutscene (int valorScene)
@@ -250,7 +257,8 @@ public class Menu_System : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-           
+          //  if (!isResumingGame && other.CompareTag("CheckpointTrigger"))
+                //SetCheckpointForScene(sceneDestination);
 
             GoToDestination(sceneDestination);
         }

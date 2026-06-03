@@ -38,14 +38,11 @@ public class RespawnSystem : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Buscar al jugador
+        //  Buscar al jugador
         if (player == null)
             player = GameObject.FindWithTag("Player").transform;
 
-        int checkpointIndex = SavePlay.Instance.lastCheckpoint;
-        CurrentCheckpointIndex = checkpointIndex;
-
-        // Buscar todos los checkpoints de la escena
+        //  Buscar todos los checkpoints
         Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
 
         if (checkpoints.Length == 0)
@@ -54,34 +51,29 @@ public class RespawnSystem : MonoBehaviour
             return;
         }
 
-        // Validar índice
+        //  Validar índice
         if (CurrentCheckpointIndex < 0 || CurrentCheckpointIndex >= checkpoints.Length)
         {
-            Debug.LogWarning("RespawnSystem: Índice de checkpoint inválido. Usando 0.");
+            Debug.LogWarning("RespawnSystem: Índice inválido, usando 0.");
             CurrentCheckpointIndex = 0;
         }
 
-        // Mover al jugador al checkpoint correcto
+        //  Mover al jugador al checkpoint guardado
         player.position = checkpoints[CurrentCheckpointIndex].transform.position;
-
         Debug.Log($"RespawnSystem: Jugador colocado en checkpoint {CurrentCheckpointIndex}");
     }
 
     void Start()
     {
-        if (SavePlay.Instance != null && !SavePlay.Instance.firstGameActive)
-        {
-            CurrentCheckpointIndex = 0;
-            Debug.Log("RespawnSystem -> Nueva partida, iniciando en checkpoint 0.");
-        }
+       
 
 
-        LoadCheckpointData();
+       // LoadCheckpointData();
        // player.position = LastCheckpointPos;
         Debug.Log("RespawnSystem Start -> LastCheckpointPos = " + LastCheckpointPos);
     }
 
-    private void LoadCheckpointData()
+  /*  private void LoadCheckpointData()
     {
         if (PlayerPrefs.HasKey("CP_X"))
         {
@@ -95,6 +87,7 @@ public class RespawnSystem : MonoBehaviour
             LastCheckpointPos = player.position;
         }
     }
+  */
 
     public static Vector3 GetCheckpointPosition()
     {
