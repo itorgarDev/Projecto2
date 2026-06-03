@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class RespawnSystem : MonoBehaviour
 {
@@ -35,24 +36,48 @@ public class RespawnSystem : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Buscar al jugador
         if (player == null)
             player = GameObject.FindWithTag("Player").transform;
-        PlayerPrefs.SetFloat("CP_X", player.position.x);
-        PlayerPrefs.SetFloat("CP_Y", player.position.y);
-        PlayerPrefs.SetFloat("CP_Z", player.position.z);
-        PlayerPrefs.Save();
 
-        LastCheckpointPos = player.position;
-        player.position = LastCheckpointPos;
-        Debug.Log("RespawnSystem -> Player reposicionado en " + LastCheckpointPos);
+        int checkpointIndex = SavePlay.Instance.lastCheckpoint;
+        CurrentCheckpointIndex = checkpointIndex;
+
+        // Buscar todos los checkpoints de la escena
+        Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
+
+        if (checkpoints.Length == 0)
+        {
+            Debug.LogWarning("RespawnSystem: No hay checkpoints en esta escena.");
+            return;
+        }
+
+        // Validar índice
+        if (CurrentCheckpointIndex < 0 || CurrentCheckpointIndex >= checkpoints.Length)
+        {
+            Debug.LogWarning("RespawnSystem: Índice de checkpoint inválido. Usando 0.");
+            CurrentCheckpointIndex = 0;
+        }
+
+        // Mover al jugador al checkpoint correcto
+        player.position = checkpoints[CurrentCheckpointIndex].transform.position;
+
+        Debug.Log($"RespawnSystem: Jugador colocado en checkpoint {CurrentCheckpointIndex}");
     }
 
     void Start()
     {
+        if (SavePlay.Instance != null && !SavePlay.Instance.firstGameActive)
+        {
+            CurrentCheckpointIndex = 0;
+            Debug.Log("RespawnSystem -> Nueva partida, iniciando en checkpoint 0.");
+        }
+
+
         LoadCheckpointData();
-        player.position = LastCheckpointPos;
+       // player.position = LastCheckpointPos;
         Debug.Log("RespawnSystem Start -> LastCheckpointPos = " + LastCheckpointPos);
     }
 

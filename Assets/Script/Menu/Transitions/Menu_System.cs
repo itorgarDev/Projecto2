@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 public class Menu_System : MonoBehaviour
 {
     public int sceneDestination;
+
+   
+    
+
+
     public float transitionTime = 1f;
     public Animator transitionFadeout;
    // public Animator transitionFadein;
@@ -59,6 +64,9 @@ public class Menu_System : MonoBehaviour
 
     public void Start()
     {
+        int originScene = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("OriginScene", originScene);
+
         firstGame = SavePlay.Instance.firstGameActive;
         //firstGame = true;
 
@@ -120,6 +128,7 @@ public class Menu_System : MonoBehaviour
     public void GoToDestination(int valor)
     {
         sceneDestination = valor;
+        
 
         //Time.timeScale = 0f;
         imageOut.SetActive(true);
@@ -132,7 +141,37 @@ public class Menu_System : MonoBehaviour
     IEnumerator LoadSceneWithTransition()
     {
 
+        int originScene = PlayerPrefs.GetInt("OriginScene", -1);
 
+        switch (sceneDestination)
+        {
+            case 5: // Escena 1
+                if (originScene == 6)
+                    RespawnSystem.CurrentCheckpointIndex = 11; // entrada desde escena 2  puente
+                else if (originScene == 2)
+                    RespawnSystem.CurrentCheckpointIndex = 11; // entrada desde escena 3  templo
+                else
+                    RespawnSystem.CurrentCheckpointIndex = 0; // por defecto
+                break;
+            case 6:
+                if (originScene == 5)
+                    RespawnSystem.CurrentCheckpointIndex = 10; // entrada desde escena 1  puente
+                else if (originScene == 7)
+                    RespawnSystem.CurrentCheckpointIndex = 1; // entrada desde escena 3  templo
+                else
+                    RespawnSystem.CurrentCheckpointIndex = 0;
+                break;
+
+            case 7: // Escena 3
+                RespawnSystem.CurrentCheckpointIndex = 0;
+                break;
+
+            case 2: // Escena templo
+                RespawnSystem.CurrentCheckpointIndex = 0;
+                break;
+
+
+        }
         // Espera en tiempo real para que funcione aunque el juego esté pausado
         yield return new WaitForSecondsRealtime(transitionTime);
 
@@ -160,7 +199,14 @@ public class Menu_System : MonoBehaviour
 
         Time.timeScale = 1f;
 
-       // SavePlay.Instance.SetFirstGame(true);
+        SavePlay.Instance.lastCheckpoint = RespawnSystem.CurrentCheckpointIndex;
+        //SavePlay.Instance.SaveData();
+
+
+        // SavePlay.Instance.lastCheckpoint = RespawnSystem.CurrentCheckpointIndex;
+        Debug.Log("Checkpoint guardado correctamente: " + SavePlay.Instance.lastCheckpoint);
+
+        // SavePlay.Instance.SetFirstGame(true);
         GoToDestination(0);
 
         Debug.Log("MainMenu ejecutado desde: " + gameObject.name + " | destino: " + sceneDestination);
@@ -176,6 +222,10 @@ public class Menu_System : MonoBehaviour
         if (!firstGame) return;
 
         int lastScene = SavePlay.Instance.lastScene;
+
+        RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
+        Debug.Log("ReturnToScene -> Restaurando checkpoint " + RespawnSystem.CurrentCheckpointIndex);
+
         GoToDestination(lastScene);
 
         //GoToDestination(sceneDestination);
@@ -191,7 +241,7 @@ public class Menu_System : MonoBehaviour
 
     public void WhereToCutscene()
     {
-        if(whereCutscene) GoToDestination(1);
+        if(whereCutscene) GoToDestination(5);
         else GoToDestination(0);
     }
 
@@ -200,6 +250,8 @@ public class Menu_System : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+           
+
             GoToDestination(sceneDestination);
         }
     }
