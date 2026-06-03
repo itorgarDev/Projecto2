@@ -6,6 +6,7 @@ public class Menu_System : MonoBehaviour
 {
     public int sceneDestination;
 
+    public int checkpointDestination;
 
     public static bool returningToScene = false;
     public static bool isResumingGame = false;
@@ -162,47 +163,7 @@ public class Menu_System : MonoBehaviour
     }
 
 
-    /*private void SetCheckpointForScene(int originScene)
-    {
-        // Caso especial: StartGame  escena 5 checkpoint 1
-        if (sceneDestination == 5 && SavePlay.Instance.lastCheckpoint == 0)
-        {
-            RespawnSystem.CurrentCheckpointIndex = 1;
-            return;
-        }
-
-        switch (sceneDestination)
-        {
-            case 5:
-                if (originScene == 6)
-                    RespawnSystem.CurrentCheckpointIndex = 11;
-                else if (originScene == 2)
-                    RespawnSystem.CurrentCheckpointIndex = 11;
-                else
-                    RespawnSystem.CurrentCheckpointIndex = 0;
-                break;
-
-            case 6:
-                if (originScene == 5)
-                    RespawnSystem.CurrentCheckpointIndex = 11;
-                else if (originScene == 7)
-                    RespawnSystem.CurrentCheckpointIndex = 1;
-                else
-                    RespawnSystem.CurrentCheckpointIndex = 0;
-                break;
-
-            case 7:
-                RespawnSystem.CurrentCheckpointIndex = 0;
-                break;
-
-            case 2:
-                RespawnSystem.CurrentCheckpointIndex = 0;
-                break;
-        }
-    }*/
-
-
-
+   
     public void MainMenu()
     {
         current = SceneManager.GetActiveScene().buildIndex;
@@ -257,8 +218,11 @@ public class Menu_System : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-          //  if (!isResumingGame && other.CompareTag("CheckpointTrigger"))
-                //SetCheckpointForScene(sceneDestination);
+            //  if (!isResumingGame && other.CompareTag("CheckpointTrigger"))
+            //SetCheckpointForScene(sceneDestination);
+            RespawnSystem.CurrentCheckpointIndex = checkpointDestination;
+            SavePlay.Instance.lastCheckpoint = checkpointDestination;
+            SavePlay.Instance.lastScene = sceneDestination;
 
             GoToDestination(sceneDestination);
         }
