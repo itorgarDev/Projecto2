@@ -94,6 +94,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     {
         isDead = true;
         Debug.Log("[Fenix] El jefe a sido derrotado");
+        // logica de activar llave
         Destroy(gameObject);
     }
 
