@@ -33,10 +33,16 @@ public class HUDController : MonoBehaviour
     public Image bossHealthFill; // barra llena
     public GameObject bossNamePanel; // marco del nombre
     public TMP_Text bossNameText;      // Texto para mostrar el nombre del Boss actual
+    public GameObject dummyPanel;       // bossUI
+    public Image dummyHealthFill;
+    public GameObject dummyNamePanel; 
+    public TMP_Text dummyNameText;
 
     private PhoenixFSM activeFenix;
     private EnemyFSMManager activeEvoker;
+    private DummyDamageable activeDummy; 
     private float activeBossMaxHp;
+    private float activeDummyMaxHp;
 
     private void Awake()
     {
@@ -47,6 +53,7 @@ public class HUDController : MonoBehaviour
     {
         UpdateHealthBar();
         if (bossPanel != null) bossPanel.SetActive(false);
+        if (dummyPanel != null) dummyPanel.SetActive(false);
     }
     void Update()
     {
@@ -63,6 +70,14 @@ public class HUDController : MonoBehaviour
                 // Calcula el porcentaje de vida y actualiza el relleno
                 bossHealthFill.fillAmount = Mathf.Clamp01(activeEvoker.CurrentHealth / activeBossMaxHp);
                 if (activeEvoker.CurrentHealth <= 0) UntrackBoss();
+            }
+        }
+        if (dummyPanel != null && dummyPanel.activeSelf)
+        {
+            if (activeDummy != null)
+            {
+                dummyHealthFill.fillAmount = Mathf.Clamp01(activeDummy.CurrentHealth / activeDummyMaxHp);
+                if (activeDummy.CurrentHealth <= 0) UntrackDummy();
             }
         }
     }
@@ -116,14 +131,28 @@ public class HUDController : MonoBehaviour
         if (bossNamePanel != null) bossNamePanel.SetActive(true);
         if (bossNameText != null) bossNameText.text = bossName;
     }
+    public void TrackDummy(DummyDamageable dummy, string displayName, float maxHp)
+    {
+        activeDummy = dummy;
+        activeDummyMaxHp = maxHp; 
 
+        if (dummyPanel != null) dummyPanel.SetActive(true);
+        if (dummyNamePanel != null) dummyNamePanel.SetActive(true);
+        if (dummyNameText != null) dummyNameText.text = displayName;
+    }
     public void UntrackBoss()
     {
         activeFenix = null;
         activeEvoker = null;
+        activeDummy = null;
         if (bossPanel != null) bossPanel.SetActive(false);
     }
-
+    public void UntrackDummy()
+    {
+        activeDummy = null;
+        activeDummyMaxHp = 0;
+        if (dummyPanel != null) dummyPanel.SetActive(false); // Apaga el panel del dummy
+    }
     public void ShowPickupMessage(string itemName)
     {
         pickupText.text = "Has recogido: " + itemName;
