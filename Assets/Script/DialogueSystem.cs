@@ -53,7 +53,7 @@ public class DialogueSystem : MonoBehaviour
                 textColor = Color.cyan;
                 break;
             case 3:
-                textColor = Color.magenta;
+                textColor = Color.magenta; 
                 break;
             case 4:
                 textColor = Color.white;
