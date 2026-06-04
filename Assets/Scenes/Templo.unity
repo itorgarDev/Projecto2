@@ -761,8 +761,8 @@ PrefabInstance:
     - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: "Te invito a mirar el mural del fondo. Te contar\xE1 una hermosa historia
-        sobre nuestras diosas."
+      value: Te invito a mirar el mural del fondo. Representa una hermosa historia
+        sobre nuestras diosas.
       objectReference: {fileID: 0}
     - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
         type: 3}
@@ -2164,99 +2164,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.049957275, y: 0.057310257, z: 0.28866246}
   m_Center: {x: 0.2858797, y: -0.057059836, z: 0.12454148}
---- !u!1001 &1312520794
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1553640126424333317, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_Name
-      value: PuertaTemplo (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -32.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 148.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 112.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 241.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314445671107413612, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: imageOut
-      value: 
-      objectReference: {fileID: 289811248}
-    - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: sceneDestination
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: transitionFadeout
-      value: 
-      objectReference: {fileID: 289811252}
-    - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
-        type: 3}
-      propertyPath: checkpointDestination
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b72faef721966744bbd2c1ae598eff87, type: 3}
 --- !u!1 &1378873018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 802862977546523299, guid: da01cd2c4206c6044b1590114d6b826f,
@@ -4469,7 +4376,6 @@ SceneRoots:
   - {fileID: 1168283341}
   - {fileID: 1635273896}
   - {fileID: 277001551}
-  - {fileID: 1312520794}
   - {fileID: 1106253859}
   - {fileID: 7421295875124219971}
   - {fileID: 184603467}
