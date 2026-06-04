@@ -25085,31 +25085,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4412861096755651843, guid: d651f1c5f0b0dfd44adbb26abdc83dba,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1300948337}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d651f1c5f0b0dfd44adbb26abdc83dba, type: 3}
---- !u!1 &1300948336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4412861096755651843, guid: d651f1c5f0b0dfd44adbb26abdc83dba,
-    type: 3}
-  m_PrefabInstance: {fileID: 1300948335}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1300948337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300948336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6759fec32e92f49b62ec0191880dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numeroCkeckpoint: 0
 --- !u!1001 &1302693026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37596,6 +37573,79 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2477511411847689622, guid: a56611d510bf1274ab5c81fd7de04fca, type: 3}
+--- !u!1001 &1965035387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 366.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504965531442136987, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565459045009416799, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
+      propertyPath: numeroCkeckpoint
+      value: 43
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c68781c7255aa0643bf1d550927347e0, type: 3}
 --- !u!4 &1966319413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6508173505276085048, guid: 9324b9dee65b71b4eaf6b309685fad92,
@@ -40446,6 +40496,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8625101116372767642, guid: d651f1c5f0b0dfd44adbb26abdc83dba,
+        type: 3}
+      propertyPath: numeroCkeckpoint
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40731,6 +40786,7 @@ SceneRoots:
   - {fileID: 7498731801417811803}
   - {fileID: 117818919}
   - {fileID: 450584769}
+  - {fileID: 1965035387}
   - {fileID: 730935356}
   - {fileID: 1731550052}
   - {fileID: 2803789164696859744}
