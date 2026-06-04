@@ -161,7 +161,9 @@ public class Menu_System : MonoBehaviour
         yield return new WaitForSecondsRealtime(transitionTime);
 
         SceneManager.LoadScene(sceneDestination);
-        isResumingGame = false;
+
+        Debug.Log("Escena bien calculada");
+        //isResumingGame = false;
     }
 
 
@@ -191,15 +193,36 @@ public class Menu_System : MonoBehaviour
 
         Debug.Log("ReturnToScene pulsado. firstGame = " + firstGame);
         if (!firstGame) return;
-        //returningToScene = false;
+
         isResumingGame = true;
+
         int lastScene = SavePlay.Instance.lastScene;
-
         RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
-        GoToDestination(lastScene);
 
-       //GoToDestination(sceneDestination);
+        // Cargar la escena guardada
+        SceneManager.LoadScene(lastScene);
+
+        // Esperar a que la escena se cargue y luego colocar al jugador
+        SceneManager.sceneLoaded += OnSceneLoadedReturn;
     }
+
+    private void OnSceneLoadedReturn(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoadedReturn;
+
+        // Buscar el sistema de checkpoints y colocar al jugador
+        var checkpointSystem = FindObjectOfType<Checkpoint_System>();
+        if (checkpointSystem != null)
+        {
+            checkpointSystem.CheckpointPoint();
+            Debug.Log($"ReturnToScene: jugador colocado en checkpoint {SavePlay.Instance.lastCheckpoint} de la escena {scene.name}");
+        }
+        else
+        {
+            Debug.LogWarning("ReturnToScene: no se encontró Checkpoint_System en la escena cargada.");
+        }
+    }
+
 
     public void GoToCutscene (int valorScene)
     {
@@ -216,19 +239,26 @@ public class Menu_System : MonoBehaviour
         if(whereCutscene) GoToDestination(5);
         else GoToDestination(0);
     }
+    int scene7=SceneManager.GetActiveScene().buildIndex;
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
+            if(scene7==7)
+            {
+                Debug.Log("Está entrando a la puerta");
+                checkpointDestination = 5; return;
+            }
             //  if (!isResumingGame && other.CompareTag("CheckpointTrigger"))
             //SetCheckpointForScene(sceneDestination);
             RespawnSystem.CurrentCheckpointIndex = checkpointDestination;
             SavePlay.Instance.lastCheckpoint = checkpointDestination;
             SavePlay.Instance.lastScene = sceneDestination;
-
-            GoToDestination(sceneDestination);
+            imageOut.SetActive(true);
+            ReturnToScene();
+            //GoToDestination(sceneDestination);
         }
     }
 
