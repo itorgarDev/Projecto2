@@ -180,6 +180,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Maolina, la ingenua
   message:
   - "Esto\u2026 Qiuro me est\xE1 mirando un poco raro."
@@ -645,6 +646,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Maolee, el sabiondo
   message:
   - "\xBFPreparado para descubrir los secretos de uno de los templos m\xE1s majestuosos
@@ -4468,6 +4470,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: "Maola, la germ\xF3foba"
   message:
   - "\xA1Cuidado por donde me pisas, ni\xF1o! Que acabo de barrer."
@@ -4894,6 +4897,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Qiuque, el ladino
   message:
   - "\xA1Prueben los aut\xE9nticos huevos centenarios! Miren lo oscuros que son.
@@ -5651,6 +5655,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Maomal, el indispuesto
   message:
   - "\xA1Jo! No s\xE9 que me da, que \xFAltimamente ya no siento vibras positivas."
@@ -7792,6 +7797,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Qiuro, el indirecto
   message:
   - "\xA1Ho\u2026hola! Lo siento, pero ahora no puedo estar contigo."
@@ -7872,6 +7878,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Qiuque, el ladino
   message:
   - "\xA1Prueben los aut\xE9nticos huevos centenarios! Miren lo oscuros que son.
@@ -9441,6 +9448,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: "Qiulin, el c\xE1lido"
   message:
   - "\xA1Bienvenido a la villa, hermano! Un lugar chiquitito, pero lleno de esperanza."
@@ -9669,6 +9677,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: "Mao-Tse, el fil\xF3sofo"
   message:
   - "Vaya. No quisiera ofenderle, pero\u2026 \xA1Qu\xE9 individuo m\xE1s raro es
@@ -10320,6 +10329,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Maopi, la desgraciada
   message:
   - "\xA1Hala, qu\xE9 chulada de flores! A m\xED me encantan los dientes de le\xF3n."
@@ -11096,6 +11106,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Qiuque, el ladino
   message:
   - "\xA1Prueben los aut\xE9nticos huevos centenarios! Miren lo oscuros que son.
@@ -12203,6 +12214,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: Maogo, el atrapado
   message:
   - "\xA1Estoy hasta las narices de tanta monoton\xEDa!"
@@ -14314,6 +14326,7 @@ MonoBehaviour:
   dialogueText: {fileID: 128918702}
   dialogueName: {fileID: 2005251522}
   npcName: {fileID: 1220852687}
+  characterType: 0
   name: Mao QUi
   message:
   - Preparados bajo un proceso secreto durante un siglo, para un sabor como ninguno
@@ -16541,6 +16554,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
   npcName: {fileID: 0}
+  characterType: 0
   name: "Qiues, el c\xF3mplice"
   message:
   - "\xA1Tinta negra! Hecha con carb\xF3n de la mejor  calidad de la regi\xF3n."
@@ -23550,7 +23564,7 @@ PrefabInstance:
     - target: {fileID: 5052561420513121962, guid: be461d168ee9b884dbcb8ba2dc196a2f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5479528876941686019, guid: be461d168ee9b884dbcb8ba2dc196a2f,
         type: 3}
