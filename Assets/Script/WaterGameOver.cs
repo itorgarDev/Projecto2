@@ -5,6 +5,11 @@ using UnityEngine;
 public class WaterGameOver : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
+    private PlayerMovement movement;
+    public void Awake()
+    {
+        movement = GetComponent<PlayerMovement>();
+    }
 
     // Opción 1: Si el objeto es un Trigger (tiene "Is Trigger" marcado en su Collider)
     private void OnTriggerEnter(Collider other)
@@ -16,6 +21,7 @@ public class WaterGameOver : MonoBehaviour
 
             if (player != null)
             {
+                player.StartCoroutine(player.DeathSequence());
                 player.GameOver();
             }
         }

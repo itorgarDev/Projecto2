@@ -397,7 +397,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DeathSequence());
         }
     }
-    private IEnumerator DeathSequence()
+    public IEnumerator DeathSequence()
     {
         dyingProcessStarted = true; // Avisamos que está muerto
 
