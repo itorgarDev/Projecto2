@@ -28,7 +28,7 @@ public class Menu_System : MonoBehaviour
 
     public bool whereCutscene;
 
-    public bool templeCutscene;
+
 
     bool firstGame=false;
     
@@ -211,12 +211,9 @@ public class Menu_System : MonoBehaviour
 
     public void WhereToCutscene()
     {
-        if (templeCutscene)
-        {
-            GoToDestination(2);
-            templeCutscene = false;
-        }
-        if(whereCutscene&&templeCutscene!) GoToDestination(5);
+
+       
+        if(whereCutscene) GoToDestination(5);
         else GoToDestination(0);
     }
 
@@ -230,7 +227,7 @@ public class Menu_System : MonoBehaviour
             RespawnSystem.CurrentCheckpointIndex = checkpointDestination;
             SavePlay.Instance.lastCheckpoint = checkpointDestination;
             SavePlay.Instance.lastScene = sceneDestination;
-            if (sceneDestination == 3) { templeCutscene = true; }
+            if (sceneDestination == 3) 
             GoToDestination(sceneDestination);
         }
     }
