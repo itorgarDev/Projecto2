@@ -6,32 +6,29 @@ using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [Header("UI del dialogo")]
+    [Header("UI del diálogo")]
     public GameObject dialoguePanel;
     public TMP_Text dialogueText;
     public GameObject dialogueName;
     public TMP_Text npcName;
 
-    [Header("Nombre del Npc")]
+    [Header("Tipo de personaje")]
+    public int characterType = 0;
+
+    [Header("Nombre del NPC")]
     [TextArea]
     public string name;
 
-    [Header("Mensaje del Npc")]
+    [Header("Mensajes del NPC")]
     [TextArea]
     public string[] message;
+
+    
 
     private int index = 0;
 
     public bool IsDialogueActive => dialoguePanel.activeSelf;
     public bool IsNpcNameActive => dialogueName.activeSelf;
-
-   
-
-
-    public void Start()
-    {
-        
-    }
 
     public void StartDialogue()
     {
@@ -41,6 +38,31 @@ public class DialogueSystem : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(true);
         dialogueName.SetActive(true);
+
+        // Asignar color según tipo
+        Color textColor= Color.white;
+        switch (characterType)
+        {
+            case 0:
+                textColor = Color.yellow;
+                break;
+            case 1:
+                textColor = Color.green;
+                break;
+            case 2:
+                textColor = Color.cyan;
+                break;
+            case 3:
+                textColor = Color.magenta;
+                break;
+            case 4:
+                textColor = Color.white;
+                break;
+        }
+
+        npcName.color = textColor;
+        dialogueText.color = textColor;
+
         dialogueText.text = message[index];
         SoundController.Instance.PlayRandomMQ();
     }
@@ -49,7 +71,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (!IsNpcNameActive) return;
         if (!IsDialogueActive) return;
-        
+
         index++;
 
         if (index < message.Length)
@@ -68,5 +90,6 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueName.SetActive(false);
     }
-
 }
+
+// Enum fuera de la clase principal
