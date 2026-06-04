@@ -51,16 +51,32 @@ public class RespawnSystem : MonoBehaviour
             return;
         }
 
-        //  Validar índice
-        if (CurrentCheckpointIndex < 0 || CurrentCheckpointIndex >= checkpoints.Length)
+        Checkpoint correctCheckpoint = null;
+        foreach (Checkpoint cp in checkpoints)
         {
-            Debug.LogWarning("RespawnSystem: Índice inválido, usando 0.");
-            CurrentCheckpointIndex = 0;
+            if (cp.numeroCkeckpoint == CurrentCheckpointIndex)
+            {
+                correctCheckpoint = cp;
+                break; // Lo encontramos, dejamos de buscar
+            }
         }
 
+        // 4. Mover al jugador si se encontró, o usar el primero disponible por seguridad
+        if (correctCheckpoint != null)
+        {
+            player.position = correctCheckpoint.transform.position;
+            Debug.Log($"RespawnSystem: Jugador colocado con éxito en checkpoint número {CurrentCheckpointIndex}");
+        }
+        else
+        {
+            // Si por alguna razón el índice guardado no existe en esta escena (ej: vas a otra escena), 
+            // lo movemos al primer checkpoint que encuentre Unity por descarte.
+            player.position = checkpoints[0].transform.position;
+            Debug.LogWarning($"RespawnSystem: No se encontró un checkpoint con el número {CurrentCheckpointIndex}. Usando respawn por defecto.");
+        }
         //  Mover al jugador al checkpoint guardado
-        player.position = checkpoints[CurrentCheckpointIndex].transform.position;
-        Debug.Log($"RespawnSystem: Jugador colocado en checkpoint {CurrentCheckpointIndex}");
+       // player.position = checkpoints[CurrentCheckpointIndex].transform.position;
+        //Debug.Log($"RespawnSystem: Jugador colocado en checkpoint {CurrentCheckpointIndex}");
     }
 
     void Start()
