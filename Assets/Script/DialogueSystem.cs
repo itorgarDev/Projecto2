@@ -43,7 +43,7 @@ public class DialogueSystem : MonoBehaviour
         Color textColor= Color.white;
         switch (characterType)
         {
-            case 0:
+            case 4:
                 textColor = Color.yellow;
                 break;
             case 1:
@@ -55,7 +55,7 @@ public class DialogueSystem : MonoBehaviour
             case 3:
                 textColor = Color.magenta; 
                 break;
-            case 4:
+            case 0:
                 textColor = Color.white;
                 break;
         }
