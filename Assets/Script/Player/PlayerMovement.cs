@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject playerPrefab;
 
-
+    private bool dyingProcessStarted = false;
 
     void Awake()
     {
@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
             pauseMenuCanvasScroll?.SetActive(true);
             pauseMenuCanvasOptions?.SetActive(true);
 
-            // 🔹 Mantén el brillo activo
+            // Mantén el brillo activo
             pauseMenuCanvasBrillo?.SetActive(true);
 
             scrollAnimator?.SetTrigger("Scroll_Animation");
@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
             pauseMenuCanvasScroll?.SetActive(false);
             pauseMenuCanvasOptions?.SetActive(false);
 
-            // 🔹 NO desactives el brillo
+            // NO desactives el brillo
             // pauseMenuCanvasBrillo?.SetActive(false);
 
             pauseMenuCanvas?.SetActive(false);
@@ -386,7 +386,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (IsImmortal) return;
+        if (IsImmortal || dyingProcessStarted) return;
 
         stats.TakeDamage(amount);
         SoundController.Instance.PlaySFX(SoundController.Instance.damageSfx);
@@ -394,12 +394,28 @@ public class PlayerMovement : MonoBehaviour
         if (stats.currentHealth <= 0)
         {
             SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
-            GameOver();
-            
-            
+            StartCoroutine(DeathSequence());
         }
     }
+    private IEnumerator DeathSequence()
+    {
+        dyingProcessStarted = true; // Avisamos que está muerto
 
+        // Desactivamos controles e inercias para que no muera deslizándose
+        controls.Disable();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        if (playerAttack != null)
+        {
+            playerAttack.ForceCancelAttack();
+        }
+
+        // ESPERA: Cambia el 2.0f por los segundos que dure tu animación de muerte
+        yield return new WaitForSeconds(1.6f);
+
+        GameOver();
+    }
     public void GameOver()
     {
         // Congelar el juego
@@ -415,6 +431,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        dyingProcessStarted = false;
         // Reactivar tiempo
         Time.timeScale = 1f;
 
