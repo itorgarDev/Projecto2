@@ -1,9 +1,11 @@
 using UnityEngine;
+
 public class EnemyFSMManager : StateMachineFlow, IDamageable
 {
     public Idle idleState;
     public Chase chaseState;
     public Attack attackState;
+    public Death deathState; 
 
     [Header("Movimiento")]
     public float chaseSpeed = 4f;
@@ -28,7 +30,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     [SerializeField] protected float currentHealth;
     [SerializeField] protected bool isBoss;
     public bool IsBoss => isBoss;
-    public float CurrentHealth => currentHealth; 
+    public float CurrentHealth => currentHealth;
     public event System.Action OnDeath;
 
     [Header("Ataque")]
@@ -47,21 +49,48 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
 
     public EnemySoundType soundType;
 
-
-
-    protected virtual void Awake() // Lo hacemos virtual por si el boss necesita sobreescribirlo limpiamente
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        playerStats = player.GetComponent<PlayerStats>();
+        if (player != null)
+        {
+            playerStats = player.GetComponent<PlayerStats>();
+        }
 
         idleState = new Idle(this);
         chaseState = new Chase(this);
         attackState = new Attack(this);
+        deathState = new Death(this); 
 
         weaponCollider.enabled = false;
         InitializeStats();
+    }
+
+    // Esto se ejecuta CADA VEZ que el Pool saca al enemigo de nuevo a la escena
+    private void OnEnable()
+    {
+        InitializeStats();
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+        }
+
+        if (TryGetComponent<Collider>(out var mainCollider))
+        {
+            mainCollider.enabled = true;
+        }
+
+        if (weaponCollider != null) weaponCollider.enabled = false;
+
+     
+        if (idleState != null)
+        {
+            ChangeState(idleState);
+        }
     }
 
     protected override void GetInitialState(out TemplateStateMachine _stateMachine)
@@ -76,13 +105,12 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
         isBoss = false;
     }
 
-
     public float DistanceToPlayer()
     {
         if (Time.timeScale == 0f) return Mathf.Infinity;
         if (player == null) return Mathf.Infinity;
 
-        return Vector3.Distance(transform.position, player.position);   
+        return Vector3.Distance(transform.position, player.position);
     }
 
     public bool CanSeePlayer()
@@ -115,7 +143,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     private void PerformAttack()
     {
         animator.SetTrigger("Attack");
-        
+
         switch (soundType)
         {
             case EnemySoundType.Xuanwu:
@@ -126,13 +154,13 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
                 SoundController.Instance.PlaySFX(SoundController.Instance.cAttack);
                 break;
         }
-
-        // ahora la activamos por evento
-        /*weaponCollider.enabled = true;
-        Invoke(nameof(DisableCollider), hitboxDuration);*/
     }
+
     public void EnemyHit()
     {
+        // Si ya está muerto, ignoramos cualquier evento de animación rezagado
+        if (currentHealth <= 0) return;
+
         weaponCollider.enabled = true;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
@@ -144,20 +172,24 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
-        
-        if (player != null)
+        // Si está muerto, no puede hacer daño bajo ningún concepto
+        if (currentHealth <= 0) return;
+
+        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
         {
-            player.TakeDamage(damage);
+            playerMovement.TakeDamage(damage);
         }
     }
 
-    
     public void SystemTakeDamage(float amount)
     {
+        if (currentHealth <= 0) return; // Si ya está muerto, no recibe más daño
+
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
-        if (currentHealth < 0)
+
+        if (currentHealth <= 0)
         {
             switch (soundType)
             {
@@ -169,25 +201,42 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
                     SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
                     break;
             }
-        }
-        
 
-        if (isBoss)
-        {
-            var boss = GetComponent<BossEvokerFSMManager>();
-            if (boss != null)
-                boss.EvaluateWaves();
-        }
+            if (isBoss)
+            {
+                var boss = GetComponent<BossEvokerFSMManager>();
+                if (boss != null)
+                    boss.EvaluateWaves();
+            }
 
-        if (currentHealth <= 0)
             Die();
+        }
     }
-
 
     private void Die()
     {
         OnDeath?.Invoke();
-        EnemyPool.Instance.ReturnToPool(this);
+
+        // Cambiamos inmediatamente al estado de Muerte en la FSM para apagar la IA
+        ChangeState(deathState);
+
+        // Activar el Trigger de muerte en el Animator
+        if (animator != null)
+        {
+            animator.SetTrigger("IsDead");
+        }
+
+        // Frenar por completo las físicas y quitar colisiones para que ruede o traspase
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
+        if (weaponCollider != null) weaponCollider.enabled = false;
+
+        if (TryGetComponent<Collider>(out var mainCollider))
+        {
+            mainCollider.enabled = false;
+        }
+
+        // Sonido de muerte definitivo
         switch (soundType)
         {
             case EnemySoundType.Xuanwu:
@@ -198,5 +247,14 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
                 SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
                 break;
         }
+
+        // Esperamos los 2 segundos exactos para que termine de caer al suelo antes de ocultarlo
+        Invoke(nameof(ReturnToPoolAfterDeath), 1.5f);
+    }
+
+    private void ReturnToPoolAfterDeath()
+    {
+        // Enviamos al pool original
+        EnemyPool.Instance.ReturnToPool(this);
     }
 }
