@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 2321522924038213905}
   - component: {fileID: 8780504244817233619}
   - component: {fileID: 8081813362485901474}
+  - component: {fileID: 8625101116372767642}
   m_Layer: 0
   m_Name: checkpoint
   m_TagString: Untagged
@@ -235,6 +236,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8625101116372767642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412861096755651843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6759fec32e92f49b62ec0191880dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numeroCkeckpoint: 0
 --- !u!1 &4502824357648835943
 GameObject:
   m_ObjectHideFlags: 0
