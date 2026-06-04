@@ -227,7 +227,7 @@ public class Menu_System : MonoBehaviour
             RespawnSystem.CurrentCheckpointIndex = checkpointDestination;
             SavePlay.Instance.lastCheckpoint = checkpointDestination;
             SavePlay.Instance.lastScene = sceneDestination;
-            if (sceneDestination == 3) 
+
             GoToDestination(sceneDestination);
         }
     }
