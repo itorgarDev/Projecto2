@@ -23,6 +23,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     public Transform target;
     public GameObject bulletPrefab; 
     public Transform firePoint;
+    public GameObject Key;
 
     [Header("Animación")]
     public Animator animator;
@@ -94,7 +95,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     {
         isDead = true;
         Debug.Log("[Fenix] El jefe a sido derrotado");
-        // logica de activar llave
+        Key.SetActive(true);
         Destroy(gameObject);
     }
 

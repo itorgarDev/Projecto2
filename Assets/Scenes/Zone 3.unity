@@ -19847,18 +19847,6 @@ PrefabInstance:
       objectReference: {fileID: 214311341}
     - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
-      propertyPath: sfxGroup
-      value: 
-      objectReference: {fileID: 175797253196770225, guid: 97a049f19392824478cf73c532e1909e,
-        type: 2}
-    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
-        type: 3}
-      propertyPath: audioMixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 97a049f19392824478cf73c532e1909e,
-        type: 2}
-    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
-        type: 3}
       propertyPath: canvasMapa
       value: 
       objectReference: {fileID: 1291893326}
@@ -19867,11 +19855,6 @@ PrefabInstance:
       propertyPath: panelDeath
       value: 
       objectReference: {fileID: 1083541903}
-    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
-        type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 1278873462}
     - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: scrollAnimator
@@ -19897,11 +19880,6 @@ PrefabInstance:
       propertyPath: pauseMenuCanvasBrillo
       value: 
       objectReference: {fileID: 1053454918}
-    - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
-        type: 3}
-      propertyPath: pauseMenuCanvasOscuro
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 963616513127485854, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: pauseMenuCanvasScroll
@@ -37453,12 +37431,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1276886191}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1278873462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1423078927890786377, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 588667546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1278873463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3271070939916839043, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
@@ -37471,7 +37443,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 588667546}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278873462}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b1abfcabfaeb244b82e7c31c0a11a8, type: 3}
