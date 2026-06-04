@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Checkpoint
+  - options
+  - templo
+  - Items
+  - Xuanwu
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - Obstacle
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -42,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 78917623
     locked: 0
