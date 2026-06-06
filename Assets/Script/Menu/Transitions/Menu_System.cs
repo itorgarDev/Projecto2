@@ -239,18 +239,13 @@ public class Menu_System : MonoBehaviour
         if(whereCutscene) GoToDestination(5);
         else GoToDestination(0);
     }
-    int scene7=SceneManager.GetActiveScene().buildIndex;
+    //int scene7=SceneManager.GetActiveScene().buildIndex;
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
-            if(scene7==7)
-            {
-                Debug.Log("Está entrando a la puerta");
-                checkpointDestination = 5; return;
-            }
             //  if (!isResumingGame && other.CompareTag("CheckpointTrigger"))
             //SetCheckpointForScene(sceneDestination);
             RespawnSystem.CurrentCheckpointIndex = checkpointDestination;
