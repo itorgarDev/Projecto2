@@ -13,11 +13,16 @@ public class TakeDrop : MonoBehaviour
     public int amount = 1;       // Cuánto sube vida o ataque
     [Tooltip("Arrastra aquí la pared invisible que desaparecerá al recoger este ítem.")]
     public GameObject lockZone; // pared que no te deja avanzar
+    public GameObject mainItemHolder;
     
     private void Start()
     {
         if (string.IsNullOrEmpty(itemName))
             itemName = gameObject.name;
+        if(mainItemHolder == null)
+        {
+            mainItemHolder = transform.parent != null ? transform.parent.gameObject : gameObject;
+        }
     }
 
     public void PickUp()
@@ -30,8 +35,8 @@ public class TakeDrop : MonoBehaviour
         {
             SavePlay.Instance.MarkItemCollected(unique.id);
         }
-       
-        Destroy(transform.root.gameObject);
+
+        Destroy(mainItemHolder);
     }
         
     private void ApplyEffect()
