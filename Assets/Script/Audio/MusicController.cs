@@ -25,6 +25,8 @@ public class MusicController : MonoBehaviour
     public AudioClip village2;
     public AudioClip boss2;
 
+    private Coroutine transitionRoutine;
+
     public void Awake(AudioClip clip)
     {
         if (clip == null) return;
