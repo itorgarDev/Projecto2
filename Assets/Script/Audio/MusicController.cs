@@ -27,14 +27,14 @@ public class MusicController : MonoBehaviour
 
     private Coroutine transitionRoutine;
 
-    public void Awake()
+    public void Awake(AudioClip clip)
     {
-       // if (clip == null) return;
+        if (clip == null) return;
 
         // Configurar el AudioSource para ambiente
-        //audioSource.clip = clip;
-        //audioSource.loop = true;
-        //audioSource.Play();
+        audioSource.clip = clip;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     public void PlayMusic(AudioClip clip)

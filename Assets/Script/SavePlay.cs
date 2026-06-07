@@ -75,8 +75,8 @@
             Debug.Log($"Escena actual guardada automáticamente: {lastScene}");
         }
 
-    public void SaveData()
-    {
+         public void SaveData()
+        {
         PlayerPrefs.SetInt("LastScene", lastScene);
         PlayerPrefs.SetInt("LastCheckpoint", lastCheckpoint);
         PlayerPrefs.SetInt("FirstGame", firstGameActive ? 1 : 0);
@@ -84,26 +84,28 @@
         PlayerPrefs.SetInt("Vida", vida);
         PlayerPrefs.SetInt("Ataque", ataque);
         PlayerPrefs.SetInt("MaxHealth", maxHealth);
-
-        // Guarda dinámicamente cualquier ítem registrado en el diccionario
         foreach (var item in collectedItems)
         {
-            PlayerPrefs.SetInt("Item_" + item.Key, item.Value ? 1 : 0);
+            PlayerPrefs.SetInt(item.Key, item.Value ? 1 : 0);
         }
 
         PlayerPrefs.SetFloat("MasterVolume", masterVolume);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+
         PlayerPrefs.SetFloat("Brightness", brightness);
         PlayerPrefs.SetInt("Quality", (int)quality);
         PlayerPrefs.SetInt("FullScreen", fullScreen ? 1 : 0);
 
         PlayerPrefs.Save();
         Debug.Log("Datos guardados correctamente");
-    }
 
-    public void LoadData()
-    {
+        PlayerPrefs.Save();
+    //    Debug.Log("Datos guardados correctamente — BolsaItem1 = " + bolsaItem1);
+        }
+
+        public void LoadData()
+        {
         lastScene = PlayerPrefs.GetInt("LastScene", 0);
         lastCheckpoint = PlayerPrefs.GetInt("LastCheckpoint", 0);
         firstGameActive = PlayerPrefs.GetInt("FirstGame", 0) == 1;
@@ -111,47 +113,45 @@
         vida = PlayerPrefs.GetInt("Vida", 5);
         ataque = PlayerPrefs.GetInt("Ataque", 1);
         maxHealth = PlayerPrefs.GetInt("MaxHealth", 5);
+        collectedItems.Clear();
 
-        collectedItems.Clear(); // Limpiamos el diccionario para evitar datos basura
+        string[] itemKeys = { "BolsaItem1", "BolSaltem1", "chalecoDivino" }; // añade aquí tus IDs
+        foreach (string key in itemKeys)
+        {
+            collectedItems[key] = PlayerPrefs.GetInt(key, 0) == 1;
+        }
 
         masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+
         brightness = PlayerPrefs.GetFloat("Brightness", 1f);
         quality = PlayerPrefs.GetInt("Quality", 2);
         fullScreen = PlayerPrefs.GetInt("FullScreen", 1) == 1;
+
+
+        //     Debug.Log("Datos cargados correctamente — BolsaItem1 = " + bolsaItem1);
     }
+
+
+    public void SetFirstGame(bool value)
+        {
+            firstGameActive = value;
+            PlayerPrefs.SetInt("FirstGame", value ? 1 : 0);
+            SaveData();
+            Debug.Log($"SetFirstGame ejecutado: firstGameActive = {firstGameActive}");
+        }
 
     public void MarkItemCollected(string id)
     {
-        if (string.IsNullOrEmpty(id)) return;
-
         collectedItems[id] = true;
-        PlayerPrefs.SetInt("Item_" + id, 1); // Prefijo de seguridad
+        PlayerPrefs.SetInt(id, 1);
         PlayerPrefs.Save();
-        Debug.Log($"Item único [{id}] guardado con éxito.");
+        Debug.Log($"Item {id} marcado como recogido");
     }
 
     public bool IsItemCollected(string id)
     {
-        if (string.IsNullOrEmpty(id)) return false;
-
-        if (collectedItems.ContainsKey(id))
-        {
-            return collectedItems[id];
-        }
-
-        // Si no está en el diccionario de esta sesión, lo busca en el disco duro
-        bool collected = PlayerPrefs.GetInt("Item_" + id, 0) == 1;
-        collectedItems[id] = collected;
-        return collected;
-    }
-
-    public void SetFirstGame(bool value)
-    {
-        firstGameActive = value;
-        PlayerPrefs.SetInt("FirstGame", value ? 1 : 0);
-        SaveData();
-        Debug.Log($"SetFirstGame ejecutado: firstGameActive = {firstGameActive}");
+        return PlayerPrefs.GetInt(id, 0) == 1;
     }
 }
