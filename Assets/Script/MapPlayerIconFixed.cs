@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapPlayerIcon_Fixed : MonoBehaviour
+public class MapPlayerIconFixed : MonoBehaviour
 {
     [Header("Referencias UI")]
     public RectTransform mapRect;        // RectTransform del panel del mapa (Image/RawImage)
