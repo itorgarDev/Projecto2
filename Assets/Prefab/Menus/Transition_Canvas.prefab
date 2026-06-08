@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 157023535049061063}
   - component: {fileID: 6966488710529686277}
   - component: {fileID: 1640881500316263058}
+  - component: {fileID: 4444408124008476953}
   m_Layer: 5
   m_Name: Transition_Canvas
   m_TagString: Untagged
@@ -315,11 +316,8 @@ MonoBehaviour:
   sceneDestination: 1
   checkpointDestination: 0
   transitionTime: 1
-  transitionFadeout: {fileID: 8168577475121259311}
   imageOut: {fileID: 8032793887680247202}
-  menuPrincipal: {fileID: 0}
-  menuAreUSure: {fileID: 0}
-  whereCutscene: 0
+  transitionFadeout: {fileID: 8168577475121259311}
 --- !u!114 &1640881500316263058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +332,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionFadein: {fileID: 5200149603510040795}
   imageIn: {fileID: 1599880014612711452}
+--- !u!114 &4444408124008476953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684135727211616487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6812033f0453444b8e840bf54d766d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTime: 1
+  imageOut: {fileID: 0}
+  transitionFadeout: {fileID: 0}
+  menuPrincipal: {fileID: 0}
+  menuAreUSure: {fileID: 0}
+  sceneDestination: 0
+  checkpointDestination: 0
+  whereCutscene: 0
+  firstGame: 0
 --- !u!1 &8032793887680247202
 GameObject:
   m_ObjectHideFlags: 0

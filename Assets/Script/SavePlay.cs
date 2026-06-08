@@ -97,6 +97,7 @@
 
     private void MoverJugadorAlEntrar(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("<color=purple>[ALERTA MÁXIMA]</color> ¡Alguien ha invocado MoverJugadorAlEntrar()!");
         SceneManager.sceneLoaded -= MoverJugadorAlEntrar;
 
         // --- LOG DE ARRANQUE EN DESTINO ---

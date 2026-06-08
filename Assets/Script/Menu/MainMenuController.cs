@@ -7,7 +7,7 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Configuración de Transición")]
     public float transitionTime = 1f;
-    public GameObject imageOut;             // Panel negro de UI para fadeout
+    public GameObject imageOut;              // Panel negro de UI para fadeout
     public Animator transitionFadeout;      // Animator con el trigger "StartFade"
 
     [Header("Paneles del Menú")]
@@ -34,6 +34,18 @@ public class MainMenuController : MonoBehaviour
         if (imageOut != null) imageOut.SetActive(false);
         if (menuPrincipal != null) menuPrincipal.SetActive(true);
         if (menuAreUSure != null) menuAreUSure.SetActive(false);
+
+        // CORRECCIÓN 1: Cargar datos guardados para que 'firstGame' no sea siempre false
+        if (SavePlay.Instance != null)
+        {
+            SavePlay.Instance.LoadData();
+            firstGame = SavePlay.Instance.firstGameActive;
+            Debug.Log("MainMenuController inicializado. ¿Partida activa?: " + firstGame);
+        }
+
+        // CORRECCIÓN 2: Recuperar el estado guardado de 'whereCutscene' al cambiar de escena
+        whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
+        Debug.Log("Estado de whereCutscene recuperado: " + whereCutscene);
     }
 
     // --- EL BOTÓN DE CONTINUAR / JUGAR ---
@@ -80,9 +92,6 @@ public class MainMenuController : MonoBehaviour
         }
 
         RespawnSystem.CurrentCheckpointIndex = 0;
-
-        // Tras borrar todo, iniiamos el juego en la escena inicial
-        StartCoroutine(LoadSceneRoutine(5));
     }
 
     public void LoadFromCheckpoint()
@@ -150,7 +159,23 @@ public class MainMenuController : MonoBehaviour
 
     public void YesIAm()
     {
+        // CORRECCIÓN 3: Al confirmar el borrado, inicializar correctamente el flujo hacia la escena 3
         ResetPrefs();
+
+        if (SavePlay.Instance != null)
+        {
+            SavePlay.Instance.SetFirstGame(true);
+            SavePlay.Instance.lastCheckpoint = 0;
+        }
+
+        whereCutscene = true;
+        PlayerPrefs.SetInt("WhereCutscene", 1);
+        RespawnSystem.CurrentCheckpointIndex = 0;
+
+        if (menuAreUSure != null) menuAreUSure.SetActive(false);
+        if (menuPrincipal != null) menuPrincipal.SetActive(true);
+
+        GoToDestination(3);
     }
 
     public void QuitGame()
