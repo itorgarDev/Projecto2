@@ -7740,8 +7740,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.662989
+      objectReference: {fileID: 0}
+    - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.0999756
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
         type: 3}
@@ -7751,7 +7756,7 @@ PrefabInstance:
     - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -510.3
+      value: -508.82
       objectReference: {fileID: 0}
     - target: {fileID: 216947284479651183, guid: c68781c7255aa0643bf1d550927347e0,
         type: 3}
@@ -27747,6 +27752,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586457be80ad5a347a169963916073c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1381025708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4444408124008476953, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1381025704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6812033f0453444b8e840bf54d766d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1382488456
 GameObject:
   m_ObjectHideFlags: 0
@@ -28386,7 +28403,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1381025707}
+      objectReference: {fileID: 1381025708}
     - target: {fileID: 1062205342868667329, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -28400,7 +28417,7 @@ PrefabInstance:
     - target: {fileID: 1062205342868667329, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Menu_System, Assembly-CSharp
+      value: MainMenuController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1062205342868667329, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}

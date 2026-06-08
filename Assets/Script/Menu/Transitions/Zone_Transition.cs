@@ -25,7 +25,6 @@ public class ZoneTransition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Al tocar la puerta, si no estamos ya en transición, iniciamos el viaje
         if (other.CompareTag("Player") && !viajando)
         {
             StartCoroutine(LoadSceneRoutine());
@@ -48,42 +47,36 @@ public class ZoneTransition : MonoBehaviour
             SavePlay.Instance.SaveData();
         }
 
-        PlayerPrefs.Save();
-
-        Debug.Log($"<color=cyan>[TRANSICIÓN - PASO 2]</color> Datos guardados en disco duro. " +
-                  $"Iniciando FadeOut...");
-
         if (imageOut != null) imageOut.SetActive(true);
         if (transitionFadeout != null) transitionFadeout.SetTrigger("StartFade");
 
-        // Esperamos el tiempo de fundido a negro visual
-        yield return new WaitForSecondsRealtime(transitionTime);
+        yield return new WaitForSeconds(transitionTime);
 
-        // --- EL NUEVO MOTOR DE CARGA ULTRA SEGURO ---
-        // Cargamos la escena de forma asíncrona en segundo plano
-        AsyncOperation operacionCarga = SceneManager.LoadSceneAsync(sceneDestination);
+        // ==========================================
+        // SOLUCIÓN A LO BRUTO: Volvemos la puerta inmortal temporalmente
+        // para que Unity NO mate este script al cambiar de escena.
+        // ==========================================
+        DontDestroyOnLoad(gameObject);
 
-        // Le prohibimos activar la escena hasta que no esté cargada al 100% en memoria
-        operacionCarga.allowSceneActivation = false;
-
-        // Bucle de espera: se mantiene aquí dentro mientras la escena pesada se procesa
-        while (operacionCarga.progress < 0.9f)
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneDestination);
+        while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        // Ya se cargó todo en memoria. Ahora sí, permitimos que Unity la muestre en pantalla
-        operacionCarga.allowSceneActivation = true;
-
-        // Esperamos un único frame a que la jerarquía de objetos despierte en la nueva escena
+        // Esperamos a que el motor físico y los objetos de la nueva escena terminen de nacer
         yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
 
-        // --- TELETRANSPORTE DIRECTO (Inmune a errores de otros scripts) ---
-        Debug.Log($"<color=green>[TRANSICIÓN - SEGURO ACTIVO]</color> Escena estabilizada. Buscando Checkpoint {checkpointDestination} de forma directa...");
+        Debug.Log($"<color=green>[TRANSICIÓN - SEGURO ACTIVO]</color> Escena estabilizada. Moviendo jugador al checkpoint {checkpointDestination}...");
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
+            // Desactivamos el Rigidbody temporalmente para que las físicas no lo succionen a la cama
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            if (rb != null) rb.isKinematic = true;
+
             Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
             Checkpoint puntoDeAparicion = null;
 
@@ -106,12 +99,24 @@ public class ZoneTransition : MonoBehaviour
             {
                 player.transform.position = checkpoints[0].transform.position;
                 RespawnSystem.LastCheckpointPos = checkpoints[0].transform.position;
-                Debug.LogWarning($"<color=yellow>[AVISO]</color> No se encontró el CP {checkpointDestination}. Enviado al inicial de emergencia.");
+            }
+
+            // Le devolvemos el estado físico normal tras moverlo
+            yield return new WaitForFixedUpdate();
+            if (rb != null)
+            {
+                rb.velocity = Vector3.zero;
+                rb.isKinematic = false;
             }
         }
         else
         {
             Debug.LogError("<color=red>[ERROR]</color> No se encontró al objeto con el Tag 'Player' tras la carga asíncrona.");
         }
+
+        viajando = false;
+
+        // Una vez terminado el trabajo con éxito, destruimos la puerta vieja de la escena anterior para no dejar basura
+        Destroy(gameObject);
     }
 }

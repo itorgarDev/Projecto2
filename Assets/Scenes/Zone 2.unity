@@ -5086,11 +5086,8 @@ MonoBehaviour:
   sceneDestination: 7
   checkpointDestination: 30
   transitionTime: 1
-  transitionFadeout: {fileID: 10057956}
   imageOut: {fileID: 10057955}
-  menuPrincipal: {fileID: 0}
-  menuAreUSure: {fileID: 0}
-  whereCutscene: 0
+  transitionFadeout: {fileID: 10057956}
 --- !u!65 &569917318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5956,6 +5953,11 @@ PrefabInstance:
       propertyPath: imageOut
       value: 
       objectReference: {fileID: 10057955}
+    - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3433526719673815273, guid: b72faef721966744bbd2c1ae598eff87,
         type: 3}
       propertyPath: sceneDestination

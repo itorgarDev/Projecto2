@@ -4369,12 +4369,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460366349}
   m_CullTransparentMesh: 1
---- !u!1 &1467924540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2684135727211616487, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
-    type: 3}
-  m_PrefabInstance: {fileID: 7908105233485163005}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1571420705
 GameObject:
   m_ObjectHideFlags: 0
@@ -14436,7 +14430,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7908105233485163005}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467924540}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 586457be80ad5a347a169963916073c7, type: 3}
@@ -17443,11 +17437,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2684135727211616487, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8379892599959295610}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e09abc59ddb06d4a90dd4d578f2ef36, type: 3}
 --- !u!222 &7922686833078868107
 CanvasRenderer:
@@ -17757,27 +17747,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7908105233485163005}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8379892599959295610
+--- !u!114 &8379892599959295610 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4444408124008476953, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+    type: 3}
+  m_PrefabInstance: {fileID: 7908105233485163005}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467924540}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6812033f0453444b8e840bf54d766d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 1
-  imageOut: {fileID: 0}
-  transitionFadeout: {fileID: 0}
-  menuPrincipal: {fileID: 0}
-  menuAreUSure: {fileID: 0}
-  sceneDestination: 0
-  checkpointDestination: 0
-  whereCutscene: 0
-  firstGame: 0
 --- !u!224 &8390150148074647639
 RectTransform:
   m_ObjectHideFlags: 0
