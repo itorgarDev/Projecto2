@@ -7,12 +7,27 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Configuración de Transición")]
     public float transitionTime = 1f;
-    public GameObject imageOut;             // Tu panel negro de UI
-    public Animator transitionFadeout;     // Tu Animator con el trigger "StartFade"
+    public GameObject imageOut;             // Panel negro de UI para fadeout
+    public Animator transitionFadeout;      // Animator con el trigger "StartFade"
 
     [Header("Paneles del Menú")]
     public GameObject menuPrincipal;
     public GameObject menuAreUSure;
+
+    [Header("Destinos de Escena / Triggers (Menu_System)")]
+    public int sceneDestination;
+    public int checkpointDestination;
+    public bool whereCutscene;
+
+    // Variables estáticas de control de flujo
+    public static bool returningToScene = false;
+    public static bool isResumingGame = false;
+    public static bool comingFromCheckpointButton = false;
+
+    // Variables internas de estado
+    public bool firstGame = false;
+    private int current;
+
 
     private void Start()
     {
@@ -24,27 +39,26 @@ public class MainMenuController : MonoBehaviour
     // --- EL BOTÓN DE CONTINUAR / JUGAR ---
     public void StartGame()
     {
-        if (SavePlay.Instance != null)
+        // Evaluamos si el jugador ya tiene una partida activa para avisar
+        if (firstGame)
         {
-            // Cargamos los datos guardados en el disco
-            SavePlay.Instance.LoadData();
-
-            // Si es la primera vez que juega, mandamos a la escena inicial (ej: 5) y checkpoint 0
-            if (SavePlay.Instance.lastScene <= 0)
+            AreYouSure();
+        }
+        else
+        {
+            ResetPrefs();
+            Debug.Log("StartGame pulsado (Nueva Partida)");
+            if (SavePlay.Instance != null)
             {
-                RespawnSystem.CurrentCheckpointIndex = 0;
+                SavePlay.Instance.SetFirstGame(true);
                 SavePlay.Instance.lastCheckpoint = 0;
-                SavePlay.Instance.lastScene = 5; // Tu zona de juego inicial
-                SavePlay.Instance.SaveData();
             }
-            else
-            {
-                // Si ya tenía partida, el RespawnSystem leerá el checkpoint guardado
-                RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
-            }
+            whereCutscene = true;
+            PlayerPrefs.SetInt("WhereCutscene", 1);
+            RespawnSystem.CurrentCheckpointIndex = 0;
 
-            // Iniciamos la carga con el fundido a negro
-            StartCoroutine(LoadSceneRoutine(SavePlay.Instance.lastScene));
+            // Carga la escena inicial por defecto (Escena 3 según Menu_System original)
+            GoToDestination(3);
         }
     }
 
@@ -67,8 +81,58 @@ public class MainMenuController : MonoBehaviour
 
         RespawnSystem.CurrentCheckpointIndex = 0;
 
-        // Tras borrar todo, iniciamos el juego en la escena inicial
+        // Tras borrar todo, iniiamos el juego en la escena inicial
         StartCoroutine(LoadSceneRoutine(5));
+    }
+
+    public void LoadFromCheckpoint()
+    {
+        if (SavePlay.Instance != null)
+        {
+            // 1. Forzamos la lectura de los datos guardados en el disco duro
+            SavePlay.Instance.LoadData();
+
+            isResumingGame = true;
+
+            // 2. Sincronizamos el checkpoint guardado con el sistema global de Respawn
+            RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
+
+            // 3. Enviamos al jugador a la escena guardada usando tus transiciones visuales
+            GoToDestination(SavePlay.Instance.lastScene);
+        }
+        else
+        {
+            Debug.LogError("No se puede cargar la partida porque SavePlay.Instance es nulo.");
+        }
+    }
+
+    public void GoToDestination(int valor)
+    {
+        sceneDestination = valor;
+        if (imageOut != null) imageOut.SetActive(true);
+        if (transitionFadeout != null) transitionFadeout.SetTrigger("StartFade");
+
+        StartCoroutine(LoadSceneWithTransition());
+    }
+
+    private IEnumerator LoadSceneWithTransition()
+    {
+        yield return new WaitForSecondsRealtime(transitionTime);
+        SceneManager.LoadScene(sceneDestination);
+        Debug.Log("Escena cargada exitosamente mediante transición.");
+    }
+
+    public void GoToCutscene(int valorScene)
+    {
+        PlayerPrefs.SetInt("WhereCutscene", 0);
+        if (imageOut != null) imageOut.SetActive(true);
+        GoToDestination(valorScene);
+    }
+
+    public void WhereToCutscene()
+    {
+        if (whereCutscene) GoToDestination(5);
+        else GoToDestination(0);
     }
 
     // --- MÉTODOS AUXILIARES DE TU MENÚ ORIGINAL ---
