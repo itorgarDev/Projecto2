@@ -119,4 +119,5 @@ public class ZoneTransition : MonoBehaviour
         // Una vez terminado el trabajo con éxito, destruimos la puerta vieja de la escena anterior para no dejar basura
         Destroy(gameObject);
     }
+
 }

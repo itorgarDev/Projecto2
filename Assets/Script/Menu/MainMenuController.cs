@@ -94,26 +94,7 @@ public class MainMenuController : MonoBehaviour
         RespawnSystem.CurrentCheckpointIndex = 0;
     }
 
-    public void LoadFromCheckpoint()
-    {
-        if (SavePlay.Instance != null)
-        {
-            // 1. Forzamos la lectura de los datos guardados en el disco duro
-            SavePlay.Instance.LoadData();
-
-            isResumingGame = true;
-
-            // 2. Sincronizamos el checkpoint guardado con el sistema global de Respawn
-            RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
-
-            // 3. Enviamos al jugador a la escena guardada usando tus transiciones visuales
-            GoToDestination(SavePlay.Instance.lastScene);
-        }
-        else
-        {
-            Debug.LogError("No se puede cargar la partida porque SavePlay.Instance es nulo.");
-        }
-    }
+    
 
     public void GoToDestination(int valor)
     {
@@ -124,12 +105,7 @@ public class MainMenuController : MonoBehaviour
         StartCoroutine(LoadSceneWithTransition());
     }
 
-    private IEnumerator LoadSceneWithTransition()
-    {
-        yield return new WaitForSecondsRealtime(transitionTime);
-        SceneManager.LoadScene(sceneDestination);
-        Debug.Log("Escena cargada exitosamente mediante transición.");
-    }
+   
 
     public void GoToCutscene(int valorScene)
     {
@@ -193,5 +169,107 @@ public class MainMenuController : MonoBehaviour
         yield return new WaitForSecondsRealtime(transitionTime);
 
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadFromCheckpoint()
+    {
+        if (SavePlay.Instance != null)
+        {
+            // 1. Forzamos la lectura de los datos guardados en el disco duro
+            SavePlay.Instance.LoadData();
+
+            isResumingGame = true;
+
+            // 2. Sincronizamos el checkpoint guardado con el sistema global de Respawn
+            RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
+
+            // Asignamos el destino para que la corrutina sepa a dónde ir
+            sceneDestination = SavePlay.Instance.lastScene;
+
+            // 3. Activamos los componentes visuales del fundido (fadeout)
+            if (imageOut != null) imageOut.SetActive(true);
+            if (transitionFadeout != null) transitionFadeout.SetTrigger("StartFade");
+
+            // 4. Arrancamos la corrutina clonada con la lógica de recolocación in-game
+            StartCoroutine(LoadSceneWithTransition());
+        }
+        else
+        {
+            Debug.LogError("No se puede cargar la partida porque SavePlay.Instance es nulo.");
+        }
+    }
+
+    // NUEVA CORRUTINA CLONADA EXACTAMENTE DE ZONE_TRANSITION
+    private IEnumerator LoadSceneWithTransition()
+    {
+        // Esperamos el tiempo del fadeout en tiempo real (ideal para menús)
+        yield return new WaitForSecondsRealtime(transitionTime);
+
+        // =========================================================================
+        // TRUCO DE INMORTALIDAD: Volvemos este objeto del menú inmortal temporalmente 
+        // para que Unity NO lo destruya al cambiar de escena y pueda mover al jugador.
+        // =========================================================================
+        DontDestroyOnLoad(gameObject);
+
+        // Carga asíncrona exactamente igual a la de tu puerta
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneDestination);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        // Esperamos a que el motor físico y los objetos de la nueva escena terminen de nacer
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
+
+        Debug.Log($"<color=green>[MENU - SEGURO ACTIVO]</color> Escena cargada desde Reanudar. Moviendo jugador al checkpoint {RespawnSystem.CurrentCheckpointIndex}...");
+
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            // Desactivamos el Rigidbody temporalmente para que las físicas no hagan cosas raras al nacer
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            if (rb != null) rb.isKinematic = true;
+
+            Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
+            Checkpoint puntoDeAparicion = null;
+
+            foreach (Checkpoint cp in checkpoints)
+            {
+                if (cp.numeroCkeckpoint == RespawnSystem.CurrentCheckpointIndex)
+                {
+                    puntoDeAparicion = cp;
+                    break;
+                }
+            }
+
+            if (puntoDeAparicion != null)
+            {
+                player.transform.position = puntoDeAparicion.transform.position;
+                RespawnSystem.LastCheckpointPos = puntoDeAparicion.transform.position;
+                Debug.Log($"<color=green>[ÉXITO REANUDAR]</color> Jugador reposicionado en {puntoDeAparicion.transform.position}");
+            }
+            else if (checkpoints.Length > 0)
+            {
+                player.transform.position = checkpoints[0].transform.position;
+                RespawnSystem.LastCheckpointPos = checkpoints[0].transform.position;
+            }
+
+            // Le devolvemos el estado físico normal tras moverlo
+            yield return new WaitForFixedUpdate();
+            if (rb != null)
+            {
+                rb.velocity = Vector3.zero;
+                rb.isKinematic = false;
+            }
+        }
+        else
+        {
+            Debug.LogError("<color=red>[ERROR MENU]</color> No se encontró al objeto con el Tag 'Player' al reanudar.");
+        }
+
+        // Una vez terminado el trabajo con éxito, destruimos este objeto de menú que ya no necesitamos
+        // para evitar que se quede duplicado si vuelves al menú principal más tarde.
+        Destroy(gameObject);
     }
 }
