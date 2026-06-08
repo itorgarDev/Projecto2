@@ -3678,7 +3678,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8379892599959295610}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: LoadFromCheckpoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17774,6 +17774,10 @@ MonoBehaviour:
   transitionFadeout: {fileID: 0}
   menuPrincipal: {fileID: 0}
   menuAreUSure: {fileID: 0}
+  sceneDestination: 0
+  checkpointDestination: 0
+  whereCutscene: 0
+  firstGame: 0
 --- !u!224 &8390150148074647639
 RectTransform:
   m_ObjectHideFlags: 0
