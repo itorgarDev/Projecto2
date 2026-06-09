@@ -2363,7 +2363,7 @@ RectTransform:
   m_GameObject: {fileID: 796477307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69, y: 0.69, z: 0.69}
+  m_LocalScale: {x: 1.452312, y: 1.452312, z: 1.452312}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2080430079}
@@ -5551,7 +5551,7 @@ RectTransform:
   m_GameObject: {fileID: 1827071486}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.74, y: 0.74, z: 0.73999995}
+  m_LocalScale: {x: 1.557552, y: 1.557552, z: 1.5575519}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1270593464}
@@ -17434,6 +17434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Transition_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684135727211616487, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4444408124008476953, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}
