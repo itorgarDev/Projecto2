@@ -1071,6 +1071,9 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   isBoss: 0
+  meshRenderer: {fileID: 8661188646586088302}
+  flashMaterial: {fileID: 2100000, guid: 99acb6c35e771504f990d3aa03968cf9, type: 2}
+  flashDuration: 0.15
   weaponCollider: {fileID: 6125424813775452330}
   hitboxDuration: 0.3
   attackCooldown: 1.2
