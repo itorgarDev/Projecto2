@@ -26,26 +26,7 @@ public class BossIdle : Idle
     {
         base.UpdateLogic();
 
-        if (bossFsm == null || enemy == null)
-            return;
-
-        // Primera transición: de wave 0 a 1
-        if (bossFsm.currentWave == 0 && enemy.CurrentHealth <= 4)
-        {
-            Debug.Log("[BossIdle] Vida <= 4: disparando Summon (wave 1)");
-            bossFsm.currentWave = 1;
-            stateMachineFlow.ChangeState(bossFsm.summonState);
-            return;
-        }
-
-        // Segunda transición: de wave 1 a 2
-        if (bossFsm.currentWave == 1 && enemy.CurrentHealth <= 2)
-        {
-            Debug.Log("[BossIdle] Vida <= 2: disparando Summon (wave 2)");
-            bossFsm.currentWave = 2;
-            stateMachineFlow.ChangeState(bossFsm.summonState);
-            return;
-        }
+       
 
         
     }
