@@ -19,11 +19,9 @@
         public int ataque;
         public int vida;
         public int maxHealth;
-    //        public bool bolsaItem1;
-        // Diccionario de ítems únicos recogidos
         public Dictionary<string, bool> collectedItems = new Dictionary<string, bool>();
 
-    [Space(10)]
+        [Space(10)]
         [Header("Logica menús")]
         public float masterVolume;
         public float musicVolume;
@@ -32,6 +30,8 @@
         public float quality;
         public bool fullScreen;
 
+        //Antes de Start, se cargan los datos y se encarga de que el gameObject del script se instancie
+        //Se instancia una variable con el indice de la escena actual
 
         void Awake()
         {
@@ -47,12 +47,9 @@
             LoadData();
 
             int currentScene = SceneManager.GetActiveScene().buildIndex;
-            if (currentScene == 3 || currentScene == 4)
-            {
-                Debug.Log($"Entrando en escena {currentScene} — se mantiene firstGameActive = {firstGameActive}");
-            }
+            
             SceneManager.sceneLoaded += OnSceneLoaded;
-            //maxHealth = PlayerPrefs.GetInt("MaxHealth", 3);
+            
         }
 
         private void OnDestroy()
@@ -60,8 +57,11 @@
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
+        //Metodo al terminar de cargar una escena
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+        //Se inicializa una variable que recoge el indice de la escena
+        //Para las escenas de cinematicas no se actualiza el lastScene para que no de problemas a la hora de reanudar escena desde el menu
             int index=scene.buildIndex;    
 
             if (scene.buildIndex == 0 || scene.buildIndex == 3 || scene.buildIndex == 4)
@@ -69,27 +69,13 @@
                 Debug.Log("Escena de menú detectada — no se actualiza lastScene.");
                 return;
             }
-        // Actualiza automáticamente la escena actual
-        /*  lastScene = index;
-          SaveData();
-          Debug.Log($"Escena actual guardada automáticamente: {lastScene}");*/
+        // Para las escenas in-game, nos aseguramos de que el valor del lastScene se actualice con el valor del indice y se llama al metodo SaveData
 
         if (index == 5 || index == 6 || index == 7)
         {
             lastScene = index;
-
-
-            // --- LOG DE AUTOGUARDADO DE ESCENA ---
-            Debug.Log($"<color=orange>[SAVEPLAY - ALERTA]</color> Escena de juego {index} detectada por SavePlay. " +
-                      $"Valor actual de lastCheckpoint en memoria ANTES de guardar: {lastCheckpoint}. " +
-                      $"Ejecutando SaveData()...");
-
             SaveData();
-            Debug.Log($"[SavePlay] Zona de juego detectada y guardada automáticamente: {lastScene}");
-        }
-        else
-        {
-            Debug.Log($"[SavePlay] Escena {index} (Menú/Prueba/Cinemática) detectada — No se actualiza lastScene.");
+
         }
 
         }
@@ -97,13 +83,12 @@
 
     private void MoverJugadorAlEntrar(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("<color=purple>[ALERTA MÁXIMA]</color> ¡Alguien ha invocado MoverJugadorAlEntrar()!");
+       
         SceneManager.sceneLoaded -= MoverJugadorAlEntrar;
 
-        // --- LOG DE ARRANQUE EN DESTINO ---
-        Debug.Log($"<color=green>[BIENVENIDO A LA NUEVA ESCENA]</color> Buscando checkpoints... " +
-                  $"RespawnSystem.CurrentCheckpointIndex tiene: {RespawnSystem.CurrentCheckpointIndex}. " +
-                  $"SavePlay.Instance.lastCheckpoint tiene: {(SavePlay.Instance != null ? SavePlay.Instance.lastCheckpoint.ToString() : "NULL")}");
+        // Al entrar en la nueva escena, inicializa una variable GameObject y busca al jugador para que sea su valor
+        // También crea un array de clase Checkpoint para analizar y meter a todos los checkpoints
+        //Aquí llama a cada checkpoint del array y si el indice coincide con el valor currentCheckpointSystem, 
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player == null) return;
@@ -120,18 +105,16 @@
             }
         }
 
+        //Si el numero coincide con un indice, el jugador se transforma a la posicion. Si no, devuelve al jugador al checkpoint con el indice 0 (valor inicial)
         if (puntoDeAparicion != null)
-        {
-            // --- LOG DE ÉXITO ---
-            Debug.Log($"<color=green>[ÉXITO]</color> Se encontró el checkpoint número {RespawnSystem.CurrentCheckpointIndex} " +
-                      $"en la posición {puntoDeAparicion.transform.position}. Moviendo jugador...");
+        {    
 
             player.transform.position = puntoDeAparicion.transform.position;
             RespawnSystem.LastCheckpointPos = puntoDeAparicion.transform.position;
         }
         else if (checkpoints.Length > 0)
         {
-            // --- LOG DE FALLO ---
+            
             Debug.LogWarning($"<color=red>[FALLO CRÍTICO]</color> No existe ningún script Checkpoint con el número {RespawnSystem.CurrentCheckpointIndex} " +
                              $"en esta escena. El jugador será enviado al index 0 que está en: {checkpoints[0].transform.position}");
 
@@ -177,7 +160,7 @@
         ataque = PlayerPrefs.GetInt("Ataque", 1);
         maxHealth = PlayerPrefs.GetInt("MaxHealth", 5);
 
-        collectedItems.Clear(); // Limpiamos el diccionario para evitar datos basura
+        collectedItems.Clear();
 
         masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
