@@ -75,6 +75,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool dyingProcessStarted = false;
 
+    [SerializeField] private float attackSoundCooldown = 0.5f; // Duración del cooldown en segundos
+    private float lastAttackSoundTime = -Mathf.Infinity;
+
+
     void Awake()
     {
         controls = new PlayerControls();
@@ -380,9 +384,16 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed && playerAttack != null)
         {
             playerAttack.PerformAttack();
-            SoundController.Instance.PlaySFX(SoundController.Instance.attackSfx);
+
+            if (Time.time - lastAttackSoundTime >= attackSoundCooldown)
+            {
+                SoundController.Instance.PlaySFX(SoundController.Instance.attackSfx);
+                lastAttackSoundTime = Time.time; // Actualiza el tiempo del último sonido
+            }
         }
     }
+
+   
 
     public void TakeDamage(int amount)
     {
