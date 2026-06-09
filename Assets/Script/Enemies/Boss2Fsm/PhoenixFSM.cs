@@ -94,6 +94,12 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     private void Die()
     {
         isDead = true;
+        Health = 0f;
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.UntrackBoss(); 
+        }
+
         Debug.Log("[Fenix] El jefe a sido derrotado");
         Key.SetActive(true);
         Destroy(gameObject);
