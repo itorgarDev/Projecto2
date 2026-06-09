@@ -15717,6 +15717,7 @@ Transform:
   - {fileID: 1728356765}
   - {fileID: 1141403158}
   - {fileID: 932367601}
+  - {fileID: 2112054968}
   - {fileID: 1506175245}
   - {fileID: 1570948791}
   m_Father: {fileID: 0}
@@ -41015,6 +41016,122 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 44.7293, y: 44.55313, z: 108.50532}
   m_Center: {x: -38.68403, y: 21.776566, z: -55.556763}
+--- !u!1001 &2112054967
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 822065985}
+    m_Modifications:
+    - target: {fileID: 2839182011049518610, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_Name
+      value: Qiumeda
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -229
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -318
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: name
+      value: Qiumeda, la seca
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: npcName
+      value: 
+      objectReference: {fileID: 1329424524}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: dialogueName
+      value: 
+      objectReference: {fileID: 1329424525}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 1329424526}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: dialoguePanel
+      value: 
+      objectReference: {fileID: 1329424527}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: message.Array.data[0]
+      value: "\xA1Ten mucho cuidado al entrar al mar! Hay muchas historias de bestias
+        marinas que te arrastran a las profundidades..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: message.Array.data[1]
+      value: "...Bueno...en realidad, no. \xBFPero sabes por que no deber\xEDas meterte?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+        type: 3}
+      propertyPath: message.Array.data[2]
+      value: "\xA1Porque luego toca secarse! \xA1Con la de pelos que tenemos, como
+        para mojarse!"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7bda7107daff9034f9696f03bfdf9fbc, type: 3}
+--- !u!4 &2112054968 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3183231656844164264, guid: 7bda7107daff9034f9696f03bfdf9fbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2112054967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2114806473
 PrefabInstance:
   m_ObjectHideFlags: 0
