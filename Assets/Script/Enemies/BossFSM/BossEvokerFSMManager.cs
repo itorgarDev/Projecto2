@@ -78,7 +78,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
     {
         aliveMinions++;
         System.Action deathHandler = null;
-        deathHandler = () =>
+        deathHandler = () => //recursividad  pq el pool del enemy desactivaba al cocodrilo pero este al volver en la 2 oleada no se podia quitar pq uya se habia quitado
         {
             aliveMinions--;
             e.OnDeath -= deathHandler; // Se desuscribe pa que el pool no acumule basura
