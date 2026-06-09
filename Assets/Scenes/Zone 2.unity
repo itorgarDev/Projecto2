@@ -14026,6 +14026,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1562125289}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &1367836206 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4839889797365401942, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1563731704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1392818079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16520,6 +16526,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5345719884155230349, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+        type: 3}
+      propertyPath: weaponTrail
+      value: 
+      objectReference: {fileID: 1367836206}
     - target: {fileID: 5468280627090522922, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: m_Layer
@@ -16646,7 +16657,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6825380762276466382, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
+    - {fileID: 6491897346692780361, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
+    - {fileID: 7047780990032654712, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
