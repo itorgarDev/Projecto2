@@ -1995,6 +1995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3792841547067137440}
+  - component: {fileID: 3841474720835112912}
   m_Layer: 5
   m_Name: E_Icono
   m_TagString: Untagged
@@ -2022,6 +2023,27 @@ RectTransform:
   m_AnchoredPosition: {x: 900, y: -377}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &3841474720835112912
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779271058450869097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69dbb73b063758a4bb90a574256c2b9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5937744640292481132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,9 +2321,9 @@ RectTransform:
   - {fileID: 2454820819663241956}
   - {fileID: 3416983913140159256}
   - {fileID: 7974894070337793306}
+  - {fileID: 4826980507363161061}
   - {fileID: 8984431184910789721}
   - {fileID: 5537921694813443656}
-  - {fileID: 4826980507363161061}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
