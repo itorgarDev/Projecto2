@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyFSMManager : StateMachineFlow, IDamageable
 {
@@ -33,6 +34,15 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     public float CurrentHealth => currentHealth;
     public event System.Action OnDeath;
 
+    [Header("Hit Flash (Cambio de Material)")]
+    [SerializeField] private SkinnedMeshRenderer meshRenderer; 
+    [SerializeField] private Material flashMaterial; 
+    [SerializeField] private float flashDuration = 0.15f;
+
+    private Material originalMaterial;
+    private bool hasRenderer = false;
+    private Coroutine flashCoroutine;
+
     [Header("Ataque")]
     [SerializeField] public Collider weaponCollider;
     [SerializeField] public float hitboxDuration = 0.3f;
@@ -65,6 +75,11 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
         deathState = new Death(this); 
 
         weaponCollider.enabled = false;
+        if (meshRenderer != null)
+        {
+            originalMaterial = meshRenderer.sharedMaterial;
+            hasRenderer = true;
+        }
         InitializeStats();
     }
 
@@ -72,6 +87,9 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
     private void OnEnable()
     {
         InitializeStats();
+        //  por si vuelve en rojo
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        if (hasRenderer) meshRenderer.sharedMaterial = originalMaterial;
 
         if (rb != null)
         {
@@ -189,7 +207,12 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
 
-       
+        if (hasRenderer && currentHealth > 0)
+        {
+            if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+            flashCoroutine = StartCoroutine(TriggerFlashEffect());
+        }
+
         if (SoundController.Instance != null)
         {
             SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
@@ -200,11 +223,19 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
             Die();
         }
     }
-
+    private IEnumerator TriggerFlashEffect()
+    {
+        meshRenderer.sharedMaterial = flashMaterial;
+        yield return new WaitForSeconds(flashDuration);
+        meshRenderer.sharedMaterial = originalMaterial;
+        flashCoroutine = null;
+    }
     private void Die()
     {
         OnDeath?.Invoke();
-
+        // por si palma rojo
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        if (hasRenderer) meshRenderer.sharedMaterial = originalMaterial;
         // Cambiamos inmediatamente al estado de Muerte en la FSM para apagar la IA
         ChangeState(deathState);
 

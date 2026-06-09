@@ -57,7 +57,10 @@ public class DummyDamageable : MonoBehaviour, IDamageable
         {
             HUDController.Instance.UntrackDummy();
         }
-        key.SetActive(true);
+        if (key != null)
+        {
+            key.SetActive(true);
+        }
         Destroy(gameObject);
     }
 }
