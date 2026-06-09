@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 132734553910446219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.32, y: 0.83, z: -0.81}
+  m_LocalPosition: {x: -0.65, y: 0.83, z: -0.77}
   m_LocalScale: {x: 1.0884, y: 1.0884, z: 1.0884}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1764,8 +1764,8 @@ Transform:
   m_GameObject: {fileID: 2552006123931703683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.87, y: 1.25, z: -0.23}
-  m_LocalScale: {x: 14.261379, y: 14.261379, z: 14.261379}
+  m_LocalPosition: {x: -0.87, y: 1.16, z: -2.69}
+  m_LocalScale: {x: 16.782791, y: 16.782791, z: 16.782791}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8446051589930535357}
@@ -4079,8 +4079,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.390487, y: 11.372421, z: 10.378992}
-  m_Center: {x: -1.2234699, y: -0.025047302, z: -2.6647298}
+  m_Size: {x: 9.390487, y: 11.497995, z: 10.378992}
+  m_Center: {x: -1.2234697, y: -0.08783412, z: -2.6647296}
 --- !u!114 &5813730826650286810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4113,6 +4113,7 @@ MonoBehaviour:
   hitboxDuration: 0.3
   attackCooldown: 1.2
   damage: 1
+  soundType: 0
   currentWave: 0
   aliveMinions: 0
   isShielded: 0
@@ -4680,8 +4681,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875389046221292063}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.019656748, z: -0, w: 0.99980676}
-  m_LocalPosition: {x: 7.0319867, y: 0, z: -4.623686}
+  m_LocalRotation: {x: -0, y: 0.019656712, z: -0, w: 0.9998068}
+  m_LocalPosition: {x: 7.031979, y: 0, z: -4.6236863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -23,11 +23,11 @@ public class Death : TemplateStateMachine
 
     public override void UpdateLogic()
     {
-        // No hacemos absolutamente nada aquí. El bicho está muerto.
+        // No hacemos  nada  El bicho esta muerto.
     }
 
     public override void Updatephysics()
     {
-        // No hacemos absolutamente nada aquí. Tampoco se mueve con físicas.
+        // igual que arriba
     }
 }

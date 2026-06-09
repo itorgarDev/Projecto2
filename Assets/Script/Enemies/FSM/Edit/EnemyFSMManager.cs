@@ -182,33 +182,21 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
         }
     }
 
-    public void SystemTakeDamage(float amount)
+    public virtual void SystemTakeDamage(float amount)
     {
         if (currentHealth <= 0) return; // Si ya está muerto, no recibe más daño
 
         currentHealth -= amount;
         Debug.Log($"[{gameObject.name}] Daño recibido: {amount}. Vida restante: {currentHealth}");
 
+       
+        if (SoundController.Instance != null)
+        {
+            SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
+        }
+
         if (currentHealth <= 0)
         {
-            switch (soundType)
-            {
-                case EnemySoundType.Xuanwu:
-                    SoundController.Instance.PlaySFX(SoundController.Instance.xDamage);
-                    break;
-
-                case EnemySoundType.Normal:
-                    SoundController.Instance.PlaySFX(SoundController.Instance.cDamage);
-                    break;
-            }
-
-            if (isBoss)
-            {
-                var boss = GetComponent<BossEvokerFSMManager>();
-                if (boss != null)
-                    boss.EvaluateWaves();
-            }
-
             Die();
         }
     }
@@ -226,7 +214,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
             animator.SetTrigger("IsDead");
         }
 
-        // Frenar por completo las físicas y quitar colisiones para que ruede o traspase
+        // Frenar por completo las físicas y quitar colisiones 
         rb.velocity = Vector3.zero;
         rb.isKinematic = true;
         if (weaponCollider != null) weaponCollider.enabled = false;
@@ -236,16 +224,9 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
             mainCollider.enabled = false;
         }
 
-        // Sonido de muerte definitivo
-        switch (soundType)
+        if (SoundController.Instance != null)
         {
-            case EnemySoundType.Xuanwu:
-                SoundController.Instance.PlaySFX(SoundController.Instance.xMelee);
-                break;
-
-            case EnemySoundType.Normal:
-                SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
-                break;
+            SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
         }
 
         // Esperamos los 2 segundos exactos para que termine de caer al suelo antes de ocultarlo

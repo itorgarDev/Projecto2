@@ -36,7 +36,7 @@ public class Shield : TemplateStateMachine
         base.UpdateLogic();
 
         // Si no hay minions vuelve a Idle
-        if (_fsm.aliveMinions == 0)
+        if (_fsm.aliveMinions <= 0)
         {
             stateMachineFlow.ChangeState(_fsm.idleState);
         }
