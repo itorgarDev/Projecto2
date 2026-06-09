@@ -6429,7 +6429,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 10000
+    maxNumParticles: 8000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -6695,7 +6695,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10000
+      scalar: 8000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11694,6 +11694,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5345719884155230349, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+        type: 3}
+      propertyPath: weaponTrail
+      value: 
+      objectReference: {fileID: 1638630705}
     - target: {fileID: 5468280627090522922, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
         type: 3}
       propertyPath: m_Layer
@@ -11836,6 +11841,8 @@ PrefabInstance:
     - {fileID: 3461981149771454897, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
     - {fileID: 2486747313264406132, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
     - {fileID: 6825380762276466382, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
+    - {fileID: 6491897346692780361, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
+    - {fileID: 7047780990032654712, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374665a15dc5c0b4d9a187b9db7d16fd, type: 3}
@@ -12502,7 +12509,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 10000
+    maxNumParticles: 8000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -12768,7 +12775,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10000
+      scalar: 8000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -34728,6 +34735,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1638127155}
   m_PrefabAsset: {fileID: 0}
+--- !u!96 &1638630705 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4839889797365401942, guid: 374665a15dc5c0b4d9a187b9db7d16fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 588667546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1642711156
 GameObject:
   m_ObjectHideFlags: 0
@@ -42136,6 +42149,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 960975561457695705, guid: 64e4fc08385be2644be4f9a93f15d5d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1062205342868667329, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -42299,7 +42317,7 @@ PrefabInstance:
     - target: {fileID: 4145923287997871928, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4197574718710294594, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
@@ -43211,7 +43229,7 @@ PrefabInstance:
     - target: {fileID: 2684135727211616487, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4457677906473522342, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}

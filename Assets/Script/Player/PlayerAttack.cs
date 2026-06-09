@@ -6,9 +6,10 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerStats stats;
 
-    [SerializeField] private Collider weaponCollider; // arrastra WeaponHitbox aquí
+    [SerializeField] private Collider weaponCollider; 
     [SerializeField] private float hitboxDuration = 0.3f;
     private bool hasDealtDamage = false;
+    [SerializeField] private TrailRenderer weaponTrail;
 
     private bool isAttacking;
     public bool IsAttacking => isAttacking;
@@ -19,6 +20,11 @@ public class PlayerAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         weaponCollider.enabled = false;
         stats = GetComponentInParent<PlayerStats>();
+
+        if (weaponTrail != null)
+        {
+            weaponTrail.enabled = false;
+        }
     }
 
 
@@ -30,13 +36,25 @@ public class PlayerAttack : MonoBehaviour
         animator.SetTrigger("Attack");
 
         weaponCollider.enabled = true;
+
+        if (weaponTrail != null)
+        {
+            weaponTrail.Clear(); // Limpia el trail de antes
+            weaponTrail.enabled = true;
+        }
+
         hasDealtDamage = false;
         Invoke(nameof(DisableCollider), hitboxDuration);
     }
 
     private void DisableCollider()
     {
-        weaponCollider.enabled = false;    
+        weaponCollider.enabled = false;
+
+        if (weaponTrail != null)
+        {
+            weaponTrail.enabled = false;
+        }
     }
     public void EndAttackAnimation()
     {
@@ -46,6 +64,12 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = false;
         weaponCollider.enabled = false;
+
+        if (weaponTrail != null)
+        {
+            weaponTrail.enabled = false;
+        }
+
         // Esto asegura que el animator no se quede en un estado de bucle infinito
         animator.ResetTrigger("Attack");
         Debug.Log("[PlayerAttack] Ataque forzado a cancelar por dash");
