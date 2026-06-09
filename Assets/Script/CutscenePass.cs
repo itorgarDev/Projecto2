@@ -11,7 +11,8 @@ public class CutscenePass : MonoBehaviour
     public float transitionTime = 1f;
     public GameObject imageOut;           // Panel negro de UI para fadeout
     public Animator transitionFadeout;    // Animator con el trigger "StartFade"
-
+    private bool isTransitioning = false;
+    int currentScene=SceneManager.GetActiveScene().buildIndex;
     void Awake()
     {
         // Obtenemos la referencia al componente VideoPlayer
@@ -22,6 +23,21 @@ public class CutscenePass : MonoBehaviour
     {
         // Nos suscribimos al evento que se activa al terminar el video
         videoPlayer.loopPointReached += EndCutscene;
+    }
+
+    void Update()
+    {
+        // Si el usuario pulsa cualquier tecla o botón del ratón, y NO ha empezado ya la transición...
+        if (Input.anyKeyDown && !isTransitioning)
+        {
+            // Opcional: Detener el video inmediatamente al saltarlo para que deje de sonar
+            if (videoPlayer != null && videoPlayer.isPlaying)
+            {
+                videoPlayer.Stop();
+            }
+
+            StartCoroutine(TransitionAndLoadRoutine());
+        }
     }
 
     void OnDisable()
@@ -51,19 +67,31 @@ public class CutscenePass : MonoBehaviour
 
         int sceneDestination;
 
-        if (startingGame)
+        if (currentScene == 4)
         {
-            sceneDestination = 5; // Destino si pulsó Jugar/Iniciar Juego
+            sceneDestination = 0;
+        }
+        else if (currentScene == 8)
+        {
+            sceneDestination = 4;
         }
         else
         {
-            sceneDestination = 0; // Destino si pulsó el botón de Ver Cinemática directamente
-        }
+            if (startingGame)
+            {
+                sceneDestination = 5; // Destino si pulsó Jugar/Iniciar Juego
+            }
+            else
+            {
+                sceneDestination = 0; // Destino si pulsó el botón de Ver Cinemática directamente
+            }
 
-        // Validación de seguridad para asegurarse de que la escena existe en Build Settings
-        if (sceneDestination < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(sceneDestination);
+            // Validación de seguridad para asegurarse de que la escena existe en Build Settings
+            if (sceneDestination < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(sceneDestination);
+            }
         }
+        
     }
 }
