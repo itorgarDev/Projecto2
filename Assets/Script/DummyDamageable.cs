@@ -22,7 +22,7 @@ public class DummyDamageable : MonoBehaviour, IDamageable
     public void SystemTakeDamage(float amount)
     {
         currentHealth -= amount;
-
+        SoundController.Instance.PlaySFX(SoundController.Instance.wood);
         Debug.Log($"{gameObject.name} recibió {amount} de daño. Vida restante: {currentHealth}");
 
         if (showBarInHUD && HUDController.Instance != null && currentHealth > 0)
@@ -52,7 +52,7 @@ public class DummyDamageable : MonoBehaviour, IDamageable
 
     private void Die()
     {
-      
+        SoundController.Instance.PlaySFX(SoundController.Instance.zExplosion);
         if (HUDController.Instance != null)
         {
             HUDController.Instance.UntrackDummy();

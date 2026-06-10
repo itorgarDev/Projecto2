@@ -25,37 +25,56 @@ public class MusicController : MonoBehaviour
     public AudioClip village2;
     public AudioClip boss2;
 
-    private Coroutine transitionRoutine;
+    private Coroutine fadeCoroutine;
+    [SerializeField] private float fadeDuration = 1.5f; // duración del fade en segundos
 
     public void Awake()
     {
-       // if (clip == null) return;
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        // Configurar el AudioSource para ambiente
-        //audioSource.clip = clip;
-        //audioSource.loop = true;
-        //audioSource.Play();
+        // Crear AudioSource
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = musicGroup;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
     }
+
+
 
     public void PlayMusic(AudioClip clip)
     {
         if (clip == null) return;
 
-        // Si ya hay una transición en curso, la detenemos
-        if (transitionRoutine != null)
-            StopCoroutine(transitionRoutine);
+        // Si ya está sonando esta música, no hacer nada
+        if (audioSource.clip == clip && audioSource.isPlaying)
+            return;
 
-        transitionRoutine = StartCoroutine(TransitionMusic(clip, 1f));
+
+        // Si ya hay un fade en curso, cancelarlo
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(FadeMusic(clip));
     }
 
-    private IEnumerator TransitionMusic(AudioClip newClip, float duration)
+    private IEnumerator FadeMusic(AudioClip newClip)
     {
         float startVolume = audioSource.volume;
 
-        //  Fase 1: bajar volumen
-        for (float t = 0; t < duration; t += Time.deltaTime)
+        // FADE OUT
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
             yield return null;
         }
 
@@ -63,14 +82,35 @@ public class MusicController : MonoBehaviour
         audioSource.clip = newClip;
         audioSource.Play();
 
-        //  Fase 2: subir volumen
-        for (float t = 0; t < duration; t += Time.deltaTime)
+        // FADE IN
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            audioSource.volume = Mathf.Lerp(0f, startVolume, t / duration);
+            audioSource.volume = Mathf.Lerp(0f, 1f, t / fadeDuration);
             yield return null;
         }
 
-        audioSource.volume = startVolume;
+        audioSource.volume = 1f;
     }
 
+    public void StopMusicSmooth()
+    {
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        fadeCoroutine = StartCoroutine(FadeOutCoroutine());
+    }
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        float startVolume = audioSource.volume;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.volume = 0f;
+        audioSource.Stop();
+    }
 }

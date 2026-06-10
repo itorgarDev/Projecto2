@@ -16,6 +16,7 @@ public class GroundedState : TemplateStateMachine
         phoenix.ResetTierra();
         phoenix.animator.SetBool("IsFlying", false);
         phoenix.animator.SetBool("IsIdle", true);
+        SoundController.Instance.PlaySFX(SoundController.Instance.zFlying);
     }
 
     public override void UpdateLogic()

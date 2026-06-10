@@ -20,6 +20,7 @@ public class PhaseTransitionState : TemplateStateMachine
         timer = 0f;
 
         phoenix.CurrentPhase = 2;
+        SoundController.Instance.PlaySFX(SoundController.Instance.zExplosion);
 
         if (phoenix.phaseTransitionParticles != null)
         {

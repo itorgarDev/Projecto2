@@ -20,6 +20,7 @@ public class FlyState : TemplateStateMachine
         Debug.Log("ENTER Fly");
         phoenix.ResetAire();
         phoenix.animator.SetBool("IsFlying", true);
+        SoundController.Instance.PlaySFX(SoundController.Instance.zFlying);
         // cada vez k vuelve a volar, reiniciamos el reloj de recarga pa k no tire instantaneo
         shootCooldownTimer = 0f;
 

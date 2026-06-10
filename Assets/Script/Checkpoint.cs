@@ -84,6 +84,7 @@ public class Checkpoint : MonoBehaviour
             if (SoundController.Instance != null)
             {
                 SoundController.Instance.PlaySFX(SoundController.Instance.checkpoint);
+                SoundController.Instance.PlaySFX(SoundController.Instance.health);
             }
         }
     }

@@ -71,6 +71,7 @@ public class ShootState : TemplateStateMachine
         }
 
         bulletMother.SetActive(true);
+        SoundController.Instance.PlaySFX(SoundController.Instance.zFire);
     }
 
     public override void UpdateLogic()

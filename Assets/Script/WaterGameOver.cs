@@ -24,6 +24,7 @@ public class WaterGameOver : MonoBehaviour
                 player.StartCoroutine(player.DeathSequence());
                 player.GameOver();
             }
+            SoundController.Instance.PlaySFX(SoundController.Instance.deathSfx);
         }
     }
 }

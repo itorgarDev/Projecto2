@@ -190,8 +190,7 @@ public class MainMenuController : MonoBehaviour
             sceneDestination = SavePlay.Instance.lastScene;
 
             // 3. Activamos los componentes visuales del fundido (fadeout)
-            if (imageOut != null) imageOut.SetActive(true);
-            if (transitionFadeout != null) transitionFadeout.SetTrigger("StartFade");
+            
 
             // 4. Arrancamos la corrutina clonada con la lógica de recolocación in-game
             StartCoroutine(LoadSceneWithTransition());
@@ -205,6 +204,9 @@ public class MainMenuController : MonoBehaviour
     // NUEVA CORRUTINA CLONADA EXACTAMENTE DE ZONE_TRANSITION
     private IEnumerator LoadSceneWithTransition()
     {
+        if (imageOut != null) imageOut.SetActive(true);
+        if (transitionFadeout != null) transitionFadeout.SetTrigger("StartFade");
+
         // Esperamos el tiempo del fadeout en tiempo real (ideal para menús)
         yield return new WaitForSecondsRealtime(transitionTime);
 
