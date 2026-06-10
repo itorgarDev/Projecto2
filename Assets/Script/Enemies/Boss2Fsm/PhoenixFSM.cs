@@ -24,6 +24,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     public GameObject bulletPrefab; 
     public Transform firePoint;
     public GameObject Key;
+    public ParticleSystem phaseTransitionParticles;
 
     [Header("Animación")]
     public Animator animator;
