@@ -94,7 +94,10 @@ public class MainMenuController : MonoBehaviour
         RespawnSystem.CurrentCheckpointIndex = 0;
     }
 
-    
+    public void MainMenu()
+    {
+        GoToDestination(0);
+    }
 
     public void GoToDestination(int valor)
     {
