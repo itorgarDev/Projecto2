@@ -9436,6 +9436,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Zhuqu\xE8 1"
       objectReference: {fileID: 0}
+    - target: {fileID: 399248073722103433, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.30102
+      objectReference: {fileID: 0}
+    - target: {fileID: 399248073722103433, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.818253
+      objectReference: {fileID: 0}
+    - target: {fileID: 399248073722103433, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.860161
+      objectReference: {fileID: 0}
+    - target: {fileID: 399248073722103433, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 399248073722103433, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.63
+      objectReference: {fileID: 0}
     - target: {fileID: 2621406854700796038, guid: f2970cec51f41874d932bb08b931230b,
         type: 3}
       propertyPath: bossDisplayName
@@ -9491,6 +9516,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4491011526040445525, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6684716633569373613, guid: f2970cec51f41874d932bb08b931230b,
         type: 3}
       propertyPath: Key
@@ -9501,6 +9531,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1563731706}
+    - target: {fileID: 6684716633569373613, guid: f2970cec51f41874d932bb08b931230b,
+        type: 3}
+      propertyPath: phaseTransitionParticles
+      value: 
+      objectReference: {fileID: 1081697123}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11349,6 +11384,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2635049152898765351, guid: 2240a469fd058ab41a195c4372371463,
     type: 3}
   m_PrefabInstance: {fileID: 1077238253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1081697123 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6897742287382557816, guid: f2970cec51f41874d932bb08b931230b,
+    type: 3}
+  m_PrefabInstance: {fileID: 878660202}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1097922239
 PrefabInstance:

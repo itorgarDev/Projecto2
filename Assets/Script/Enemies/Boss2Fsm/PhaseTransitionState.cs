@@ -5,6 +5,7 @@ public class PhaseTransitionState : TemplateStateMachine
     PhoenixFSM phoenix;
     float timer;
     float duration = 2f;
+    
 
     public PhaseTransitionState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
     {
@@ -19,6 +20,12 @@ public class PhaseTransitionState : TemplateStateMachine
         timer = 0f;
 
         phoenix.CurrentPhase = 2;
+
+        if (phoenix.phaseTransitionParticles != null)
+        {
+            phoenix.phaseTransitionParticles.gameObject.SetActive(true);
+            phoenix.phaseTransitionParticles.Play();
+        }
 
         // Dejamos la estamina a 1f para que cuando llegue al cielo este a tope,
         // pero reseteamos tierra porque el bicho revive en el suelo.
@@ -44,6 +51,18 @@ public class PhaseTransitionState : TemplateStateMachine
 
            
             phoenix.ChangeState(phoenix.transitionAirState);
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+       
+        if (phoenix.phaseTransitionParticles != null)
+        {
+            phoenix.phaseTransitionParticles.Stop();
+            phoenix.phaseTransitionParticles.gameObject.SetActive(false);
         }
     }
 }
