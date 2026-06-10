@@ -95,6 +95,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
        
         if (currentWave == 0 && enemy.CurrentHealth <= 10f)
         {
+            
             Debug.Log("[BossManager] EvaluateWaves -> trigger wave 1");
             currentWave = 1;
             ChangeState(summonState);
@@ -111,6 +112,8 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
             return;
         }
+
+        SoundController.Instance.PlaySFX(SoundController.Instance.xShield);
     }
 
     public override void SystemTakeDamage(float amount)
@@ -168,7 +171,9 @@ public class BossEvokerFSMManager : EnemyFSMManager
             mainCollider.enabled = false;
         }
 
-       
+        if (MusicController.Instance != null)
+            MusicController.Instance.StopMusicSmooth();
+
         // Lo destruimos tras 2 segundos para dar tiempo a ver la animación caer
         Destroy(gameObject, 2f);
     }

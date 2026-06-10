@@ -1540,10 +1540,11 @@ MonoBehaviour:
   tutoVillage: {fileID: 8300000, guid: 40b63ccd9b43b1049b16d96ac2ab4571, type: 3}
   temple: {fileID: 8300000, guid: 0e36fd026e63371408c5ef2b23cf46f8, type: 3}
   zone1: {fileID: 8300000, guid: d9b8adbbf7eef664097e9fc9d04cde79, type: 3}
-  boss1: {fileID: 0}
-  village1: {fileID: 0}
-  village2: {fileID: 0}
-  boss2: {fileID: 0}
+  boss1: {fileID: 8300000, guid: 5e37c0effc542444a8294df1f0cd6355, type: 3}
+  village1: {fileID: 8300000, guid: 004ff7c560c8d0649b2066e566c16a35, type: 3}
+  village2: {fileID: 8300000, guid: 58b751e1e1f61cc48983a4d812ea0027, type: 3}
+  boss2: {fileID: 8300000, guid: 5901341d6637dcb40a0f88d8557ea276, type: 3}
+  fadeDuration: 1.5
 --- !u!1 &638353824
 GameObject:
   m_ObjectHideFlags: 0
@@ -11553,6 +11554,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
         type: 3}
+      propertyPath: zEgg
+      value: 
+      objectReference: {fileID: 8300000, guid: 08d565d21625d0b458c3c9d1ee5d8e3b, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: zBark
+      value: 
+      objectReference: {fileID: 8300000, guid: db1eb09acb607ac49b3ecbf4433e17c1, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: zFire
+      value: 
+      objectReference: {fileID: 8300000, guid: 278561f7d8126fc47b672bad849d2893, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
       propertyPath: zone1
       value: 
       objectReference: {fileID: 8300000, guid: 8a0466bfca3b5e34e89a1f8e0b371ab8, type: 3}
@@ -11588,9 +11604,34 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 892d98e6132d6ea45ab3f76f57910a3d, type: 3}
     - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
         type: 3}
+      propertyPath: zDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a693617ba0bd3f4281a634d56399cab, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: zFlying
+      value: 
+      objectReference: {fileID: 8300000, guid: f2f179139356859488830f93651b86e8, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: zRespawn
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c33d540e2ceaf041996b42c82ed2a9b, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
       propertyPath: xDialogue
       value: 
       objectReference: {fileID: 8300000, guid: 9d0bf4f8e2e9ca84587f604b7fd8625b, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: checkpoint
+      value: 
+      objectReference: {fileID: 8300000, guid: d7daedd7a6ddee94ea79d414de567726, type: 3}
+    - target: {fileID: 172046852931422075, guid: 5f295f8dd0872844aac6033e44ffa9d5,
+        type: 3}
+      propertyPath: zExplosion
+      value: 
+      objectReference: {fileID: 8300000, guid: 93bf33b041727f948aeadf35dc0157db, type: 3}
     - target: {fileID: 2637427409748273147, guid: 5f295f8dd0872844aac6033e44ffa9d5,
         type: 3}
       propertyPath: m_Name

@@ -58,15 +58,7 @@ public class SoundController : MonoBehaviour
     public AudioClip cDamage;
     public AudioClip cExclamation;
     public AudioClip cLiberation;
-
-    [Space(10)]
-    [Header("Sfx Ambience")]
-
-    public AudioClip ambVillages;
-    public AudioClip ambGrass;
-    public AudioClip ambRiver;
-    public AudioClip ambMountains;
-
+   
     [Space(10)]
     [Header("Sfx Zhuque")]
 
@@ -87,12 +79,7 @@ public class SoundController : MonoBehaviour
     public AudioClip xSnake;
     public AudioClip xDamage;
 
-    [Space(10)]
-    [Header("Sfx Ambience")]
-
-    public AudioClip zone1;
-    public AudioClip zone2;
-    public AudioClip zone3;
+   
 
     public float globalCooldown = 1f;
 
@@ -133,13 +120,7 @@ public class SoundController : MonoBehaviour
 
     public void Start()
     {
-        int scenetoSfx = SceneManager.GetActiveScene().buildIndex;
-        switch (scenetoSfx)
-        {
-            case 5: PlayAmbience(zone1); break;
-            case 6: PlayAmbience(zone2); break;
-            case 7: PlayAmbience(zone3); break;
-        }
+       
     }
     void OnEnable()
     {

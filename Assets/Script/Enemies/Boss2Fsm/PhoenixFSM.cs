@@ -64,7 +64,7 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
 
         Health -= amount;
         Debug.Log("[Fenix] Daño recibido: " + amount + ". Vida actual: " + Health);
-
+        SoundController.Instance.PlaySFX(SoundController.Instance.zDamage);
         GroundDamageRecieve += amount;
 
         // por si le metes el ultimo viaje en el suelo en fase 1
@@ -94,12 +94,17 @@ public class PhoenixFSM : StateMachineFlow, IDamageable
     // aqui paramos todo cuando el bicho la palme de verdad
     private void Die()
     {
+        SoundController.Instance.PlaySFX(SoundController.Instance.zExplosion);
+        SoundController.Instance.PlaySFX(SoundController.Instance.zBark);
         isDead = true;
         Health = 0f;
         if (HUDController.Instance != null)
         {
             HUDController.Instance.UntrackBoss(); 
         }
+
+        if (MusicController.Instance != null)
+            MusicController.Instance.StopMusicSmooth();
 
         Debug.Log("[Fenix] El jefe a sido derrotado");
         Key.SetActive(true);
