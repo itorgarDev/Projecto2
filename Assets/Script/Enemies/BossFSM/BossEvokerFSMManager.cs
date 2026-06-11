@@ -19,6 +19,8 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
     public Animator animatorBoss;
 
+    public GameObject doorFinal;
+
     protected override void Awake() 
     {
         base.Awake();
@@ -175,5 +177,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
         // Lo destruimos tras 2 segundos para dar tiempo a ver la animación caer
         Destroy(gameObject, 2f);
+
+        doorFinal.SetActive(true);
     }
 }

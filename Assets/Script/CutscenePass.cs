@@ -12,7 +12,7 @@ public class CutscenePass : MonoBehaviour
     public GameObject imageOut;           // Panel negro de UI para fadeout
     public Animator transitionFadeout;    // Animator con el trigger "StartFade"
     private bool isTransitioning = false;
-    int currentScene=SceneManager.GetActiveScene().buildIndex;
+    
     void Awake()
     {
         // Obtenemos la referencia al componente VideoPlayer
@@ -64,6 +64,7 @@ public class CutscenePass : MonoBehaviour
         // Recuperamos el estado de "WhereCutscene" guardado por el MainMenuController
         // Si es 1 (true) significa que viene de "Iniciar Juego". Si es 0 (false) viene del botón "Cinemática".
         bool startingGame = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
         int sceneDestination;
 
@@ -85,13 +86,14 @@ public class CutscenePass : MonoBehaviour
             {
                 sceneDestination = 0; // Destino si pulsó el botón de Ver Cinemática directamente
             }
-
-            // Validación de seguridad para asegurarse de que la escena existe en Build Settings
-            if (sceneDestination < SceneManager.sceneCountInBuildSettings)
-            {
-                SceneManager.LoadScene(sceneDestination);
-            }
+           
         }
-        
+
+        // Validación de seguridad para asegurarse de que la escena existe en Build Settings
+        if (sceneDestination < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(sceneDestination);
+        }
+
     }
 }
