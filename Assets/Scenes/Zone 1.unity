@@ -3290,6 +3290,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54201388079395517, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 280654423570043948, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -3305,6 +3310,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: MainMenuController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 845805389294675796, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 885605076730530842, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c505096b148af0b429b23872e6cba3d7,
+        type: 3}
     - target: {fileID: 1445033845968535569, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: m_IsActive
@@ -3705,6 +3721,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5410644957013369393, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_text
+      value: Volver
+      objectReference: {fileID: 0}
     - target: {fileID: 5804834583634700518, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3785,6 +3806,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: MENU_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.50151634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.50151634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.50151634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066604977116418354, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7275013513429311504, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3849,6 +3925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816084534808375408, guid: da01cd2c4206c6044b1590114d6b826f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -225
       objectReference: {fileID: 0}
     - target: {fileID: 8007234536390311090, guid: da01cd2c4206c6044b1590114d6b826f,
         type: 3}
@@ -29936,7 +30017,7 @@ PrefabInstance:
     - target: {fileID: 1962668374781190606, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_text
-      value: Entra y explora la mazmorra del oeste
+      value: Entra y explora la Mazmorra del Oeste
       objectReference: {fileID: 0}
     - target: {fileID: 2489287927416657720, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
@@ -30144,7 +30225,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 18577b7cc2e9d704d9bab6da44f466dd,
+      objectReference: {fileID: 21300000, guid: 3f32c7ec497274e4d94afbf3e3f32452,
         type: 3}
     - target: {fileID: 4608651289493540201, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
@@ -30294,7 +30375,7 @@ PrefabInstance:
     - target: {fileID: 7028249016059950032, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
       propertyPath: m_text
-      value: Visita el templo de la gran villa
+      value: Visita el templo de la Gran Aldea
       objectReference: {fileID: 0}
     - target: {fileID: 7119183899010795250, guid: 64e4fc08385be2644be4f9a93f15d5d1,
         type: 3}
@@ -43871,8 +43952,8 @@ SceneRoots:
   - {fileID: 1812463023}
   - {fileID: 1778117503}
   - {fileID: 620797874}
-  - {fileID: 1413313055}
   - {fileID: 176400986}
+  - {fileID: 1413313055}
   - {fileID: 537444008}
   - {fileID: 655934385}
   - {fileID: 1459838900}
