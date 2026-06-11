@@ -19,7 +19,6 @@ public class BossEvokerFSMManager : EnemyFSMManager
 
     public Animator animatorBoss;
 
-
     protected override void Awake() 
     {
         base.Awake();
