@@ -719,6 +719,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d76455facf224b344abf3e4c4227e64c,
         type: 3}
+    - target: {fileID: 4444408124008476953, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: imageOut
+      value: 
+      objectReference: {fileID: 1195066959}
+    - target: {fileID: 4444408124008476953, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
+        type: 3}
+      propertyPath: transitionFadeout
+      value: 
+      objectReference: {fileID: 1195066958}
     - target: {fileID: 4457677906473522342, guid: 3e09abc59ddb06d4a90dd4d578f2ef36,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -1117,7 +1127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -450}
+  m_AnchoredPosition: {x: 300, y: 400}
   m_SizeDelta: {x: 48.3655, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1682134105
