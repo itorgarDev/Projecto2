@@ -662,17 +662,19 @@ PrefabInstance:
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "\xA1Turista! Llegas a tiempo para comenzar la visita a la gran muralla."
+      value: "\xA1Turista! \xA1Bienvenido a la Pagoda de Baihu!"
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: Ve subiendo, que comenzaremos en la cima.
+      value: "En breve comenzaremos la visita a la Gran Maoralla, el c\xFAlmen de
+        la arquitectura de esta regi\xF3n."
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "\xBFPor qu\xE9? \xA1Porque as\xED solo har\xE1 falta bajar!"
+      value: "\xA1Eso s\xED! Mucho cuidado con la estatua de Baihu. Puede ser de
+        metal, pero est\xE1 muy oxidada. \xA1Cualquier golpe y se descompone!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3821,7 +3823,7 @@ PrefabInstance:
         type: 3}
       propertyPath: message.Array.data[2]
       value: "Ah\xED va: detr\xE1s de los mu\xF1ecos no hay ning\xFAn \xEDtem que
-        te ayude."
+        te ayude en tu cruzada."
       objectReference: {fileID: 0}
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
@@ -5166,7 +5168,7 @@ PrefabInstance:
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
       propertyPath: message.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
@@ -5701,7 +5703,7 @@ PrefabInstance:
     - target: {fileID: 1064292022973925825, guid: cad6e4bdb88e32b4cb49f462284420c8,
         type: 3}
       propertyPath: message.Array.data[3]
-      value: "Si ya me lo dijo mi hermano mayor. \xBFLe conoces?"
+      value: "Si ya me lo dijo mi hermano mayor. \xBFLe conoces? Se llama Qiupez."
       objectReference: {fileID: 0}
     - target: {fileID: 3654779574797105106, guid: cad6e4bdb88e32b4cb49f462284420c8,
         type: 3}
@@ -29222,7 +29224,7 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: Vamos, eso es lo que me ha dicho Maostro, el maestro de la villa.
+      value: Vamos, eso es lo que me ha dicho Maostro, el maestro de la aldea.
       objectReference: {fileID: 0}
     - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -35711,17 +35713,17 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: Esto...se supone que tenemos que ir a la cima...
+      value: Esto...se supone que tenemos que ir a la cima...subir la Gran Maoralla...
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: "\xBFPero acaso sabe la gu\xEDa de la tortuga ?"
+      value: "\xBFPero acaso sabe la gu\xEDa de la tortuga? Y m\xE1s importante..."
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "...\xA1Pero no dijo que estar\xEDa infestada de caimanes! \xBFPuedes
+      value: "...\xA1\xBFNo sabe que esto est\xE1 infestado de caimanes?! \xBFPuedes
         ayudarnos?"
       objectReference: {fileID: 0}
     - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
@@ -35892,7 +35894,7 @@ PrefabInstance:
     - target: {fileID: 7387578115882616764, guid: f3b590ffb20076247973615a0f67cece,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Sol\xEDa dar clases de historia en el pueblo."
+      value: "Sol\xEDa dar clases de historia aqu\xED, en la Aldea Boreal."
       objectReference: {fileID: 0}
     - target: {fileID: 7387578115882616764, guid: f3b590ffb20076247973615a0f67cece,
         type: 3}
@@ -42838,7 +42840,7 @@ PrefabInstance:
     - target: {fileID: 1064292022973925825, guid: cad6e4bdb88e32b4cb49f462284420c8,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: "Ojal\xE1 tener suficientes w\xE9ns para mudarme a la gran aldea."
+      value: "Ojal\xE1 tener suficientes w\xE9ns para mudarme a la Aldea Marea."
       objectReference: {fileID: 0}
     - target: {fileID: 1064292022973925825, guid: cad6e4bdb88e32b4cb49f462284420c8,
         type: 3}
@@ -46748,7 +46750,8 @@ PrefabInstance:
     - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "\xA1Eh t\xFA! \xBFHas visto la muralla que hay a las afueras?"
+      value: "\xA1Eh t\xFA! \xBFHas visto la muralla que hay a las afueras? Es la
+        Gran Maoralla."
       objectReference: {fileID: 0}
     - target: {fileID: 3982378103086766949, guid: 7bda7107daff9034f9696f03bfdf9fbc,
         type: 3}
