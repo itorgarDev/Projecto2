@@ -12,7 +12,7 @@ public class MusicZones : MonoBehaviour
         activeZoneCount++;
 
         
-        if (activeZoneCount == 1)
+        if (activeZoneCount >= 1)
         {
             switch (zoneToMusic)
             {
