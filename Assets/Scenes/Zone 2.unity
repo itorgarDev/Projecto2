@@ -4733,6 +4733,122 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 466677458}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &473906397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 539080475}
+    m_Modifications:
+    - target: {fileID: 484785094205549169, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_Name
+      value: Maoradona
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: name
+      value: Maoradona, el hambriento
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: npcName
+      value: 
+      objectReference: {fileID: 1980048405}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: dialogueName
+      value: 
+      objectReference: {fileID: 1980048407}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 1980048408}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: dialoguePanel
+      value: 
+      objectReference: {fileID: 1980048409}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: message.Array.data[0]
+      value: "\xA1Loco! Qu\xE9 rico que va a quedar el asado con este fuego."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: message.Array.data[1]
+      value: "Habr\xE1 que agradecer al pajarraco que nos ha hecho las fogatas, que
+        si no, se va todo al garete. Ya se fue por el sur."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: message.Array.data[2]
+      value: "\xA1Pero bueno, ahora toca comer! \xBFY qui\xE9n sabe si despu\xE9s
+        toca un partidito?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 472.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7874298
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7911768a63052254fafce981adceeb8a, type: 3}
+--- !u!4 &473906398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 473906397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &475145330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2078101416967487427, guid: 761ffc386fc5813409f3557a87d43be4,
@@ -5692,6 +5808,7 @@ Transform:
   - {fileID: 1734722051}
   - {fileID: 25786269}
   - {fileID: 1489407335}
+  - {fileID: 473906398}
   - {fileID: 1783870893}
   - {fileID: 1487845208}
   - {fileID: 932719770}
@@ -7244,14 +7361,14 @@ PrefabInstance:
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "\xA1Wow! Esa estatua del drag\xF3n est\xE1 tapando el templo. \xBFDe
-        d\xF3nde habr\xE1 salido?"
+      value: "\xA1Wow! Esa estatua del Quinlong,el Cohete del Este, est\xE1 tapando
+        el templo. \xBFDe d\xF3nde habr\xE1 salido?"
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: "\xA1Pero mira, una llave! Seguro que abrir\xE1 la muralla que nos permitir\xE1
-        salir de aqu\xED."
+      value: "\xA1Pero mira, est\xE1 tapando una llave! Seguro que abrir\xE1 la muralla
+        que nos permitir\xE1 salir de aqu\xED."
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
@@ -11916,14 +12033,14 @@ PrefabInstance:
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "Muchos dicen que la gran aldea tiene el mejor templo de estas islas.
+      value: "Muchos dicen que la Gran Aldea tiene el mejor templo de estas islas.
         \xA1Bobadas!"
       objectReference: {fileID: 0}
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
       propertyPath: message.Array.data[1]
       value: "Sin duda alguna el que tengo a mis espaldas  le deja a la altura del
-        bet\xFAn. Es incluso mejor que el templo del este."
+        bet\xFAn. Es incluso mejor que el Templo del Este."
       objectReference: {fileID: 0}
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
@@ -14471,7 +14588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: message.Array.data[1]
       value: "Me pregunto c\xF3mo le ir\xE1 a mi hermanito. Se fue a probar suerte
-        al norte."
+        a la Aldea Boreal."
       objectReference: {fileID: 0}
     - target: {fileID: 1064292022973925825, guid: cad6e4bdb88e32b4cb49f462284420c8,
         type: 3}
@@ -14734,20 +14851,19 @@ PrefabInstance:
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: Bienvenido, turista. Me temo que la visita al templo del este se va
+      value: Bienvenido, turista. Me temo que la visita al Templo del Este se va
         a tener que cancelar.
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[1]
-      value: "La puerta del templo ha sido bloqueada y no hay forma de acceder a
-        \xE9l."
+      value: La puerta del templo ha sido bloqueada y no hay forma de acceder.
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Si eso, regresa a la aldea, que quiz\xE1s podemos a organizar otra
-        al templo del pueblo"
+      value: "Si eso, regresa a la aldea, quiz\xE1s podemos a organizar otra al templo
+        del pueblo... a no ser que encuentres la llave."
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
@@ -15302,18 +15418,19 @@ PrefabInstance:
         type: 3}
       propertyPath: message.Array.data[0]
       value: "\xA1Ay, qu\xE9 tiempos! Todav\xEDa me acuerdo de cuando visit\xE9 la
-        gran aldea."
+        Gran Aldea."
       objectReference: {fileID: 0}
     - target: {fileID: 7387578115882616764, guid: f3b590ffb20076247973615a0f67cece,
         type: 3}
       propertyPath: message.Array.data[1]
       value: "Quer\xEDa visitar el templo, pero me pill\xF3 en reformas. Dec\xEDan
-        algo de que hab\xEDan perdido el amuleto."
+        algo de que hab\xEDan perdido un amuleto."
       objectReference: {fileID: 0}
     - target: {fileID: 7387578115882616764, guid: f3b590ffb20076247973615a0f67cece,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Bueno, por lo menos tuve 100 w\xE9ns y me compr\xE9 un huevo centenario."
+      value: "Bueno, por lo menos ten\xEDa 100 w\xE9ns y pude comprarme un huevo
+        centenario."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15376,7 +15493,7 @@ PrefabInstance:
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Ah\xED va: tenemos muchos curros."
+      value: "Ah\xED va: como no consigamos suficientes w\xE9ns, nos echan de casa."
       objectReference: {fileID: 0}
     - target: {fileID: 2298563219558475413, guid: 59d7a06f8b2320e4bbb6c395b8540d46,
         type: 3}
@@ -21167,8 +21284,9 @@ PrefabInstance:
     - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Por el sur vive Zhuque, el ave. \xA1Ese celestial es el que nos tiene
-        atrapados y el que ha bloqueado la entrada al templo del este!"
+      value: "Por esas islas vive Zhuque, el Se\xF1or del Sur. \xA1Ese celestial
+        es el que nos tiene atrapados y el que ha bloqueado la entrada del Templo
+        del Este!"
       objectReference: {fileID: 0}
     - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
         type: 3}
@@ -21180,7 +21298,8 @@ PrefabInstance:
         type: 3}
       propertyPath: message.Array.data[4]
       value: "\xA1\xC1ndate con mucho ojo y consigue recuperar la llave que abre
-        el templo!"
+        el templo! Y atento, porque cuenta la leyenda que puede resurgir de entre
+        las cenizas."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25626,7 +25745,7 @@ PrefabInstance:
         type: 3}
       propertyPath: message.Array.data[0]
       value: "\xA1Wow! Hemos llegado a la zona de los r\xEDos. Espera, que saco el
-        mapa y te lo confirmo... \xA1Aj\xE1!"
+        mapa y te lo confirmo... \xA1Aj\xE1, eso es!"
       objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
@@ -25638,8 +25757,8 @@ PrefabInstance:
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Creo que cerca de aqu\xED hay un templo y por el este hay un templo
-        al culto. \xA1Vayamos a la aldea!"
+      value: "Creo que cerca de aqu\xED una villa y por el este hay un templo al
+        culto. \xA1Vayamos a Aldea Marea!"
       objectReference: {fileID: 0}
     - target: {fileID: 5087535926102542268, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
