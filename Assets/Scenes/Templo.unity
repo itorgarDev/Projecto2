@@ -2493,6 +2493,11 @@ PrefabInstance:
       objectReference: {fileID: 48910943}
     - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
         type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
+        type: 3}
       propertyPath: dialogueName
       value: 
       objectReference: {fileID: 48910944}
@@ -4055,7 +4060,7 @@ GameObject:
   - component: {fileID: 1525428462}
   - component: {fileID: 1525428461}
   m_Layer: 0
-  m_Name: Ambiente
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

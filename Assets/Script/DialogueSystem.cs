@@ -14,6 +14,7 @@ public class DialogueSystem : MonoBehaviour
 
     [Header("Tipo de personaje")]
     public int characterType = 0;
+    public bool isImportant;
 
     [Header("Nombre del NPC")]
     [TextArea]
@@ -89,6 +90,15 @@ public class DialogueSystem : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueName.SetActive(false);
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")&&isImportant)
+        {
+            SoundController.Instance.PlaySFX(SoundController.Instance.sfxNoti);
+        }
+
+
     }
 }
 
