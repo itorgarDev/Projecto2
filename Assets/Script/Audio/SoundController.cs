@@ -47,6 +47,7 @@ public class SoundController : MonoBehaviour
     public AudioClip sfxMQ3;
     public AudioClip sfxMQ4;
     public AudioClip sfxMQ5;
+    public AudioClip sfxNoti;
     AudioClip[] systemAudios;
 
     [Space(10)]
