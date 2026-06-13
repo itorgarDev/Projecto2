@@ -4749,7 +4749,7 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: name
-      value: Maoradona, el hambriento
+      value: Maoradona, el hambreado
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -4774,19 +4774,19 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "\xA1Loco! Qu\xE9 rico que va a quedar el asado con este fuego."
+      value: "\xA1Flaco! Qu\xE9 rico que va a quedar el asado con estas brasa."
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[1]
       value: "Habr\xE1 que agradecer al pajarraco que nos ha hecho las fogatas, que
-        si no, se va todo al garete. Ya se fue por el sur."
+        si no, se va todo al garete. Ya se fue por all\xE1, por la Llanura del Sur."
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[2]
       value: "\xA1Pero bueno, ahora toca comer! \xBFY qui\xE9n sabe si despu\xE9s
-        toca un partidito?"
+        haremos un partidito?"
       objectReference: {fileID: 0}
     - target: {fileID: 8099931016704483836, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -7338,6 +7338,11 @@ PrefabInstance:
       propertyPath: npcName
       value: 
       objectReference: {fileID: 1980048405}
+    - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
+        type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: dialogueName
@@ -14825,6 +14830,11 @@ PrefabInstance:
       objectReference: {fileID: 1980048405}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
+        type: 3}
       propertyPath: dialogueName
       value: 
       objectReference: {fileID: 1980048407}
@@ -17130,8 +17140,8 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[0]
-      value: "\xA1Por fin! \xA1LIBERTAD! Ahora que estoy fuera del templo voy a...
-        voy a..."
+      value: "\xA1Por fin! \xA1LIBERTAD! Ahora que estoy fuera de la Gran Aldea voy
+        a... voy a..."
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -17141,7 +17151,7 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: En parte hecho de menos la escoba de Maola.
+      value: Es que en parte hecho de menos la escoba de Maola.
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -21244,6 +21254,11 @@ PrefabInstance:
       propertyPath: npcName
       value: 
       objectReference: {fileID: 1980048405}
+    - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
+        type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7824298905685332637, guid: 1b46ba543877b484ea0c973b5b81c757,
         type: 3}
       propertyPath: dialogueName
@@ -25721,6 +25736,11 @@ PrefabInstance:
       propertyPath: npcName
       value: 
       objectReference: {fileID: 1980048405}
+    - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
+        type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2791902480122742858, guid: 3e8a125eb3b269e498758f5720280a20,
         type: 3}
       propertyPath: dialogueName
