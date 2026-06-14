@@ -1815,7 +1815,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1644589396}
-  - {fileID: 4679163691303068168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179157733
@@ -20067,7 +20066,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 8600000, guid: 86027bce824059e42b08265b5e5d811f, type: 2}
+  m_Cookie: {fileID: 2800000, guid: 3e60bbaa127638249823f4ac295d736b, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -21420,6 +21419,11 @@ PrefabInstance:
       objectReference: {fileID: 1980048405}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
       propertyPath: dialogueName
       value: 
       objectReference: {fileID: 1980048407}
@@ -21428,6 +21432,11 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1980048408}
+    - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
+        type: 3}
+      propertyPath: characterType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: dialoguePanel
@@ -21452,8 +21461,8 @@ PrefabInstance:
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
       propertyPath: message.Array.data[2]
-      value: "Se dice que por aqu\xED vive una ave capaz de dominar el fuego. \xA1Lo
-        conveniente que ser\xEDa!"
+      value: "Se dice que por la Llanura del Sur vive una ave capaz de dominar el
+        fuego. \xA1Lo conveniente que ser\xEDa!"
       objectReference: {fileID: 0}
     - target: {fileID: 7629302584185032616, guid: 7911768a63052254fafce981adceeb8a,
         type: 3}
@@ -27584,7 +27593,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 177408641}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2344513490690950586, guid: 53c78eda2f71c864f9cf5c3f7ce006b8,
         type: 3}
@@ -27646,12 +27655,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c78eda2f71c864f9cf5c3f7ce006b8, type: 3}
---- !u!4 &4679163691303068168 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2344513490690950586, guid: 53c78eda2f71c864f9cf5c3f7ce006b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 4679163691303068167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4730219662942148227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4967962373672105835, guid: 4c45289e951f44c4aa83a8856cef9f7e,
@@ -28583,5 +28586,6 @@ SceneRoots:
   - {fileID: 815272820}
   - {fileID: 1560526206}
   - {fileID: 1851085713}
+  - {fileID: 4679163691303068167}
   - {fileID: 177408641}
   - {fileID: 311852311085718613}
