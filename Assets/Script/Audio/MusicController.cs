@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class MusicController : MonoBehaviour
 {
@@ -113,4 +114,34 @@ public class MusicController : MonoBehaviour
         audioSource.volume = 0f;
         audioSource.Stop();
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[MusicController] Escena cargada: {scene.name}. Reseteando AudioSource para evitar solapamientos.");
+
+        // 1. Cancelamos CUALQUIER corutina de fade (sea de entrada o de salida) que estuviera corriendo
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+            fadeCoroutine = null;
+        }
+
+        // 2. Paramos el AudioSource en seco de forma inmediata
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = null; // Vaciamos el clip anterior para borrar su rastro
+            audioSource.volume = 1f;  // Devolvemos el volumen a su estado base para la nueva música
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 }
