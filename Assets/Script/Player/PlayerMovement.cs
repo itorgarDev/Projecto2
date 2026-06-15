@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvasVideo;
     [SerializeField] private GameObject pauseMenuCanvasControls;
     [SerializeField] private GameObject pauseMenuCanvasBrillo;
-   // [SerializeField] private GameObject pauseMenuCanvasOscuro;
+    [SerializeField] private GameObject pauseMenuAreUSure;
 
     [SerializeField] private GameObject canvasMapa;
     [SerializeField] private GameObject canvasE;
@@ -199,6 +199,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (pauseMenuCanvasControls != null)
             pauseMenuCanvasControls.SetActive(false);
+
+        if (pauseMenuAreUSure != null)
+            pauseMenuAreUSure.SetActive(false);
     }
 
 
@@ -215,12 +218,13 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused)
         {
             isPaused = true;
-           // audioMixer.SetFloat("SFXVolume", -80f);
+           
             Time.timeScale = 0;
 
             pauseMenuCanvas.SetActive(true);
             //pauseMenuCanvasOscuro?.SetActive(true);
             pauseMenuCanvasScroll?.SetActive(true);
+
             pauseMenuCanvasOptions?.SetActive(true);
 
             // Mantén el brillo activo
@@ -270,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
     public void ClosePauseMenu()
     {
         isPaused = false;
+
         pauseMenuCanvas.SetActive(false);
         pauseMenuCanvasOptions.SetActive(true);
         pauseMenuCanvasScroll.SetActive(false);
