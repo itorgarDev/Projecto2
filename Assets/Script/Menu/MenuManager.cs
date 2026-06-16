@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject panelVideo;
     [SerializeField] private GameObject panelControl;
     [SerializeField] private GameObject panelAreUSure;
+    [SerializeField] private GameObject panelCredits;
 
     [Header("Primeros Elementos Seleccionados (Mando)")]
     [SerializeField] private GameObject buttonOptionsFirst; // Ej: Botón Continuar/Volver
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject sliderVideoFirst;    // Ej: Slider Brillo
     [SerializeField] private GameObject buttonControlFirst;  // Ej: Botón Volver de Controles
     [SerializeField] private GameObject buttonAreUSureFirst;
+    [SerializeField] private GameObject buttonCreditsFirst;
 
     [Header("Control Global del Menú")]
     [SerializeField] private GameObject menuRootObject;
@@ -94,6 +96,13 @@ public class MenuManager : MonoBehaviour
         SetAllPanelsActive(false);
         panelAreUSure.SetActive(true);
         SelectElement(buttonAreUSureFirst); // Selecciona el botón de confirmación por defecto
+    }
+
+    public void OpenCreditsPanel()
+    {
+        SetAllPanelsActive(false);
+        panelCredits.SetActive(true);
+        SelectElement(buttonCreditsFirst);
     }
 
     // Módulos de ayuda para simplificar el código
