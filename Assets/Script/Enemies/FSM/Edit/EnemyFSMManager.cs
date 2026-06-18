@@ -260,7 +260,7 @@ public class EnemyFSMManager : StateMachineFlow, IDamageable
             SoundController.Instance.PlaySFX(SoundController.Instance.cDeath);
         }
 
-        // Esperamos los 2 segundos exactos para que termine de caer al suelo antes de ocultarlo
+        // Esperamos para que termine de caer al suelo antes de ocultarlo
         Invoke(nameof(ReturnToPoolAfterDeath), 1.5f);
     }
 

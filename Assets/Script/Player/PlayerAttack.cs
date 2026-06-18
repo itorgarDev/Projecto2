@@ -56,11 +56,11 @@ public class PlayerAttack : MonoBehaviour
             weaponTrail.enabled = false;
         }
     }
-    public void EndAttackAnimation()
+    public void EndAttackAnimation() // cambia la variable en la animacion en el ultimo frame
     {
         isAttacking = false;
     }
-    public void ForceCancelAttack()
+    public void ForceCancelAttack() // si no llega al fin de la animacion se cancela (ej:dash muerte)
     {
         isAttacking = false;
         weaponCollider.enabled = false;

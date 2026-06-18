@@ -23,7 +23,7 @@ public class AllayMovement : MonoBehaviour
 
         if (distance > minDistance)
         {
-            float targetSpeed = (distance > maxDistance) ? sprintSpeed : followSpeed;
+            float targetSpeed = (distance > maxDistance) ? sprintSpeed : followSpeed; // usar sprint o followspeed dependiendo de la distancia
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
 
             Vector3 direction = (player.position - transform.position).normalized;

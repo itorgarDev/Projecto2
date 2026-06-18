@@ -3,7 +3,7 @@ using UnityEngine;
 public class DummyDamageable : MonoBehaviour, IDamageable
 {
     [Header("Configuración de Vida")]
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float maxHealth = 10f;
     private float currentHealth;
     public GameObject key;
 
@@ -19,7 +19,7 @@ public class DummyDamageable : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
-    public void SystemTakeDamage(float amount)
+    public void SystemTakeDamage(float amount) // interfaz damageable
     {
         currentHealth -= amount;
         SoundController.Instance.PlaySFX(SoundController.Instance.wood);
@@ -32,7 +32,7 @@ public class DummyDamageable : MonoBehaviour, IDamageable
 
             
             CancelInvoke(nameof(HideBarDueToInactivity));
-            Invoke(nameof(HideBarDueToInactivity), 4f);
+            Invoke(nameof(HideBarDueToInactivity), 4f); // si pasan 4 segundos sin hacer nada se quita 
         }
 
         if (currentHealth <= 0)

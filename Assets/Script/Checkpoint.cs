@@ -46,7 +46,7 @@ public class Checkpoint : MonoBehaviour
         {
             if (Time.timeSinceLevelLoad < tiempoProteccionCarga)
             {
-                Debug.Log($"<color=orange>[CHECKPOINT BLOQUEADO BRUTO]</color> Se evitó activar el CP {numeroCkeckpoint} en el frame de carga.");
+                Debug.Log($"Se evitó activar el CP {numeroCkeckpoint} en el frame de carga.");
                 return;
             }
 
@@ -74,7 +74,7 @@ public class Checkpoint : MonoBehaviour
             Debug.Log("Checkpoint " + numeroCkeckpoint + " activado. Pos = " + transform.position);
 
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
-            if (playerStats != null)
+            if (playerStats != null) // cura al pj
             {
                 playerStats.Heal(playerStats.maxHealth);
             }

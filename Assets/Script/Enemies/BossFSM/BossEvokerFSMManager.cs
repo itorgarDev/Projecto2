@@ -138,10 +138,10 @@ public class BossEvokerFSMManager : EnemyFSMManager
             SoundController.Instance.PlaySFX(SoundController.Instance.xDamage);
         }
 
-        // 4. Evaluamos inmediatamente las oleadas tras recibir el golpe
+        // Evaluamos inmediatamente las oleadas tras recibir el golpe
         EvaluateWaves();
 
-        // 5. Si la vida llega a 0, ejecutamos su muerte controlada de Boss
+        // Si la vida llega a 0, ejecutamos su muerte controlada de Boss
         if (currentHealth <= 0)
         {
             BossDie();
@@ -175,7 +175,7 @@ public class BossEvokerFSMManager : EnemyFSMManager
         if (MusicController.Instance != null)
             MusicController.Instance.StopMusicSmooth();
 
-        // Lo destruimos tras 2 segundos para dar tiempo a ver la animación caer
+        
         Destroy(gameObject, 2f);
 
         doorFinal.SetActive(true);

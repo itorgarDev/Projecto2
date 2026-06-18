@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
     
-    [SerializeField] private float gravity = 40f;      // gravedad rápida
+    [SerializeField] private float gravity = 40f;      // gravedad rápida  esot es chapuza pero fe la unica manera que se me ocurrio 
     [SerializeField] private float snapDistance = 1.2f;
     [SerializeField] private LayerMask groundMask;
 
@@ -427,7 +427,7 @@ public class PlayerMovement : MonoBehaviour
             playerAttack.ForceCancelAttack();
         }
 
-        // ESPERA: Cambia el 2.0f por los segundos que dure tu animación de muerte
+        // temp anim muerte
         yield return new WaitForSeconds(1.6f);
 
         GameOver();
@@ -475,7 +475,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void HandleVerticalMovement()
     {
-        // Aplicar gravedad arcade
+        // Aplicar gravedad 
         verticalVelocity -= gravity * Time.fixedDeltaTime;
 
         // Raycast largo para detectar suelo
@@ -505,7 +505,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isDashing)
         {
-            // Durante el dash: gravedad arcade sin snapping
+            // Durante el dash: gravedad  sin snapping
             verticalVelocity -= gravity * Time.fixedDeltaTime;
             rb.velocity = new Vector3(rb.velocity.x, verticalVelocity, rb.velocity.z);
             return;
@@ -534,7 +534,7 @@ public class PlayerMovement : MonoBehaviour
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
 
-        // gravedad + snapping arcade
+        // gravedad + snapping 
         HandleVerticalMovement();
     }
 
@@ -543,7 +543,7 @@ public class PlayerMovement : MonoBehaviour
         // Calculamos cuánto tiempo ha pasado desde el último dash
         float timeTranscurred = Time.time - lastDashTime;
 
-        // Le decimos al HUD: "Oye, actualiza la ola con este tiempo"
+        //actualiza la anim del hud para el dash segun cooldown 
         if (HUDController.Instance != null)
         {
             HUDController.Instance.UpdateDashCooldown(timeTranscurred, dashCooldown);
@@ -603,6 +603,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerStay(Collider other) 
     { 
         canvasE.SetActive(true);
+       
         //detecta items
        
         if (other.TryGetComponent<TakeDrop>(out TakeDrop item))
