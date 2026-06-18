@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// BossIdle hereda de Idle y añade la comprobación de vida para las oleadas del boss.
+
 
 public class BossIdle : Idle
 {

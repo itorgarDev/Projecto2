@@ -120,7 +120,7 @@ public class HUDController : MonoBehaviour
             if (dashGlow.activeSelf) dashGlow.SetActive(false);
         }
     }
-
+    // utilizamos track ya sea boss o dummy para activar los paneles segun nos convengan
     public void TrackBoss(PhoenixFSM fenix, EnemyFSMManager evoker, string bossName, float maxHp)
     {
         activeFenix = fenix;
@@ -140,6 +140,7 @@ public class HUDController : MonoBehaviour
         if (dummyNamePanel != null) dummyNamePanel.SetActive(true);
         if (dummyNameText != null) dummyNameText.text = displayName;
     }
+    // con untrack dejamos de mostralo en caso de alejarnos o matar al boss
     public void UntrackBoss()
     {
         activeFenix = null;
@@ -158,7 +159,7 @@ public class HUDController : MonoBehaviour
         pickupText.text = "Has recogido: " + itemName;
         pickupPanel.SetActive(true);
 
-        // Usamos la variable para no detener otras posibles corrutinas del HUD
+        
         if (pickupCoroutine != null) StopCoroutine(pickupCoroutine);
         pickupCoroutine = StartCoroutine(HidePickupRoutine());
     }

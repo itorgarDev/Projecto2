@@ -84,11 +84,13 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        // Solo para testeo: Si pulsas R, borras los datos y reinicias la escena
+        /*
+         * VERSION FINAL SE QUEDA COMENTADO
+         * // Solo para testeo: Si pulsas R, borras los datos y reinicias la escena
         if (Input.GetKeyDown(KeyCode.R))
         {
             PlayerPrefs.DeleteAll();
             Debug.Log("Datos borrados. Reinicia el juego para ver los cambios.");
-        }
+        }*/
     }
 }

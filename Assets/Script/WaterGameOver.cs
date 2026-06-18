@@ -11,7 +11,7 @@ public class WaterGameOver : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
     }
 
-    // Opción 1: Si el objeto es un Trigger (tiene "Is Trigger" marcado en su Collider)
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag))

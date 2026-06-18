@@ -36,7 +36,7 @@ public class TakeDrop : MonoBehaviour
             SavePlay.Instance.MarkItemCollected(unique.id);
         }
 
-        Destroy(mainItemHolder);
+        Destroy(mainItemHolder); // para asegurarnos  de que se destruye lo que queremos
     }
         
     private void ApplyEffect()

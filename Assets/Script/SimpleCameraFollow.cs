@@ -17,26 +17,7 @@ public class SimpleCameraFollow : MonoBehaviour
 
 
     private void Awake()
-    { /*
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Si estamos en la escena 0 → destruir Player
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Registrar este Player como el único
-        //instance = this;
-
-        // Hacerlo persistente SOLO si no estamos en escena 0
-        DontDestroyOnLoad(gameObject);
-        */
+    { 
     }
 
     private void Start()

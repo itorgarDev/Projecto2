@@ -20,7 +20,7 @@ public class Summon : TemplateStateMachine
 
         Debug.Log("[Summon] Enter: iniciando spawn de minions. CurrentWave = " + _fsm.currentWave);
 
-        int amount = _fsm.currentWave == 1 ? 3 : 5;
+        int amount = _fsm.currentWave == 1 ? 3 : 5; // saca 3 o 5 minion dependiendo de la oleada en la que se encuentre
         SpawnWave(amount);
 
         Debug.Log("[Summon] Spawn completado. Minions vivos ahora: " + _fsm.aliveMinions);

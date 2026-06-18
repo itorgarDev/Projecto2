@@ -29,7 +29,7 @@ public class PlayerAnim : MonoBehaviour
         {
             if (!deathTriggerSent)
             {
-                animator.SetTrigger("IsDead"); // Dispara el Trigger en tu Animator
+                animator.SetTrigger("IsDead"); // Dispara el Trigger en el Animator
                 deathTriggerSent = true;
             }
             return; // Detiene el resto de animaciones ya que está muerto

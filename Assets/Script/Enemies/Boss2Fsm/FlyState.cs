@@ -8,8 +8,7 @@ public class FlyState : TemplateStateMachine
 
     // variables pal tiempo de recarga del tiro
     float shootCooldownTimer = 0f;
-    float timeBetweenAttacks = 1.1f; // se tiene k esperar 1.1 segundos entre ataquees
-
+    float timeBetweenAttacks = 1.1f; 
     public FlyState(string name, PhoenixFSM _stateMachineFlow) : base(name, _stateMachineFlow)
     {
         phoenix = _stateMachineFlow;

@@ -1,6 +1,5 @@
 using UnityEngine;
-using System.Collections; // hace falta esto pa las corrutinas
-
+using System.Collections;
 public class ShootState : TemplateStateMachine
 {
     PhoenixFSM phoenix;
@@ -53,7 +52,7 @@ public class ShootState : TemplateStateMachine
         // esperamos el tiempo q toca pa q cuadre con la animacion
         yield return new WaitForSeconds(delay);
 
-        // a ver q patron decide el cerebro este
+        // a ver q patron decide la logica difusa
         Projectile.ShootPattern chosenPattern = Projectile.ShootPattern.SingleBullet;
         if (fuzzyBrain != null)
         {
@@ -79,7 +78,7 @@ public class ShootState : TemplateStateMachine
         base.UpdateLogic();
         shootTimer += Time.deltaTime;
 
-        // cuando pasa el tiempo volvemos a volar, tranki
+        // cuando pasa el tiempo volvemos a volar
         if (shootTimer >= shootDuration)
             phoenix.ChangeState(phoenix.flyState);
     }
