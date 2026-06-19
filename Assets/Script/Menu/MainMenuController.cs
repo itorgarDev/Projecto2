@@ -7,8 +7,8 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Configuración de Transición")]
     public float transitionTime = 1f;
-    public GameObject imageOut;              // Panel negro de UI para fadeout
-    public Animator transitionFadeout;      // Animator con el trigger "StartFade"
+    public GameObject imageOut;             
+    public Animator transitionFadeout;     
 
     [Header("Paneles del Menú")]
     public GameObject menuPrincipal;
@@ -19,12 +19,12 @@ public class MainMenuController : MonoBehaviour
     public int checkpointDestination;
     public bool whereCutscene;
 
-    // Variables estáticas de control de flujo
+   
     public static bool returningToScene = false;
     public static bool isResumingGame = false;
     public static bool comingFromCheckpointButton = false;
 
-    // Variables internas de estado
+    
     public bool firstGame = false;
     private int current;
 
@@ -35,7 +35,7 @@ public class MainMenuController : MonoBehaviour
         if (menuPrincipal != null) menuPrincipal.SetActive(true);
         if (menuAreUSure != null) menuAreUSure.SetActive(false);
 
-        // CORRECCIÓN 1: Cargar datos guardados para que 'firstGame' no sea siempre false
+        
         if (SavePlay.Instance != null)
         {
             SavePlay.Instance.LoadData();
@@ -43,15 +43,15 @@ public class MainMenuController : MonoBehaviour
             Debug.Log("MainMenuController inicializado. ¿Partida activa?: " + firstGame);
         }
 
-        // CORRECCIÓN 2: Recuperar el estado guardado de 'whereCutscene' al cambiar de escena
+       
         whereCutscene = PlayerPrefs.GetInt("WhereCutscene", 0) == 1;
         Debug.Log("Estado de whereCutscene recuperado: " + whereCutscene);
     }
 
-    // --- EL BOTÓN DE CONTINUAR / JUGAR ---
+    
     public void StartGame()
     {
-        // Evaluamos si el jugador ya tiene una partida activa para avisar
+       
         if (firstGame)
         {
             AreYouSure();
@@ -69,12 +69,12 @@ public class MainMenuController : MonoBehaviour
             PlayerPrefs.SetInt("WhereCutscene", 1);
             RespawnSystem.CurrentCheckpointIndex = 0;
 
-            // Carga la escena inicial por defecto (Escena 3 según Menu_System original)
+            
             GoToDestination(3);
         }
     }
 
-    // --- LÓGICA DE NUEVA PARTIDA (RESET PREFS) ---
+  //Metodo usado para reiniciar datos
     public void ResetPrefs()
     {
         PlayerPrefs.DeleteAll();
@@ -82,7 +82,7 @@ public class MainMenuController : MonoBehaviour
 
         if (SavePlay.Instance != null)
         {
-            SavePlay.Instance.lastScene = 5; // Tu escena inicial por defecto
+            SavePlay.Instance.lastScene = 5; 
             SavePlay.Instance.lastCheckpoint = 0;
             SavePlay.Instance.firstGameActive = false;
             SavePlay.Instance.vida = 5;
@@ -123,7 +123,7 @@ public class MainMenuController : MonoBehaviour
         else GoToDestination(0);
     }
 
-    // --- MÉTODOS AUXILIARES DE TU MENÚ ORIGINAL ---
+   
     public void AreYouSure()
     {
         if (menuPrincipal != null) menuPrincipal.SetActive(false);
@@ -138,7 +138,7 @@ public class MainMenuController : MonoBehaviour
 
     public void YesIAm()
     {
-        // CORRECCIÓN 3: Al confirmar el borrado, inicializar correctamente el flujo hacia la escena 3
+        
         ResetPrefs();
 
         if (SavePlay.Instance != null)
@@ -163,7 +163,7 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Saliendo del juego...");
     }
 
-    // Corrutina simple para hacer el fundido antes de cargar la escena desde el menú
+    
     private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
         if (imageOut != null) imageOut.SetActive(true);
@@ -178,21 +178,18 @@ public class MainMenuController : MonoBehaviour
     {
         if (SavePlay.Instance != null)
         {
-            // 1. Forzamos la lectura de los datos guardados en el disco duro
+            
             SavePlay.Instance.LoadData();
 
             isResumingGame = true;
 
-            // 2. Sincronizamos el checkpoint guardado con el sistema global de Respawn
+            
             RespawnSystem.CurrentCheckpointIndex = SavePlay.Instance.lastCheckpoint;
 
-            // Asignamos el destino para que la corrutina sepa a dónde ir
+            
             sceneDestination = SavePlay.Instance.lastScene;
 
-            // 3. Activamos los componentes visuales del fundido (fadeout)
             
-
-            // 4. Arrancamos la corrutina clonada con la lógica de recolocación in-game
             StartCoroutine(LoadSceneWithTransition());
         }
         else

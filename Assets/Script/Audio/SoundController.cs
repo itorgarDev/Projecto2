@@ -175,7 +175,6 @@ public class SoundController : MonoBehaviour
     {
         if (clip == null) return;
 
-        // Configurar el AudioSource para ambiente
         audioSource.clip = clip;
         audioSource.loop = true;
         audioSource.Play();

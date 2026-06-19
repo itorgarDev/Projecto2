@@ -13,10 +13,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject panelCredits;
 
     [Header("Primeros Elementos Seleccionados (Mando)")]
-    [SerializeField] private GameObject buttonOptionsFirst; // Ej: Botón Continuar/Volver
-    [SerializeField] private GameObject sliderAudioFirst;    // Ej: Slider Master Volume
-    [SerializeField] private GameObject sliderVideoFirst;    // Ej: Slider Brillo
-    [SerializeField] private GameObject buttonControlFirst;  // Ej: Botón Volver de Controles
+    [SerializeField] private GameObject buttonOptionsFirst; 
+    [SerializeField] private GameObject sliderAudioFirst;    
+    [SerializeField] private GameObject sliderVideoFirst;    
+    [SerializeField] private GameObject buttonControlFirst;  
     [SerializeField] private GameObject buttonAreUSureFirst;
     [SerializeField] private GameObject buttonCreditsFirst;
 
@@ -28,30 +28,25 @@ public class MenuManager : MonoBehaviour
 
 
 
-    // --- FUNCIÓN CRÍTICA: ABRE O CIERRA TODO ---
-    // --- FUNCIÓN CRÍTICA: ABRE O CIERRA TODO ---
+
     public void ToggleMenu()
     {
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen)
         {
-            // 1. Activamos el objeto raíz del menú (Canvas_EntreScenes_def)
+            
             if (menuRootObject != null)
                 menuRootObject.SetActive(true);
-
-            // 2. SOLUCIÓN COMPLETA: Cada vez que se abra el menú (isMenuOpen es true),
-            // llamamos directamente a la función. Esto apagará cualquier subpanel residual (Audio, Video...)
-            // y reactivará el panel de Opciones con su botón del mando enfocado.
             OpenOptionsPanel();
         }
         else
         {
-            // Al cerrar el menú con ESC, simplemente desactivamos la raíz por completo
+            
             if (menuRootObject != null)
                 menuRootObject.SetActive(false);
 
-            // Limpiamos la selección del EventSystem para evitar errores de navegación con mando/teclado
+            
             if (UnityEngine.EventSystems.EventSystem.current != null)
             {
                 UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
@@ -59,7 +54,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // --- PANEL OPCIONES PRINCIPAL ---
+    //al abrir el panel de opciones se detecta el primer boton del Canvas como el boton donde poder comenzar a desplazarte
     public void OpenOptionsPanel()
     {
         SetAllPanelsActive(false);
@@ -67,7 +62,7 @@ public class MenuManager : MonoBehaviour
         SelectElement(buttonOptionsFirst);
     }
 
-    // --- PANEL AUDIO ---
+    //al abrir el panel de audio se detecta el primer slider del Canvas como el slider donde poder comenzar a desplazarte
     public void OpenAudioPanel()
     {
         SetAllPanelsActive(false);
@@ -75,27 +70,27 @@ public class MenuManager : MonoBehaviour
         SelectElement(sliderAudioFirst);
     }
 
-    // --- PANEL VIDEO / BRILLO ---
+    //al abrir el panel de audio se detecta el primer slider del Canvas como el slider donde poder comenzar a desplazarte
     public void OpenVideoPanel()
     {
         SetAllPanelsActive(false);
         panelVideo.SetActive(true);
-        SelectElement(sliderVideoFirst); // Selecciona el Slider de Brillo automáticamente
+        SelectElement(sliderVideoFirst); 
     }
 
-    // --- PANEL CONTROLES ---
+  
     public void OpenControlPanel()
     {
         SetAllPanelsActive(false);
         panelControl.SetActive(true);
-        SelectElement(buttonControlFirst); // Selecciona el botón 'Volver' para poder salir con mando
+        SelectElement(buttonControlFirst); 
     }
 
     public void OpenAreUSurePanel()
     {
         SetAllPanelsActive(false);
         panelAreUSure.SetActive(true);
-        SelectElement(buttonAreUSureFirst); // Selecciona el botón de confirmación por defecto
+        SelectElement(buttonAreUSureFirst);
     }
 
     public void OpenCreditsPanel()
@@ -105,7 +100,6 @@ public class MenuManager : MonoBehaviour
         SelectElement(buttonCreditsFirst);
     }
 
-    // Módulos de ayuda para simplificar el código
     private void SetAllPanelsActive(bool state)
     {
         if (panelOptions != null) panelOptions.SetActive(state);
