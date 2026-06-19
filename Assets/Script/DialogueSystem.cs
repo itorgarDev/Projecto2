@@ -40,7 +40,7 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(true);
         dialogueName.SetActive(true);
 
-        // Asignar color según tipo
+        // Asignamos el color del texto segun el tipo de MaoQiu
         Color textColor= Color.white;
         switch (characterType)
         {

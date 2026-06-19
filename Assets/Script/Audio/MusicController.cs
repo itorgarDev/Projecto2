@@ -31,7 +31,7 @@ public class MusicController : MonoBehaviour
 
     public void Awake()
     {
-        // Singleton
+       
         if (Instance == null)
         {
             Instance = this;
@@ -43,7 +43,6 @@ public class MusicController : MonoBehaviour
             return;
         }
 
-        // Crear AudioSource
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.outputAudioMixerGroup = musicGroup;
         audioSource.loop = true;
@@ -56,12 +55,9 @@ public class MusicController : MonoBehaviour
     {
         if (clip == null) return;
 
-        // Si ya está sonando esta música, no hacer nada
+        
         if (audioSource.clip == clip && audioSource.isPlaying)
             return;
-
-
-        // Si ya hay un fade en curso, cancelarlo
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
 
@@ -118,19 +114,17 @@ public class MusicController : MonoBehaviour
     {
         Debug.Log($"[MusicController] Escena cargada: {scene.name}. Reseteando AudioSource para evitar solapamientos.");
 
-        // 1. Cancelamos CUALQUIER corutina de fade (sea de entrada o de salida) que estuviera corriendo
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);
             fadeCoroutine = null;
         }
 
-        // 2. Paramos el AudioSource en seco de forma inmediata
         if (audioSource != null)
         {
             audioSource.Stop();
-            audioSource.clip = null; // Vaciamos el clip anterior para borrar su rastro
-            audioSource.volume = 1f;  // Devolvemos el volumen a su estado base para la nueva música
+            audioSource.clip = null; 
+            audioSource.volume = 1f;  
         }
     }
 

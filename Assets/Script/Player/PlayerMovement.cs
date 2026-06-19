@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 MoveInput => moveInput;
     public bool IsDashing => isDashing;
     
-    [SerializeField] private float gravity = 40f;      // gravedad rápida  esot es chapuza pero fe la unica manera que se me ocurrio 
+    [SerializeField] private float gravity = 40f;      // gravedad rápida  esto es chapuza pero fe la unica manera que se me ocurrio 
     [SerializeField] private float snapDistance = 1.2f;
     [SerializeField] private LayerMask groundMask;
 
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Esperar un frame para que MENU_FINAL(Clone) aparezca en la jerarquía
+
         StartCoroutine(DelayedFindMenu());
         StartCoroutine(RefreshHUD());
         ApplySavedSettings();
@@ -132,8 +132,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void ApplySavedSettings()
-    {
-        // AUDIO
+    { 
         AudioListener.volume = SavePlay.Instance.masterVolume;
 
         if (audioMixer != null)
@@ -142,16 +141,15 @@ public class PlayerMovement : MonoBehaviour
             audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(SavePlay.Instance.sfxVolume, 0.0001f)) * 20);
         }
 
-        // VIDEO
         QualitySettings.SetQualityLevel((int)SavePlay.Instance.quality);
 
         Screen.fullScreen = SavePlay.Instance.fullScreen;
 
-        // VIDEO
+
         QualitySettings.SetQualityLevel((int)SavePlay.Instance.quality);
         Screen.fullScreen = SavePlay.Instance.fullScreen;
 
-        // BRILLO
+     
         Brightness_System brillo = FindObjectOfType<Brightness_System>();
         if (brillo != null)
         {
@@ -162,13 +160,13 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DelayedFindMenu()
     {
-        yield return null; // esperar 1 frame
+        yield return null; 
         FindPauseMenu();
     }
 
     private IEnumerator RefreshHUD()
     {
-        yield return null; // esperar 1 frame para que HUD exista
+        yield return null; 
 
         PlayerStats stats = GetComponent<PlayerStats>();
         if (stats != null && stats.hud != null)
@@ -227,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
 
             pauseMenuCanvasOptions?.SetActive(true);
 
-            // Mantén el brillo activo
+
             pauseMenuCanvasBrillo?.SetActive(true);
 
             scrollAnimator?.SetTrigger("Scroll_Animation");
@@ -244,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
             pauseMenuCanvasScroll?.SetActive(false);
             pauseMenuCanvasOptions?.SetActive(false);
 
-            // NO desactives el brillo
+           
             // pauseMenuCanvasBrillo?.SetActive(false);
 
             pauseMenuCanvas?.SetActive(false);
